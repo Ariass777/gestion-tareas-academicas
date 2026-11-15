@@ -193,3 +193,22 @@ Las aserciones de PHPUnit aumentan al haber 200 fixtures; por eso no se comparan
 ## 10. Conclusiones
 
 La revisión conserva el incremento y añade comprobaciones reproducibles. Se corrigieron defectos verificables de fechas, aislamiento de pruebas y tratamiento de errores, y se incorporaron linter y documentación. Los resultados automatizados permiten evaluar regresiones; no sustituyen la revisión de la estudiante ni eliminan los riesgos expresamente documentados.
+
+## 11. Observaciones de revisión humana del commit 80c1917
+
+La estudiante comunicó dos observaciones textuales detectadas **al comparar el diff**. Esta es una revisión humana parcial; no implica que haya ejecutado las pruebas del agente ni aceptado los riesgos residuales del informe.
+
+| ID | Observación humana | Comprobación del agente en el código y el commit | Resultado |
+| --- | --- | --- | --- |
+| RH-01 | Se indicó `Porcomenzar` en `frontend/src/app/pages/inicio/inicio.component.html`; texto solicitado: `Por comenzar`. | La copia actual y `80c1917` ya contienen `<small>Por comenzar</small>`, con espacio. No se encontró literalmente la forma unida. | Texto solicitado verificado; no fue necesario modificar el HTML. |
+| RH-02 | Se indicó `durantela edicion` en el JSDoc de `fechaNoPasada`; texto solicitado: `durante la edición`. | La copia actual decía `durante la edicion`, ya separada, pero sin tilde. | Se corrigió exclusivamente `edicion` a `edición` en ese comentario. |
+
+Para comprobar otras uniones accidentales se compararon los nodos de texto de las dos plantillas externas modificadas en `80c1917` con su padre, normalizando espacios: inicio mantuvo 43 nodos y tareas 41. Las únicas diferencias textuales fueron las expresiones UTC intencionales. El texto del formulario inline fue idéntico y se inspeccionaron los comentarios añadidos al diff. No se detectaron otras concatenaciones en ese alcance; no se afirma una revisión ortográfica exhaustiva del repositorio.
+
+Verificación posterior **ejecutada por el agente** desde `frontend/`:
+
+- `npm.cmd run lint`: aprobado, salida 0.
+- `npm.cmd test -- --watch=false`: **8 pruebas en 4 archivos aprobadas**, salida 0.
+- Comparación con `80c1917`: ambas plantillas conservan `T00:00:00Z` y formato `UTC`, sin cambios HTML, funcionales ni visuales.
+
+No se ejecutaron operaciones MySQL. El ajuste se registra en un commit nuevo, sin modificar `80c1917` ni realizar push.

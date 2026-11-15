@@ -16,7 +16,7 @@ export function hoyColombia(): string {
 export const textoObligatorio: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>
   typeof control.value === 'string' && control.value.trim().length > 0 ? null : { required: true };
 /**
- * Valida contra hoy en Colombia y permite conservar una fecha vencida durante la edicion.
+ * Valida contra hoy en Colombia y permite conservar una fecha vencida durante la edición.
  * @param fechaOriginal Fecha ISO persistida, omitida en formularios de registro.
  * @returns Validador con error pasada o null; Validators.required comprueba ausencia.
  */

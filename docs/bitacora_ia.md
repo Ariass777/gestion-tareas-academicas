@@ -62,3 +62,26 @@ Hubo fallos intermedios registrados: la regresión de fecha falló antes del arr
 ## Tareas pendientes de la estudiante
 
 La estudiante debe revisar el diff y el informe, comprobar el uso personal en loopback, decidir sobre S-02 y registrar su propia ejecución/aceptación académica. **No se afirma que ya haya realizado estas acciones.** La IA realizó análisis y pruebas automatizadas; no sustituyó la validación humana ni certificó ausencia total de vulnerabilidades.
+
+## Seguimiento: observaciones humanas al comparar el diff de 80c1917
+
+La estudiante realizó una revisión parcial del diff y comunicó dos observaciones de redacción. Esto actualiza el registro anterior únicamente respecto de esa comparación humana; las pruebas automatizadas y la aceptación de riesgos siguen distinguiéndose de su revisión.
+
+**Prompt recibido, extractos literales:**
+
+> En `frontend/src/app/pages/inicio/inicio.component.html` aparece el texto `Porcomenzar`. Debe corregirse a `Por comenzar`.
+>
+> En `frontend/src/app/config/fechas.ts`, el comentario JSDoc de `fechaNoPasada` contiene `durantela edicion`. Debe corregirse a `durante la edición`.
+>
+> Corrige únicamente estos dos problemas. Conserva la corrección de fechas UTC ya implementada.
+
+| Actividad | Responsable real | Resultado |
+| --- | --- | --- |
+| Detección y comunicación de las dos observaciones al comparar el diff | Estudiante | Observaciones registradas como RH-01 y RH-02 en el informe. No se atribuyen al agente como hallazgos humanos propios. |
+| Contraste con la copia actual y el commit | Codex, agente principal | `Por comenzar` ya tenía espacio; el JSDoc decía `durante la edicion`. No se encontraron literalmente las dos formas unidas comunicadas. |
+| Corrección aplicada | Codex, agente principal | Solo la tilde pendiente en `durante la edición`; el HTML ya cumplía el texto solicitado. |
+| Revisión de otras concatenaciones de formateo | Codex, agente principal | Comparación de textos de plantillas externas e inline y revisión de comentarios del diff, sin otras uniones detectadas en ese alcance. |
+| Linter y pruebas posteriores | Codex, agente principal | ESLint aprobado y 8 pruebas Angular aprobadas. La estudiante no ejecutó estas comprobaciones durante este seguimiento. |
+| Conservación de UTC | Codex, agente principal | Las plantillas no cambiaron respecto de `80c1917` y mantienen ISO UTC explícito. No se modificaron funcionalidades, CSS ni datos MySQL. |
+
+Herramienta de IA utilizada en este seguimiento: **Codex, agente principal**. No se solicitó otra revisión por IA para este ajuste textual. Se crea un commit nuevo, sin reescribir el historial y sin push. La aprobación académica completa y la decisión sobre S-02 siguen pendientes de la estudiante.
