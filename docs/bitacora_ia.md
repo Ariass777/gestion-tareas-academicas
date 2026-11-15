@@ -2,7 +2,7 @@
 
 Fecha de esta actividad: **14 de noviembre de 2026**, zona `America/Bogota`. Algunas herramientas registran timestamps UTC del 15 de noviembre; corresponden todavía al día 14 en Colombia.
 
-Rama de trabajo: `revision-calidad-seguridad`. Commit inicial: `a4d34de`. El commit final puede consultarse con `git log -1 --oneline`; no se realizó push.
+Revisión inicial: rama `revision-calidad-seguridad`, desde `a4d34de`; corrección principal `80c1917`. Esta etapa no realizó push. Posteriormente se integró en `main` mediante `1adaacd`. El ajuste documental de la entrega se realiza en `ajuste-entrega-semana-6`, sin push; los resultados anteriores se conservan como antecedentes, no como pruebas repetidas en esta etapa.
 
 ## Consigna de la estudiante
 
@@ -109,3 +109,41 @@ La estudiante comunicó resultados de comandos ejecutados por ella desde `fronte
 El seguimiento propuesto es revisar actualizaciones compatibles y volver a comprobar el árbol completo y las auditorías total y de producción antes de cambiar el estado. No se modificaron dependencias, lockfiles ni código y no se ejecutó `npm audit fix --force`. Esta actividad corresponde únicamente a documentación con Codex; no se invocó otro modelo de IA ni se ejecutaron pruebas adicionales por parte del agente.
 
 Detalle y resultados humanos: [revisión de seguridad, sección 13](revision_seguridad.md#13-comprobaciones-humanas-y-propuesta-de-decisión-para-s-02). Las rutas relativas del informe y de esta bitácora fueron revisadas por el agente; los artefactos ignorados se identifican como evidencia local, no como archivos que se publiquen con el commit.
+
+## Semana 6: ajuste a la plantilla oficial
+
+Fecha de registro: **14/11/2026 (America/Bogota)**. Las tres entradas siguientes corresponden a actividades distintas de esta semana, realizadas por Codex en este ajuste documental. No asignan una nueva fecha de ejecución a los comandos previamente reportados por la estudiante.
+
+**Prompt de esta actividad, extractos literales:**
+
+> Crea `revision_seguridad.md` en la RAÍZ del repositorio, con una extensión aproximada de 1 a 2 páginas.
+>
+> No modifiques código funcional ni dependencias. No ejecutes operaciones destructivas de MySQL.
+>
+> Si el proyecto todavía no tiene licencia definida, indícalo claramente y deja pendiente la elección.
+>
+> Comprueba que existan al menos tres entradas correspondientes a esta semana y que reflejen la revisión con IA, las correcciones y la supervisión humana.
+>
+> Crea una rama nueva llamada ajuste-entrega-semana-6, aplica exclusivamente los cambios documentales, revisa el diff y crea un commit. No hagas push todavía.
+
+| Fecha / entrada | IA e instrucción aplicada | Objetivo y respuesta | Problemas sugeridos / decisión | Corrección y evidencia del agente | Supervisión humana real / pendiente |
+| --- | --- | --- | --- | --- | --- |
+| 2026-11-14 / S6-01: revisión documental con IA | Codex; sintetizar el informe detallado, la bitácora y el JSON según los cuatro apartados oficiales | Contrastar fuentes, historial y líneas actuales de F-01, S-01, S-02, Q-01 a Q-04 y falsos positivos | Mantener S-02 abierto; descartar FP-01/FP-02 según las verificaciones históricas, sin inventar nuevos defectos | Creación de [informe oficial](../revision_seguridad.md), con archivos/líneas y commits obtenidos del repositorio; se conserva el [informe complementario](revision_seguridad.md) | La estudiante proporcionó la plantilla y delimitó el alcance. No se solicitó una nueva revisión independiente ni se atribuyen nuevas pruebas a la estudiante. |
+| 2026-11-14 / S6-02: correcciones de entrega | Codex; ocho secciones de README, revisión de comandos y licencia sin inventar | Reorganizar instalación, ejecución, pruebas, estructura, IA y autoría; distinguir resultados históricos | No existe `LICENSE`; el manifiesto del backend declara MIT. Se deja pendiente la elección global. Instalación limpia no verificada | Actualización de [README](../README.md), contraste con scripts/manifiestos y declaración explícita de límites; sin modificar código ni dependencias | La estudiante aclaró que la licencia debe quedar pendiente si no está definida y que no se declare una instalación limpia sin comprobarla. Elección y validación final pendientes. |
+| 2026-11-14 / S6-03: supervisión humana y trazabilidad | Codex; registrar únicamente comprobaciones humanas comunicadas y verificar referencias | Consolidar revisión de diffs, observación S-01 y resultados humanos de `npm ls minimatch` / `npm audit --omit=dev` | Las concatenaciones reportadas no se confirmaron; solo se corrigieron históricamente las tildes de «edición» y «conexión». La aceptación temporal de S-02 sigue siendo propuesta | El informe breve enlaza líneas reales y commits `9c72fbb`, `3ead49e`, `81a6cb4`; las suites anteriores conservan autoría del agente. La validación documental se registra abajo | Sí consta revisión humana parcial del diff, valoración del alcance de S-01 y los dos comandos reportados. No consta aprobación definitiva de S-02 ni aprobación académica global. |
+
+Los antecedentes de S6-03 proceden de los seguimientos humanos ya registrados, no de nuevas ejecuciones humanas durante esta edición. No se repitieron PHPUnit, Vitest, E2E, compilación ni auditorías: el alcance es documental. No se operó sobre MySQL ni se cambiaron lockfiles. Quedan pendientes la instalación limpia, la licencia global y las confirmaciones humanas indicadas; no se consideran defectos corregidos por este ajuste.
+
+### Validación documental ejecutada por el agente
+
+| Comprobación / comando o mecanismo | Resultado de esta edición |
+| --- | --- |
+| `git status --short --branch` y `git log -7 --oneline` | Se partió de `main` limpio en `1adaacd`; se creó `ajuste-entrega-semana-6`. Solo se editan README, informe breve nuevo y esta bitácora. |
+| `git ls-files -- '*.md'`, lectura UTF-8 y resolución de enlaces relativos con PowerShell/.NET | 10 documentos revisados, 39 enlaces relativos válidos; 14 referencias a líneas existentes y un ancla de encabezado resuelta. No se comprobaron URLs externas. |
+| `Test-Path -LiteralPath` sobre rutas de código, scripts, originales y fuentes documentales citadas | 45 rutas existentes. Los ejemplos locales ignorados por Git no se presentan como archivos distribuidos con el repositorio. |
+| Comparación de encabezados y entradas de bitácora | Ocho secciones exactas de README, cuatro del informe oficial y tres entradas adicionales de semana 6. Las entradas históricas se conservan. |
+| `System.Management.Automation.Language.Parser.ParseInput` | Los 17 bloques PowerShell del README no tienen errores de sintaxis; **no fueron ejecutados**. La sintaxis no demuestra una instalación correcta. |
+| Lectura de manifiestos/scripts, `JSON.parse` con Node y `git cat-file -e <commit>^{commit}` | S-02 coincide con minimatch 10.2.6 de desarrollo en el lockfile; el JSON de evidencia es legible y los cinco commits citados existen. Se contrastó `--tries` con `ServeCommand.php` instalado. |
+| `git diff --check` | Sin errores de espacios en la revisión del diff; Git avisa de su conversión habitual LF/CRLF. Revisión final del contenido limitada a documentación. |
+
+Un intento de leer `package-lock.json` con `ConvertFrom-Json` de Windows PowerShell falló por la clave vacía de `packages`; la comprobación se repitió correctamente con `JSON.parse` de Node, sin alterar el archivo. No se contó el intento fallido como validación aprobada. Todas estas comprobaciones son del agente, no de la estudiante. La paginación exacta del Markdown depende del exportador; el informe se mantiene breve para la extensión aproximada solicitada.
