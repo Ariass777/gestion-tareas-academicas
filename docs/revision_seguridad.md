@@ -212,3 +212,45 @@ Verificación posterior **ejecutada por el agente** desde `frontend/`:
 - Comparación con `80c1917`: ambas plantillas conservan `T00:00:00Z` y formato `UTC`, sin cambios HTML, funcionales ni visuales.
 
 No se ejecutaron operaciones MySQL. El ajuste se registra en un commit nuevo, sin modificar `80c1917` ni realizar push.
+
+## 12. Revisión humana del alcance de S-01
+
+La estudiante analizó `TestDatabaseSafety.php` y `CheckTestDatabase.php` y aportó la siguiente observación humana:
+
+> La guardia de seguridad S-01 valida el entorno, la conexión, la ausencia de DB_URL, la configuración no cacheada y el sufijo \_testing. Se considera una medida adecuada para el proyecto académico. Sin embargo, el nombre de una base terminada en \_testing no demuestra que esté vacía ni que carezca de información importante; tampoco verifica independientemente la identidad física del servidor MySQL. Por ello, se mantiene la recomendación de utilizar exclusivamente bases nuevas y desechables para pruebas.
+
+Esta valoración humana se limita al alcance de S-01. No se afirma que la estudiante haya ejecutado pruebas adicionales ni que haya aprobado otros riesgos residuales.
+
+### Ajustes de documentación solicitados
+
+| Observación | Estado verificado por el agente | Ajuste |
+| --- | --- | --- |
+| `seaexclusivo` → `sea exclusivo` | La descripción de `CheckTestDatabase` ya contiene `sea exclusivo`, con espacio. | Texto solicitado comprobado; no fue necesario modificarlo. |
+| `modificaMySQL` → `modifica MySQL` | El PHPDoc de `CheckTestDatabase::handle()` ya contiene `modifica MySQL`, con espacio. | Texto solicitado comprobado; no fue necesario modificarlo. |
+| `conexionno` → `conexión no` | El PHPDoc de `TestDatabaseSafety::assertSafe()` contenía `conexion no`, separado pero sin tilde. | Se corrigió únicamente la tilde de `conexión`. |
+
+No se modificaron condiciones, excepciones, retornos, consultas ni lógica de arranque.
+
+### Ruta efectiva de ejecución de la guardia
+
+La inspección del código y las pruebas de arranque ejecutadas por el agente confirman esta ruta:
+
+1. `frontend/playwright.config.ts` inicia el backend E2E con `node ../scripts/serve-backend.mjs`.
+2. `scripts/serve-backend.mjs` construye el entorno del proceso con `APP_ENV=testing` y `ACADEMICA_E2E=1`.
+3. Antes de iniciar el servidor HTTP, ejecuta mediante `spawnSync` el comando `php artisan academic:check-test-database --env=testing --no-interaction`, desde `backend/`.
+4. Al arrancar Laravel, `AppServiceProvider::boot()` comprueba `ACADEMICA_E2E=1` e invoca `TestDatabaseSafety::assertSafe()`. El método `CheckTestDatabase::handle()` también invoca explícitamente la guardia; ante una excepción devuelve fallo.
+5. Si el comando falla, el script Node termina con código 1 antes de ejecutar el `spawn` del servidor HTTP. Las tres pruebas Node verifican esa negativa con configuraciones inseguras.
+6. Si la comprobación aprueba, el script inicia PHP en `127.0.0.1:8001` con el mismo entorno. Para solicitudes de la API, el router de Laravel carga `backend/public/index.php`, este carga `bootstrap/app.php` y, durante el arranque para atender la solicitud, `AppServiceProvider::boot()` vuelve a ejecutar la guardia.
+
+El preflight valida configuración, no apertura de conexión, contenido de tablas ni identidad física de MySQL. La comprobación en el proveedor tampoco amplía esas garantías. El comando `academic:check-test-database` puede ejecutarse por separado sin el indicador E2E; su `handle()` conserva la llamada explícita a la guardia.
+
+### Pruebas relacionadas ejecutadas por el agente
+
+Desde `backend/`, seleccionando la base de revisión mediante `DB_DATABASE` y manteniendo `DB_URL` vacío:
+
+- `..\.tools\php\php.exe artisan test --compact --filter=TestDatabaseSafetyTest`: **7 pruebas y 10 aserciones aprobadas**, salida 0.
+- `..\.tools\php\php.exe artisan academic:check-test-database --env=testing --no-interaction`: comprobación aprobada, salida 0.
+- `php -l` sobre `TestDatabaseSafety.php` y `CheckTestDatabase.php`: sin errores de sintaxis.
+- `..\.tools\php\php.exe vendor/bin/pint --dirty --format agent`: aprobado.
+
+Desde la raíz, `node --test scripts/serve-backend.test.mjs`: **3 pruebas aprobadas**, salida 0. Estas ejecutan el arranque real del script y comprueban el rechazo previo a HTTP de base de desarrollo, redirección `DB_URL` y nombre inválido. No se ejecutaron migraciones ni escrituras MySQL durante este seguimiento. Se conserva el historial anterior y el ajuste se registra en un commit separado, sin push.

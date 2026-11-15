@@ -14,7 +14,7 @@ final class TestDatabaseSafety
      * No abre conexiones ni modifica tablas. Exige un .env.testing explicito;
      * una variable DB_DATABASE heredada solo se acepta si termina en _testing.
      *
-     * @throws LogicException Si la configuracion cacheada, entorno o conexion no son seguros.
+     * @throws LogicException Si la configuracion cacheada, entorno o conexión no son seguros.
      */
     public static function assertSafe(Application $app): void
     {
