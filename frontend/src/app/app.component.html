@@ -1,0 +1,50 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <a routerLink="/" class="brand" aria-label="Académica, inicio">
+      <span class="brand-mark"><app-icon name="book" /></span>
+      <span>académica<span class="brand-dot">.</span><small>Tu espacio de estudio</small></span>
+    </a>
+    <div class="workspace-label">MI ESPACIO</div>
+    <nav aria-label="Navegación principal">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        ><app-icon name="home" /><span>Inicio</span></a
+      >
+      <a routerLink="/tareas" routerLinkActive="active"
+        ><app-icon name="tasks" /><span>Mis tareas</span></a
+      >
+      <a routerLink="/asignaturas" routerLinkActive="active"
+        ><app-icon name="book" /><span>Asignaturas</span></a
+      >
+    </nav>
+    <div class="sidebar-note">
+      <span class="note-symbol"><app-icon name="cap" /></span><strong>Un paso a la vez</strong>
+      <p>Organiza tus entregas y haz espacio para aprender.</p>
+    </div>
+    <div class="student">
+      <span class="avatar"><app-icon name="cap" /></span>
+      <div><strong>Estudiante</strong><small>Espacio académico personal</small></div>
+    </div>
+  </aside>
+  <div class="main-column">
+    <header class="topbar">
+      <span class="topbar-title">Gestión de tareas académicas</span
+      ><span class="topbar-date"><app-icon name="calendar" />{{ fecha }}</span>
+    </header>
+    <main id="contenido"><router-outlet /></main>
+    <footer class="footer">Académica <span>Un lugar para organizar tu semestre.</span></footer>
+  </div>
+</div>
+@if (avisos.mensaje()) {
+  <div
+    class="toast"
+    [class.toast-error]="avisos.tipo() === 'error'"
+    [attr.role]="avisos.tipo() === 'error' ? 'alert' : 'status'"
+  >
+    <app-icon [name]="avisos.tipo() === 'error' ? 'circle' : 'check'" /><span>{{
+      avisos.mensaje()
+    }}</span
+    ><button type="button" aria-label="Cerrar mensaje" (click)="avisos.mensaje.set('')">
+      <app-icon name="close" />
+    </button>
+  </div>
+}

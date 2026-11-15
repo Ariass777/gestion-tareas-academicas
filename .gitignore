@@ -1,0 +1,27 @@
+# Dependencias y compilaciones
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.angular/
+/frontend/playwright-report/
+/frontend/test-results/
+/backend/vendor/
+/backend/node_modules/
+/backend/public/build/
+/backend/storage/*.key
+/backend/storage/logs/*
+!/backend/storage/logs/.gitignore
+/backend/bootstrap/cache/*.php
+/backend/.phpunit.cache/
+/backend/.phpunit.result.cache
+
+# Configuración privada y herramientas portátiles locales
+.env
+.env.*
+!.env.example
+!.env.testing.example
+/.tools/
+/.runtime/
+/.cache/
+/artifacts/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,254 @@
+<div class="page-heading">
+  <div>
+    <p class="eyebrow">UN PLAN PARA CADA ENTREGA</p>
+    <h1>{{ titulo() }}</h1>
+    <p class="subtitle">Organiza tus actividades y avanza a tu propio ritmo.</p>
+  </div>
+  <button
+    class="btn btn-primary"
+    type="button"
+    (click)="abrirEditor()"
+    [disabled]="loading() || error() || asignaturas().length === 0"
+  >
+    <app-icon name="plus" />Nueva tarea
+  </button>
+</div>
+@if (!loading() && !error() && asignaturas().length === 0) {
+  <div class="info-banner">
+    <app-icon name="book" /><span>Primero registra una asignatura para organizar tus tareas.</span
+    ><a routerLink="/asignaturas" class="text-link">Agregar asignatura <app-icon name="arrow" /></a>
+  </div>
+}
+<section class="panel task-panel">
+  <div class="task-toolbar">
+    <div class="priority-filters" role="group" aria-label="Filtrar por prioridad">
+      <button
+        type="button"
+        [class.selected]="!prioridad()"
+        [attr.aria-pressed]="!prioridad()"
+        (click)="prioridad.set(undefined)"
+      >
+        Todas
+      </button>
+      @for (p of prioridades; track p) {
+        <button
+          type="button"
+          [class.selected]="prioridad() === p"
+          [attr.aria-pressed]="prioridad() === p"
+          (click)="prioridad.set(p)"
+        >
+          <span
+            class="priority-dot"
+            [class.high]="p === 'Alta'"
+            [class.medium]="p === 'Media'"
+            [class.low]="p === 'Baja'"
+          ></span
+          >{{ p }}
+        </button>
+      }
+    </div>
+    <div class="state-filter">
+      <app-icon name="filter" /><label class="sr-only" for="estado-filtro">Filtrar por estado</label
+      ><select id="estado-filtro" (change)="filtrarEstado($event)">
+        <option value="" [selected]="!estado()">Todos los estados</option>
+        @for (e of estados; track e) {
+          <option [value]="e" [selected]="e === estado()">{{ e }}</option>
+        }
+      </select>
+    </div>
+  </div>
+  <div class="list-caption">
+    <span>{{
+      loading()
+        ? 'Consultando actividades…'
+        : tareas().length + (tareas().length === 1 ? ' tarea' : ' tareas')
+    }}</span
+    ><span><app-icon name="calendar" /> Por fecha de entrega</span>
+  </div>
+  @if (loading()) {
+    <div class="loading" role="status"><span class="spinner"></span>Cargando tareas…</div>
+  } @else if (error()) {
+    <div class="error-panel" role="alert">
+      <p>{{ error() }}</p>
+      <button class="btn btn-secondary" (click)="reintentar()">Reintentar</button>
+    </div>
+  } @else if (tareas().length === 0) {
+    <div class="empty-state">
+      <span class="empty-icon"><app-icon name="tasks" /></span>
+      <h3>{{ vacio() }}</h3>
+      <p>
+        {{
+          prioridad()
+            ? 'Prueba con otra prioridad o consulta todas tus actividades.'
+            : 'Cuando registres actividades, aparecerán aquí organizadas por fecha.'
+        }}
+      </p>
+      @if (asignaturas().length > 0) {
+        <button type="button" class="btn btn-secondary" (click)="abrirEditor()">
+          <app-icon name="plus" />Registrar una tarea
+        </button>
+      }
+    </div>
+  } @else {
+    <div class="task-list" role="list" aria-label="Listado de tareas">
+      <div class="task-table-head" aria-hidden="true">
+        <span>ACTIVIDAD / ASIGNATURA</span><span>ENTREGA</span><span>PRIORIDAD</span
+        ><span>ESTADO</span><span>ACCIONES</span>
+      </div>
+      @for (tarea of tareas(); track tarea.id) {
+        <article
+          class="task-row"
+          role="listitem"
+          [attr.data-task-id]="tarea.id"
+          [class.completed-row]="tarea.estado === 'Completada'"
+        >
+          <div class="task-main">
+            <button
+              type="button"
+              class="complete-button"
+              [class.is-complete]="tarea.estado === 'Completada'"
+              [disabled]="tarea.estado === 'Completada' || busyId() !== null"
+              [attr.aria-label]="
+                tarea.estado === 'Completada'
+                  ? 'La tarea ya fue completada'
+                  : 'Completar ' + tarea.titulo
+              "
+              [attr.title]="
+                tarea.estado === 'Completada'
+                  ? 'La tarea ya fue completada'
+                  : 'Marcar como Completada'
+              "
+              (click)="cambiarEstado(tarea, 'Completada')"
+            >
+              @if (tarea.estado === 'Completada') {
+                <app-icon name="check" />
+              }
+            </button>
+            <div>
+              <h3>{{ tarea.titulo }}</h3>
+              <span class="task-subject">{{ tarea.asignatura.nombre }}</span>
+              <p class="task-description">{{ tarea.descripcion }}</p>
+              @if (tarea.estado === 'Completada') {
+                <small class="completed-note">La tarea ya fue completada</small>
+              }
+            </div>
+          </div>
+          <div class="task-date" [class.overdue]="vencida(tarea)">
+            <app-icon name="calendar" /><span
+              >{{ tarea.fecha_entrega | date: 'd MMM yyyy' : 'UTC' }}
+              @if (vencida(tarea)) {
+                <small>Vencida</small>
+              }
+            </span>
+          </div>
+          <div class="task-priority">
+            <span
+              class="badge"
+              [class.priority-high]="tarea.prioridad === 'Alta'"
+              [class.priority-medium]="tarea.prioridad === 'Media'"
+              [class.priority-low]="tarea.prioridad === 'Baja'"
+              ><span class="priority-dot"></span>{{ tarea.prioridad }}</span
+            >
+          </div>
+          <div class="task-state">
+            <select
+              [attr.aria-label]="'Estado de ' + tarea.titulo"
+              [disabled]="busyId() !== null"
+              (change)="seleccionarEstado(tarea, $event)"
+              [class.done]="tarea.estado === 'Completada'"
+              [class.working]="tarea.estado === 'En progreso'"
+            >
+              @for (e of estados; track e) {
+                <option [value]="e" [selected]="e === tarea.estado">{{ e }}</option>
+              }
+            </select>
+          </div>
+          <div class="task-actions">
+            <button
+              class="icon-btn"
+              type="button"
+              [attr.aria-label]="'Editar ' + tarea.titulo"
+              title="Editar tarea"
+              [disabled]="busyId() !== null"
+              (click)="abrirEditor(tarea)"
+            >
+              <app-icon name="edit" /></button
+            ><button
+              class="icon-btn danger"
+              type="button"
+              [attr.aria-label]="'Eliminar ' + tarea.titulo"
+              title="Eliminar tarea"
+              [disabled]="busyId() !== null"
+              (click)="pedirEliminacion(tarea)"
+            >
+              <app-icon name="trash" />
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>
+<p class="list-footnote">
+  <app-icon name="check" /> Un pequeño paso hoy, una entrega menos mañana.
+</p>
+<dialog
+  #editor
+  class="modal"
+  aria-labelledby="editor-title"
+  (cancel)="saving() ? $event.preventDefault() : cerrarEditor()"
+>
+  <div class="dialog-heading">
+    <div>
+      <p class="eyebrow">ORGANIZA TU PRÓXIMA ENTREGA</p>
+      <h2 id="editor-title">{{ editando() ? 'Editar tarea' : 'Nueva tarea' }}</h2>
+    </div>
+    <button
+      type="button"
+      class="icon-btn"
+      aria-label="Cerrar formulario"
+      [disabled]="saving()"
+      (click)="cerrarEditor()"
+    >
+      <app-icon name="close" />
+    </button>
+  </div>
+  <app-tarea-form
+    [tarea]="editando()"
+    [resetKey]="resetKey()"
+    [asignaturas]="asignaturas()"
+    [saving]="saving()"
+    [errors]="errors()"
+    (guardar)="guardar($event)"
+    (cancelar)="cerrarEditor()"
+  />
+</dialog>
+<dialog
+  #confirmacion
+  class="modal confirm-modal"
+  aria-labelledby="delete-title"
+  (cancel)="busyId() !== null ? $event.preventDefault() : cancelarEliminacion()"
+>
+  <span class="delete-icon"><app-icon name="trash" /></span>
+  <h2 id="delete-title">¿Eliminar esta tarea?</h2>
+  <p>
+    Vas a eliminar <strong>{{ eliminando()?.titulo }}</strong>. Esta acción no se puede deshacer.
+  </p>
+  <div class="dialog-actions">
+    <button
+      class="btn btn-secondary"
+      type="button"
+      [disabled]="busyId() !== null"
+      (click)="cancelarEliminacion()"
+    >
+      Cancelar</button
+    ><button
+      class="btn btn-danger"
+      type="button"
+      [disabled]="busyId() !== null"
+      (click)="eliminar()"
+    >
+      {{ busyId() !== null ? 'Eliminando…' : 'Sí, eliminar' }}
+    </button>
+  </div>
+</dialog>

@@ -1,0 +1,84 @@
+<div class="page-heading">
+  <div>
+    <p class="eyebrow">DALE UN LUGAR A CADA MATERIA</p>
+    <h1>Mis asignaturas</h1>
+    <p class="subtitle">La base para organizar tus actividades y entregas.</p>
+  </div>
+  <span class="count-label">{{ asignaturas().length }} registradas</span>
+</div>
+<div class="subjects-layout">
+  <section class="panel subject-form">
+    <div class="panel-heading">
+      <div>
+        <span class="section-icon"><app-icon name="plus" /></span>
+        <h2>Agregar asignatura</h2>
+        <p>Comienza por registrar tus materias.</p>
+      </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="guardar()" novalidate class="form-stack">
+      <div class="field">
+        <label for="nombre">Nombre de la asignatura <span>*</span></label
+        ><input
+          id="nombre"
+          formControlName="nombre"
+          maxlength="150"
+          placeholder="Ej. Ingeniería de Software"
+        /><app-field-error
+          [control]="form.controls.nombre"
+          [serverErrors]="errors()['nombre']"
+          requiredMessage="El nombre de la asignatura es obligatorio"
+        />
+      </div>
+      <div class="field">
+        <label for="codigo">Código académico <span>*</span></label
+        ><input
+          id="codigo"
+          formControlName="codigo"
+          maxlength="30"
+          placeholder="Ej. IS-06"
+        /><app-field-error
+          [control]="form.controls.codigo"
+          [serverErrors]="errors()['codigo']"
+          requiredMessage="El código de la asignatura es obligatorio"
+        />
+      </div>
+      <button class="btn btn-primary btn-block" type="submit" [disabled]="saving()">
+        <app-icon name="plus" />{{ saving() ? 'Guardando…' : 'Guardar asignatura' }}
+      </button>
+      <p class="form-hint">Los campos con <span>*</span> son obligatorios.</p>
+    </form>
+  </section>
+  <section aria-label="Asignaturas registradas">
+    <div class="section-heading">
+      <h2>Tus materias</h2>
+      <span class="muted">{{ asignaturas().length }} asignaturas</span>
+    </div>
+    @if (loading()) {
+      <div class="panel loading" role="status">
+        <span class="spinner"></span>Cargando asignaturas…
+      </div>
+    } @else if (error()) {
+      <div class="error-panel" role="alert">
+        <p>{{ error() }}</p>
+        <button class="btn btn-secondary" (click)="cargar()">Reintentar</button>
+      </div>
+    } @else if (asignaturas().length === 0) {
+      <div class="panel empty-state">
+        <span class="empty-icon"><app-icon name="book" /></span>
+        <h3>Tu semestre empieza aquí</h3>
+        <p>Aún no hay asignaturas registradas. Agrega tu primera materia.</p>
+      </div>
+    } @else {
+      <div class="subject-grid">
+        @for (materia of asignaturas(); track materia.id; let i = $index) {
+          <article class="panel subject-card">
+            <span class="subject-initial" [class.alt]="i % 2 === 1"><app-icon name="book" /></span
+            ><span class="subject-code">{{ materia.codigo }}</span>
+            <h3>{{ materia.nombre }}</h3>
+            <p>Asignatura académica</p>
+          </article>
+        }
+      </div>
+    }
+  </section>
+</div>
