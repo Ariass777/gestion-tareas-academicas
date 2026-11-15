@@ -30,7 +30,7 @@ La consigna completa de la conversación especificó inspección, herramientas, 
 | 2026-11-14 | Codex principal, ESLint con tipos y plantillas | Confirmar avisos de análisis estático | 11 importaciones de tipos, un acceso inseguro a any y cinco unbound-method | Revisión de los símbolos y ejecución de formularios | Corregir imports y errores HTTP; descartar métodos estáticos como falsos positivos | Pendiente revisar el diff. |
 | 2026-11-14 | Codex principal, regresión Chromium en Tokio | Verificar F-01 antes y después del cambio | El navegador mostraba 13 para entrega 14 | Prueba falló antes; pasó tras usar ISO UTC explícito | Corregir dos expresiones de plantilla, sin CSS ni cambios de MySQL | Pendiente validación visual de la estudiante. |
 | 2026-11-14 | Codex principal, pruebas de seguridad de configuración | Impedir que E2E escriba desarrollo | La guardia anterior solo protegía PHPUnit y preparación de fixtures | Siete pruebas PHP y tres Node; el servidor rechaza destinos inseguros antes de escuchar | Helper compartido, preflight y comprobación en el bootstrap E2E | Pendiente reservar bases _testing solo para fixtures. |
-| 2026-11-14 | Codex principal, npm audit y advisory oficial | Evaluar los avisos surgidos al instalar el linter | Un advisory de minimatch propagado a siete paquetes dev | Árbol de dependencias, rangos upstream y auditoría separada de producción | No forzar mayor ni downgrade; S-02 aceptado temporalmente, aún reportado | **Pendiente decisión de la estudiante sobre el riesgo residual.** |
+| 2026-11-14 | Codex principal, npm audit y advisory oficial | Evaluar los avisos surgidos al instalar el linter | Un advisory de minimatch propagado a siete paquetes dev | Árbol de dependencias, rangos upstream y auditoría separada de producción | No forzar mayor ni downgrade; propuesta de aceptación temporal, S-02 sin corregir | **Comprobaciones humanas reportadas en el seguimiento S-02; confirmación definitiva pendiente.** |
 | 2026-11-14 | gpt-6-astra; revisión posterior con diferencias | Detectar errores en los propios cambios de IA | Confirmó fixes y avisó de un cierre de describe incompleto durante la edición | El principal corrigió el spec y volvió a ejecutar pruebas/linter; el segundo agente repitió fechas en tres zonas | Corrección del error de edición; no se ocultó como éxito la compilación fallida intermedia | Pendiente revisión humana del resultado. |
 | 2026-11-14 | Codex principal, JSDoc/PHPDoc y validación final | Entregar cambios comprensibles y reproducibles | Documentación de métodos, contratos y límites; regresiones ampliadas | Compilación, linter, PHPUnit, Vitest, Node, Chromium, sintaxis y auditorías; resultados en evidencia_revision.json | Documentar resultados y hacer commit local sin push | Pendiente aprobación académica de la estudiante. |
 
@@ -45,7 +45,7 @@ El mismo encargo pidió indicar metodología y límites y explicó que las herra
 ## Hallazgos aceptados y descartados
 
 - **Aceptados y corregidos:** F-01, S-01, Q-01 a Q-04, según el informe. Las correcciones no añaden autenticación ni cambian la apariencia.
-- **Aceptado temporalmente, pendiente humana:** S-02, aviso de minimatch solo en desarrollo. La auditoría total no se presenta como limpia.
+- **Propuesta de aceptación temporal, pendiente de confirmación definitiva:** S-02, aviso de minimatch solo en desarrollo, todavía sin corregir. La auditoría total no se presenta como limpia.
 - **Descartados con evidencia:** FP-01 (arrays en enumeraciones de Laravel) y FP-02 (validadores estáticos de Angular). No se inventó SQL injection o XSS por el simple hecho de existir texto proporcionado por el usuario.
 - **Límite del diseño:** endpoints sin autenticación. No se etiquetó como defecto inventado de implementación; se documentó el riesgo antes de cualquier publicación o uso compartido.
 
@@ -61,7 +61,7 @@ Hubo fallos intermedios registrados: la regresión de fecha falló antes del arr
 
 ## Tareas pendientes de la estudiante
 
-La estudiante debe revisar el diff y el informe, comprobar el uso personal en loopback, decidir sobre S-02 y registrar su propia ejecución/aceptación académica. **No se afirma que ya haya realizado estas acciones.** La IA realizó análisis y pruebas automatizadas; no sustituyó la validación humana ni certificó ausencia total de vulnerabilidades.
+La estudiante debe completar la revisión global del diff y del informe, confirmar el uso personal en loopback y su decisión definitiva sobre S-02. Sus comprobaciones parciales ya comunicadas se registran en los seguimientos siguientes; no equivalen a aprobación académica completa. La IA realizó sus propios análisis y pruebas automatizadas, sin sustituir la validación humana ni certificar ausencia total de vulnerabilidades.
 
 ## Seguimiento: observaciones humanas al comparar el diff de 80c1917
 
@@ -84,4 +84,28 @@ La estudiante realizó una revisión parcial del diff y comunicó dos observacio
 | Linter y pruebas posteriores | Codex, agente principal | ESLint aprobado y 8 pruebas Angular aprobadas. La estudiante no ejecutó estas comprobaciones durante este seguimiento. |
 | Conservación de UTC | Codex, agente principal | Las plantillas no cambiaron respecto de `80c1917` y mantienen ISO UTC explícito. No se modificaron funcionalidades, CSS ni datos MySQL. |
 
-Herramienta de IA utilizada en este seguimiento: **Codex, agente principal**. No se solicitó otra revisión por IA para este ajuste textual. Se crea un commit nuevo, sin reescribir el historial y sin push. La aprobación académica completa y la decisión sobre S-02 siguen pendientes de la estudiante.
+Herramienta de IA utilizada en este seguimiento: **Codex, agente principal**. No se solicitó otra revisión por IA para este ajuste textual. Se crea un commit nuevo, sin reescribir el historial y sin push. La aprobación académica completa y la confirmación definitiva de la decisión sobre S-02 siguen pendientes de la estudiante.
+
+## Seguimiento: revisión humana y propuesta de aceptación temporal de S-02
+
+La estudiante comunicó resultados de comandos ejecutados por ella desde `frontend/`. Este registro los atribuye a la estudiante, según su mensaje, y los distingue de las ejecuciones previas del agente. No se infiere una fecha u hora de ejecución ni una aprobación definitiva no comunicada.
+
+**Prompt recibido, extracto literal:**
+
+> La decisión propuesta es aceptar temporalmente el riesgo para la demostración académica local, sin declararlo corregido, manteniendo seguimiento de actualizaciones compatibles.
+>
+> Distingue claramente las comprobaciones realizadas por la estudiante de los análisis del agente. No atribuyas a la estudiante una aprobación definitiva sin su confirmación.
+
+| Actividad | Responsable real | Resultado comunicado o trabajo realizado |
+| --- | --- | --- |
+| Ejecutar `npm ls minimatch` desde `frontend/` | Estudiante, según su reporte | ESLint 10.15.0 y @eslint/config-array 0.23.6 usan minimatch 11.0.8; @typescript-eslint/typescript-estree 8.72.2 usa minimatch 10.2.6. |
+| Ejecutar `npm audit --omit=dev` desde `frontend/` | Estudiante, según su reporte | `found 0 vulnerabilities`. Corresponde a la auditoría que excluye desarrollo. |
+| Confirmar la permanencia de la dependencia afectada | Revisión humana reportada por la estudiante | minimatch 10.2.6 continúa instalado en desarrollo y afectado por GHSA-g3hv-75wg-m249. No se declara corregido. |
+| Proponer aceptación temporal para la demostración académica local | Estudiante | Propuesta registrada; **confirmación definitiva pendiente**. Se mantiene seguimiento de actualizaciones compatibles. |
+| Integrar los resultados y revisar coherencia/rutas | Codex, agente principal | Actualización documental de la tabla S-02, sus estados y referencias locales; sin nuevas ejecuciones de npm o pruebas. |
+
+**Estado actual:** S-02 sigue abierto, sin corregir, con una propuesta de aceptación temporal limitada a la demostración académica local. El análisis previo del agente y la segunda revisión por IA son antecedentes técnicos, no autorizaciones de la estudiante. La aprobación definitiva y la aprobación académica completa siguen pendientes de confirmación expresa.
+
+El seguimiento propuesto es revisar actualizaciones compatibles y volver a comprobar el árbol completo y las auditorías total y de producción antes de cambiar el estado. No se modificaron dependencias, lockfiles ni código y no se ejecutó `npm audit fix --force`. Esta actividad corresponde únicamente a documentación con Codex; no se invocó otro modelo de IA ni se ejecutaron pruebas adicionales por parte del agente.
+
+Detalle y resultados humanos: [revisión de seguridad, sección 13](revision_seguridad.md#13-comprobaciones-humanas-y-propuesta-de-decisión-para-s-02). Las rutas relativas del informe y de esta bitácora fueron revisadas por el agente; los artefactos ignorados se identifican como evidencia local, no como archivos que se publiquen con el commit.

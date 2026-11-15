@@ -91,11 +91,11 @@ Ubicaciones indicadas por símbolo estable; las líneas originales corresponden 
 | --- | --- | --- | --- | --- |
 | Q-01 | Sin ESLint: `frontend/package.json`, scripts/devDependencies | Baja | `npm ls eslint angular-eslint --depth=0` no los encontraba | **Corregir / corregido**: configuración compatible y comando reproducible. |
 | Q-02 | Importaciones usadas solo como tipos, en 11 declaraciones de `frontend/src/app/` | Baja | ESLint `consistent-type-imports` | **Corregir / corregido** con `import type`; sin cambios de comportamiento. |
-| Q-03 | Respuestas HTTP asumidas sin comprobar forma: `services/notificaciones.service.ts`, `erroresCampos` y `mensajeError` | Baja | Un `no-unsafe-member-access`; un cuerpo malformado podía propagarse como un tipo incorrecto al formulario | **Corregir / corregido**: `unknown`, comprobación de objetos/listas/cadenas y tres pruebas nuevas. No se reporta como XSS. |
+| Q-03 | Respuestas HTTP asumidas sin comprobar forma: `frontend/src/app/services/notificaciones.service.ts`, `erroresCampos` y `mensajeError` | Baja | Un `no-unsafe-member-access`; un cuerpo malformado podía propagarse como un tipo incorrecto al formulario | **Corregir / corregido**: `unknown`, comprobación de objetos/listas/cadenas y tres pruebas nuevas. No se reporta como XSS. |
 | Q-04 | Falta de documentación en servicio HTTP, componentes, controladores y requests | Baja | Inspección de métodos sin JSDoc/PHPDoc | **Corregir / corregido** en métodos principales y reglas relevantes. |
-| F-01 | Día anterior al mostrar una fecha: `pages/tareas/tareas.component.html:138`, `pages/inicio/inicio.component.html:114` originales | Media | Chromium Tokio mostró **13 nov 2026** para entrega **2026-11-14**; prueba nueva falló antes del fix | **Corregir / corregido**: instante UTC explícito; prueba posterior aprobada. No cambia el valor guardado. |
+| F-01 | Día anterior al mostrar una fecha: `frontend/src/app/pages/tareas/tareas.component.html:138`, `frontend/src/app/pages/inicio/inicio.component.html:114` originales | Media | Chromium Tokio mostró **13 nov 2026** para entrega **2026-11-14**; prueba nueva falló antes del fix | **Corregir / corregido**: instante UTC explícito; prueba posterior aprobada. No cambia el valor guardado. |
 | S-01 | Servidor E2E sin comprobar base efectiva: `scripts/serve-backend.mjs:9-11` originales | Media | Solo forzaba `APP_ENV=testing`; podía heredar otra base o cargar configuración cacheada; no se provocaron escrituras en desarrollo | **Corregir / corregido**: helper común, comando de preflight y guardia durante el bootstrap HTTP. Siete pruebas PHP y tres Node comprueban rechazos. |
-| S-02 | minimatch 10.2.6 transitivo del nuevo linter: `frontend/package-lock.json`, cadena typescript-eslint → typescript-estree → minimatch | Moderada según advisory; exposición observada baja | npm audit reporta siete paquetes derivados de **un mismo advisory**, exclusivamente de desarrollo | **Aceptar temporalmente / pendiente humana y upstream**. No se fuerza una dependencia mayor ni se baja TypeScript ESLint a una versión incompatible. |
+| S-02 | minimatch 10.2.6 transitivo del nuevo linter: `frontend/package-lock.json`, cadena typescript-eslint → typescript-estree → minimatch | Moderada según advisory; exposición observada baja | Auditoría previa del agente y comprobaciones posteriores reportadas por la estudiante, registradas en la sección 13 | **Propuesta de aceptación temporal / no corregido**. Confirmación definitiva de la estudiante pendiente; se mantiene seguimiento de actualizaciones compatibles. |
 | FP-01 | Posible aceptación de arrays en `Rule::in` | No aplica | gpt-6-astra verificó cinco casos aislados; nuevas pruebas API también rechazan arrays | **Descartar**: Laravel instalado rechaza arrays en estas reglas sin necesitar una regla `string` adicional. |
 | FP-02 | Cinco `unbound-method` sobre `Validators.required` | No aplica | Métodos estáticos Angular sin uso de `this`; formularios y pruebas funcionan | **Descartar**: opción `ignoreStatic: true`, manteniendo activa la regla para métodos de instancia. |
 
@@ -103,9 +103,9 @@ Ubicaciones indicadas por símbolo estable; las líneas originales corresponden 
 
 La [advertencia oficial GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249) afecta minimatch `>=7.0.0 <11.0.1`. Describe agotamiento de recursos mediante patrones controlados por un atacante con `optimizationLevel >= 2`. El parche publicado empieza en 11.0.1; typescript-estree instalado declara `^10.2.2`.
 
-La llamada encontrada en el parser utiliza `{dot: true}`, sin activar nivel 2, y pertenece a `allowDefaultProject`, opción que esta configuración no usa. `npm ls minimatch --omit=dev` devuelve árbol vacío. Esto reduce la exposición en este uso local con patrones propios, pero **no resuelve el advisory**. No se ejecutó `npm audit fix --force`; su sugerencia implicaba bajar TypeScript ESLint a 8.36.0, anterior al soporte utilizado para TypeScript 6.
+En el análisis previo del agente, la llamada encontrada en el parser utilizaba `{dot: true}`, sin activar nivel 2, y pertenecía a `allowDefaultProject`, opción que esta configuración no usa. El comando `npm ls minimatch --omit=dev`, ejecutado entonces por el agente, devolvió árbol vacío. Esto reduce la exposición observada en este uso local con patrones propios, pero **no resuelve el advisory**. No se ejecutó `npm audit fix --force`; su sugerencia implicaba bajar TypeScript ESLint a 8.36.0, anterior al soporte utilizado para TypeScript 6.
 
-**Validación humana pendiente:** la estudiante debe revisar la aceptación temporal de S-02, usar el linter sobre código confiable y actualizar cuando la cadena publique un parche compatible. No se le atribuye una aprobación ya realizada.
+**Estado de la revisión humana:** la estudiante reportó las comprobaciones de dependencias y auditoría de producción descritas en la sección 13. Propuso aceptar temporalmente el riesgo para la demostración académica local. La **aprobación definitiva sigue pendiente de confirmación expresa**; S-02 no está corregido. Se mantiene el uso del linter sobre código confiable y el seguimiento de actualizaciones compatibles.
 
 ## 6. Segunda revisión con IA
 
@@ -120,7 +120,7 @@ Tras recibir las diferencias realizó otra inspección: confirmó el ISO UTC cor
 | F-01, desfase de fecha | Regresión Chromium falla con 13 en lugar de 14; pasa después | Aceptada y corregida. |
 | S-01, servidor E2E sin guardia | Trazado de configuración y pruebas negativas sin abrir HTTP ni escribir desarrollo | Aceptada y corregida. |
 | FP-01, arrays en enumeraciones | Pruebas API 422 | Descartada. |
-| S-02, advisory dev de minimatch | Auditoría, árbol de dependencias y restricciones upstream | Aceptación temporal pendiente humana. |
+| S-02, advisory dev de minimatch | Auditoría, árbol de dependencias y restricciones upstream | Propuesta de aceptación temporal; confirmación definitiva pendiente. |
 
 ## 7. Correcciones y alcance del cambio
 
@@ -188,7 +188,7 @@ Las aserciones de PHPUnit aumentan al haber 200 fixtures; por eso no se comparan
 3. Los secretos locales requieren protección del equipo y de sus copias de seguridad. No se evaluaron ACL de Windows, cifrado de disco ni seguridad de OneDrive.
 4. La guardia distingue bases por configuración y sufijo; la estudiante debe reservar las bases `_testing` para fixtures, sin información personal que quiera conservar.
 5. Se verificó Chromium, no Firefox/Safari ni dispositivos físicos. El rendimiento es una medición local; no hay prueba de penetración exhaustiva, carga concurrente o certificación de ausencia de vulnerabilidades.
-6. La estudiante todavía debe revisar el diff, confirmar los riesgos aceptados y realizar su propia validación académica. Ninguna verificación humana pendiente se presenta como completada.
+6. La revisión humana es parcial: se registraron sus observaciones de redacción, la valoración del alcance de S-01 y las comprobaciones de S-02. La aprobación académica global y la confirmación definitiva de la aceptación temporal de S-02 siguen pendientes; no se presentan como completadas.
 
 ## 10. Conclusiones
 
@@ -254,3 +254,35 @@ Desde `backend/`, seleccionando la base de revisión mediante `DB_DATABASE` y ma
 - `..\.tools\php\php.exe vendor/bin/pint --dirty --format agent`: aprobado.
 
 Desde la raíz, `node --test scripts/serve-backend.test.mjs`: **3 pruebas aprobadas**, salida 0. Estas ejecutan el arranque real del script y comprueban el rechazo previo a HTTP de base de desarrollo, redirección `DB_URL` y nombre inválido. No se ejecutaron migraciones ni escrituras MySQL durante este seguimiento. Se conserva el historial anterior y el ajuste se registra en un commit separado, sin push.
+
+## 13. Comprobaciones humanas y propuesta de decisión para S-02
+
+La estudiante reportó haber ejecutado los siguientes comandos desde `frontend/`. Los resultados de esta sección proceden de su revisión humana; no se presentan como nuevas ejecuciones del agente ni se confunden con sus auditorías anteriores.
+
+### Resultados reportados por la estudiante
+
+Comando: `npm ls minimatch`.
+
+| Dependencia | Versión de la dependencia | Versión de minimatch utilizada |
+| --- | --- | --- |
+| ESLint | 10.15.0 | 11.0.8 |
+| @eslint/config-array | 0.23.6 | 11.0.8 |
+| @typescript-eslint/typescript-estree | 8.72.2 | 10.2.6 |
+
+Comando: `npm audit --omit=dev`.
+
+Resultado comunicado: `found 0 vulnerabilities`.
+
+La comprobación humana confirma que minimatch **10.2.6 permanece instalado** en una dependencia de desarrollo y continúa afectado por **GHSA-g3hv-75wg-m249**. El resultado sin vulnerabilidades de la auditoría que excluye desarrollo no demuestra que el árbol completo esté libre de avisos, ni corrige S-02.
+
+### Decisión propuesta, pendiente de confirmación definitiva
+
+**Se propone aceptar temporalmente el riesgo para la demostración académica local, mantener S-02 abierto y sin corregir, y dar seguimiento a actualizaciones compatibles.** La estudiante ha comunicado esta propuesta, pero no ha confirmado una aprobación definitiva. No se registra una aceptación final en su nombre.
+
+El seguimiento consiste en revisar las actualizaciones compatibles de la cadena typescript-eslint/minimatch, consultar nuevamente el árbol completo y las auditorías total y de producción antes de reconsiderar el estado. No se fija una fecha de aprobación ni se da por autorizado un cambio de versiones. El linter debe seguir utilizándose sobre código confiable, dentro del alcance local documentado.
+
+### Alcance del agente en esta actualización
+
+El agente integró los resultados reportados, distinguió autores y estados de decisión, revisó la coherencia de ambos documentos y comprobó sus referencias locales. Se hicieron explícitas rutas abreviadas de la tabla de hallazgos para que se interpreten desde la raíz del proyecto. La bitácora relacionada está en [bitacora_ia.md](bitacora_ia.md).
+
+No se volvieron a ejecutar comandos npm ni suites de pruebas en este seguimiento documental, no se modificaron dependencias o lockfiles y no se ejecutó `npm audit fix --force`. Las verificaciones automatizadas del agente de secciones anteriores conservan su autoría y contexto histórico.
