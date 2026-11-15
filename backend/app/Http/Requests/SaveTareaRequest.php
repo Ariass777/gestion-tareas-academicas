@@ -8,11 +8,18 @@ use Illuminate\Validation\Rule;
 
 class SaveTareaRequest extends FormRequest
 {
+    /** Demostracion de un usuario: no incorpora un mecanismo de autenticacion. */
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * Valida campos, enumeraciones y FK; al editar puede conservar una entrega vencida.
+     * Una fecha nueva debe ser hoy o posterior segun America/Bogota; estado va por PATCH.
+     *
+     * @return array<string, array<mixed>> Reglas aplicadas antes de ejecutar el controlador.
+     */
     public function rules(): array
     {
         $tarea = $this->route('tarea');
@@ -28,6 +35,7 @@ class SaveTareaRequest extends FormRequest
         ];
     }
 
+    /** @return array<string, string> Mensajes de aceptacion HU-02 y HU-07 para errores 422. */
     public function messages(): array
     {
         return [

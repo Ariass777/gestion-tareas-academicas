@@ -2,7 +2,7 @@ import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Asignatura, ErroresCampos } from '../../models/academico';
+import type { Asignatura, ErroresCampos } from '../../models/academico';
 import { AcademicoService } from '../../services/academico.service';
 import {
   erroresCampos,
@@ -33,6 +33,7 @@ export class AsignaturasComponent {
   constructor() {
     this.cargar();
   }
+  /** Consulta MySQL por API y habilita reintento si la carga falla. */
   protected cargar(): void {
     this.loading.set(true);
     this.error.set('');
@@ -47,6 +48,7 @@ export class AsignaturasComponent {
         error: (e) => this.error.set(mensajeError(e)),
       });
   }
+  /** Valida y normaliza el formulario; agrega la respuesta persistida sin guardar copias locales. */
   protected guardar(): void {
     this.errors.set({});
     this.form.markAllAsTouched();

@@ -55,8 +55,7 @@
       ><span class="stat-icon amber"><app-icon name="clock" /></span>
       <div>
         <p>Pendientes</p>
-        <strong data-testid="pendientes">{{ pendientes() }}</strong
-        ><small>Por comenzar</small>
+        <strong data-testid="pendientes">{{ pendientes() }}</strong><small>Por comenzar</small>
       </div>
       <app-icon class="stat-arrow" name="arrow"
     /></a>
@@ -64,8 +63,7 @@
       ><span class="stat-icon blue"><app-icon name="tasks" /></span>
       <div>
         <p>En progreso</p>
-        <strong>{{ progreso() }}</strong
-        ><small>En lo que estás trabajando</small>
+        <strong>{{ progreso() }}</strong><small>En lo que estás trabajando</small>
       </div>
       <app-icon class="stat-arrow" name="arrow"
     /></a>
@@ -73,8 +71,7 @@
       ><span class="stat-icon green"><app-icon name="check" /></span>
       <div>
         <p>Completadas</p>
-        <strong>{{ completadas() }}</strong
-        ><small>Un avance que cuenta</small>
+        <strong>{{ completadas() }}</strong><small>Un avance que cuenta</small>
       </div>
       <app-icon class="stat-arrow" name="arrow"
     /></a>
@@ -111,7 +108,9 @@
             [class.priority-medium]="tarea.prioridad === 'Media'"
             [class.priority-low]="tarea.prioridad === 'Baja'"
             >{{ tarea.prioridad }}</span
-          ><span class="upcoming-date">{{ tarea.fecha_entrega | date: 'd MMM' : 'UTC' }}</span></a
+          ><span class="upcoming-date">{{
+            tarea.fecha_entrega + 'T00:00:00Z' | date: 'd MMM' : 'UTC'
+          }}</span></a
         >
       }
     </section>

@@ -23,7 +23,11 @@ class Tarea extends Model
         return ['fecha_entrega' => 'date:Y-m-d'];
     }
 
-    /** @return BelongsTo<Asignatura, $this> */
+    /**
+     * Relacion respaldada por una FK que impide tareas huerfanas.
+     *
+     * @return BelongsTo<Asignatura, $this>
+     */
     public function asignatura(): BelongsTo
     {
         return $this->belongsTo(Asignatura::class);

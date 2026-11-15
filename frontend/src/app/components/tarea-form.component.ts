@@ -1,13 +1,7 @@
 import { Component, effect, inject, input, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  Asignatura,
-  DatosTarea,
-  ErroresCampos,
-  PRIORIDADES,
-  Prioridad,
-  Tarea,
-} from '../models/academico';
+import type { Asignatura, DatosTarea, ErroresCampos, Prioridad, Tarea } from '../models/academico';
+import { PRIORIDADES } from '../models/academico';
 import { fechaNoPasada, hoyColombia, textoObligatorio } from '../config/fechas';
 import { FieldErrorComponent } from './field-error.component';
 
@@ -156,10 +150,12 @@ export class TareaFormComponent {
       );
     });
   }
+  /** Mantiene editable una entrega vencida sin proponer otra fecha pasada como minimo nuevo. */
   protected fechaMinima(): string {
     const original = this.tarea()?.fecha_entrega;
     return original && original < hoyColombia() ? original : hoyColombia();
   }
+  /** Marca errores visuales y emite solo los cinco campos validos; el contenedor realiza HTTP. */
   protected enviar(): void {
     this.form.markAllAsTouched();
     this.form.controls.fecha_entrega.updateValueAndValidity();

@@ -62,8 +62,7 @@
       loading()
         ? 'Consultando actividades…'
         : tareas().length + (tareas().length === 1 ? ' tarea' : ' tareas')
-    }}</span
-    ><span><app-icon name="calendar" /> Por fecha de entrega</span>
+    }}</span><span><app-icon name="calendar" /> Por fecha de entrega</span>
   </div>
   @if (loading()) {
     <div class="loading" role="status"><span class="spinner"></span>Cargando tareas…</div>
@@ -135,7 +134,7 @@
           </div>
           <div class="task-date" [class.overdue]="vencida(tarea)">
             <app-icon name="calendar" /><span
-              >{{ tarea.fecha_entrega | date: 'd MMM yyyy' : 'UTC' }}
+              >{{ tarea.fecha_entrega + 'T00:00:00Z' | date: 'd MMM yyyy' : 'UTC' }}
               @if (vencida(tarea)) {
                 <small>Vencida</small>
               }

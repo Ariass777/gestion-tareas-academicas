@@ -14,7 +14,11 @@ class Asignatura extends Model
 
     protected $fillable = ['nombre', 'codigo'];
 
-    /** @return HasMany<Tarea, $this> */
+    /**
+     * Actividades de la materia; MySQL restringe borrar una asignatura con tareas.
+     *
+     * @return HasMany<Tarea, $this>
+     */
     public function tareas(): HasMany
     {
         return $this->hasMany(Tarea::class);

@@ -4,8 +4,10 @@ namespace App\Console\Commands;
 
 use App\Models\Asignatura;
 use App\Models\Tarea;
+use App\Support\TestDatabaseSafety;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use LogicException;
 
 class PrepareE2e extends Command
 {
@@ -13,11 +15,18 @@ class PrepareE2e extends Command
 
     protected $description = 'Prepara 200 tareas exclusivamente en una base MySQL de pruebas';
 
+    /**
+     * Prepara fixtures reservados [E2E] solo despues de verificar el destino de pruebas.
+     * Rechaza bases con tareas ajenas; no debe utilizarse con datos personales de pruebas.
+     *
+     * @return int Cero al preparar los 200 registros, uno si no es seguro continuar.
+     */
     public function handle(): int
     {
-        if (! app()->environment('testing') || config('database.default') !== 'mysql' || config('database.connections.mysql.url')
-            || ! str_ends_with((string) config('database.connections.mysql.database'), '_testing')) {
-            $this->error('Se requiere APP_ENV=testing y una base MySQL terminada en _testing.');
+        try {
+            TestDatabaseSafety::assertSafe($this->laravel);
+        } catch (LogicException $exception) {
+            $this->error($exception->getMessage());
 
             return self::FAILURE;
         }

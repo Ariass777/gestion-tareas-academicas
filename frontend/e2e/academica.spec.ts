@@ -1,6 +1,24 @@
 import { test, expect, APIRequestContext, Page } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 
+test('la entrega conserva el dia calendario en un navegador en Tokio', async ({
+  browser,
+  request,
+}) => {
+  const response = await request.get('/api/tareas');
+  const tarea = (await response.json()).data[0] as { id: number; fecha_entrega: string };
+  const context = await browser.newContext({ timezoneId: 'Asia/Tokyo' });
+  try {
+    const page = await context.newPage();
+    await page.goto('http://127.0.0.1:4300/tareas');
+    const fecha = page.locator(`[data-task-id="${tarea.id}"] .task-date`);
+    const dia = String(Number(tarea.fecha_entrega.slice(8, 10)));
+    await expect(fecha).toContainText(new RegExp('^' + dia + '\\s'));
+  } finally {
+    await context.close();
+  }
+});
+
 const hoy = () => {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: 'America/Bogota',
@@ -29,6 +47,25 @@ async function crearTarea(request: APIRequestContext, cambios: Record<string, un
   expect(response.status()).toBe(201);
   return (await response.json()).data as { id: number; titulo: string };
 }
+
+test('el contenido HTML de una tarea se muestra como texto sin ejecutarse', async ({
+  page,
+  request,
+}) => {
+  const titulo = '<img src=x onerror="window.__academicXss=true">';
+  const tarea = await crearTarea(request, { titulo });
+  try {
+    await page.goto('/tareas');
+    const fila = page.locator(`[data-task-id="${tarea.id}"]`);
+    await expect(fila.getByRole('heading')).toHaveText(titulo);
+    await expect(fila.locator('img')).toHaveCount(0);
+    expect(
+      await page.evaluate(() => (window as Window & { __academicXss?: boolean }).__academicXss),
+    ).toBeUndefined();
+  } finally {
+    expect((await request.delete('/api/tareas/' + tarea.id)).status()).toBe(204);
+  }
+});
 
 test('RNF-01: muestra 200 tareas reales de MySQL por HTTP', async ({ page, request }) => {
   const response = await request.get('/api/tareas');
