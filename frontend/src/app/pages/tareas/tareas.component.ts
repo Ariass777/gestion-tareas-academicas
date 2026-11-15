@@ -1,27 +1,18 @@
-import {
-  Component,
-  computed,
-  DestroyRef,
-  effect,
-  ElementRef,
-  inject,
-  signal,
-  viewChild,
-} from '@angular/core';
+import type { ElementRef } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, signal, viewChild } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
+import type {
   Asignatura,
   DatosTarea,
   ErroresCampos,
-  ESTADOS,
   Estado,
-  PRIORIDADES,
   Prioridad,
   Tarea,
 } from '../../models/academico';
+import { ESTADOS, PRIORIDADES } from '../../models/academico';
 import { AcademicoService } from '../../services/academico.service';
 import {
   erroresCampos,
@@ -110,6 +101,7 @@ export class TareasComponent {
       onCleanup(() => subscription.unsubscribe());
     });
   }
+  /** Sincroniza el selector con la URL para conservar enlaces directos desde el resumen. */
   protected filtrarEstado(event: Event): void {
     const value = (event.target as HTMLSelectElement).value;
     void this.router.navigate([], {
@@ -121,9 +113,11 @@ export class TareasComponent {
   protected reintentar(): void {
     this.revision.update((n) => n + 1);
   }
+  /** Compara dias ISO en Colombia; las actividades completadas no se marcan como vencidas. */
   protected vencida(tarea: Tarea): boolean {
     return tarea.estado !== 'Completada' && tarea.fecha_entrega < hoyColombia();
   }
+  /** Carga la tarea actual o reinicia el formulario para un registro nuevo. */
   protected abrirEditor(tarea: Tarea | null = null): void {
     this.editando.set(tarea);
     this.errors.set({});
@@ -133,6 +127,7 @@ export class TareasComponent {
   protected cerrarEditor(): void {
     if (!this.saving()) this.editor().nativeElement.close();
   }
+  /** Persiste el formulario y conserva el dialogo abierto ante errores 422 recuperables. */
   protected guardar(datos: DatosTarea): void {
     if (this.saving()) return;
     this.saving.set(true);
@@ -155,6 +150,11 @@ export class TareasComponent {
       },
     });
   }
+  /**
+   * Espera la confirmacion de MySQL antes de reflejar el cambio y aplicar el filtro activo.
+   * @param tarea Recurso listado, cuyo id identifica la solicitud PATCH.
+   * @param estado Uno de los tres estados aprobados; no permite completar dos veces.
+   */
   protected cambiarEstado(tarea: Tarea, estado: Estado): void {
     if (this.busyId() !== null) return;
     if (tarea.estado === 'Completada' && estado === 'Completada') {
@@ -182,21 +182,25 @@ export class TareasComponent {
         },
       });
   }
+  /** Restaura la seleccion hasta recibir respuesta, evitando un cambio visual sin persistencia. */
   protected seleccionarEstado(tarea: Tarea, event: Event): void {
     const select = event.target as HTMLSelectElement;
     const estado = ESTADOS.find((e) => e === select.value);
     select.value = tarea.estado;
     if (estado && estado !== tarea.estado) this.cambiarEstado(tarea, estado);
   }
+  /** Abre una confirmacion sin realizar todavia ninguna solicitud DELETE. */
   protected pedirEliminacion(tarea: Tarea): void {
     this.eliminando.set(tarea);
     this.confirmacion().nativeElement.showModal();
   }
+  /** Cierra el dialogo sin modificar el recurso; bloquea el cierre mientras hay una solicitud. */
   protected cancelarEliminacion(): void {
     if (this.busyId() !== null) return;
     this.confirmacion().nativeElement.close();
     this.eliminando.set(null);
   }
+  /** Elimina solo el id confirmado y lo retira de la vista tras recibir HTTP 204. */
   protected eliminar(): void {
     const tarea = this.eliminando();
     if (!tarea || this.busyId() !== null) return;

@@ -15,6 +15,30 @@ class AcademicApiTest extends TestCase
 {
     use DatabaseTransactions;
 
+    public function test_rechaza_arrays_en_filtros_y_estado(): void
+    {
+        $this->getJson('/api/tareas?prioridad%5B%5D=Alta')->assertUnprocessable();
+        $this->getJson('/api/tareas?estado%5Ba%5D=Pendiente')->assertUnprocessable();
+        $tarea = Tarea::factory()->create();
+        $this->patchJson("/api/tareas/{$tarea->id}/estado", ['estado' => ['Completada']])
+            ->assertUnprocessable()->assertJsonValidationErrors('estado');
+    }
+
+    public function test_rechaza_estado_en_asignacion_masiva_del_formulario(): void
+    {
+        $this->postJson('/api/tareas', $this->payload(['estado' => 'Completada']))
+            ->assertUnprocessable()->assertJsonValidationErrors('estado');
+    }
+
+    public function test_conserva_comillas_sql_como_texto_sin_ejecutarlas(): void
+    {
+        $titulo = "Informe '; DROP TABLE tareas; --";
+        $this->postJson('/api/tareas', $this->payload(['titulo' => $titulo]))
+            ->assertCreated()->assertJsonPath('data.titulo', $titulo);
+        $this->assertDatabaseHas('tareas', ['titulo' => $titulo]);
+        $this->getJson('/api/tareas')->assertOk();
+    }
+
     public function test_errores_inesperados_no_revelan_detalles_internos(): void
     {
         config(['app.debug' => true]);

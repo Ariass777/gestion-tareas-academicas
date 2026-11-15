@@ -1,0 +1,209 @@
+{
+    "fecha_local":  "2026-11-14",
+    "zona":  "America/Bogota",
+    "rama":  "revision-calidad-seguridad",
+    "commit_base":  "a4d34de",
+    "origen":  "Ejecuciones locales reales por el agente principal; no se atribuyen a la estudiante",
+    "base_pruebas_nueva":  "gestion_revision_20261114_e8629d_testing",
+    "documentos_originales":  [
+                                  {
+                                      "archivo":  "Arteaga_Veronica_S3_Requisitos.docx",
+                                      "sha256":  "0EF75C469FDC3F9F877C35E042AA45E971204F9325615849B0268C530FBC8582"
+                                  },
+                                  {
+                                      "archivo":  "Arteaga_Veronica_S4_Diseño.docx",
+                                      "sha256":  "B582F45CFC068119A72AB8FD17A8A5943FB1EA1D4AF2D0A305A7A829832626A9"
+                                  }
+                              ],
+    "linea_base":  {
+                       "git_limpio":  true,
+                       "phpunit":  {
+                                       "tool":  "phpunit",
+                                       "result":  "passed",
+                                       "tests":  18,
+                                       "passed":  18,
+                                       "assertions":  73,
+                                       "duration_ms":  2357
+                                   },
+                       "angular":  {
+                                       "pruebas":  5,
+                                       "archivos":  3,
+                                       "exit_code":  0
+                                   },
+                       "build":  {
+                                     "initial_kb":  310.17,
+                                     "exit_code":  0
+                                 },
+                       "playwright":  {
+                                          "startTime":  "2026-11-15T00:31:46.024Z",
+                                          "duration":  29245.282,
+                                          "expected":  8,
+                                          "skipped":  0,
+                                          "unexpected":  0,
+                                          "flaky":  0
+                                      },
+                       "npm_audit":  {
+                                         "info":  0,
+                                         "low":  0,
+                                         "moderate":  0,
+                                         "high":  0,
+                                         "critical":  0,
+                                         "total":  0
+                                     },
+                       "composer_advisories":  0,
+                       "pint_exit":  0
+                   },
+    "final":  {
+                  "phpunit":  {
+                                  "tool":  "phpunit",
+                                  "result":  "passed",
+                                  "tests":  28,
+                                  "passed":  28,
+                                  "assertions":  227,
+                                  "duration_ms":  2571
+                              },
+                  "angular":  {
+                                  "pruebas":  8,
+                                  "archivos":  4,
+                                  "exit_code":  0
+                              },
+                  "eslint":  {
+                                 "unidades":  24,
+                                 "errores":  0,
+                                 "advertencias":  0,
+                                 "exit_code":  0
+                             },
+                  "build":  {
+                                "initial_kb":  310.33,
+                                "transferencia_estimada_kb":  83.7,
+                                "exit_code":  0
+                            },
+                  "playwright":  {
+                                     "startTime":  "2026-11-15T01:07:11.680Z",
+                                     "duration":  27484.074,
+                                     "expected":  10,
+                                     "skipped":  0,
+                                     "unexpected":  0,
+                                     "flaky":  0
+                                 },
+                  "node_guardia":  {
+                                       "pruebas":  3,
+                                       "fallos":  0,
+                                       "exit_code":  0
+                                   },
+                  "pint_exit":  0,
+                  "php_archivos_sintaxis":  40,
+                  "scripts_sintaxis":  "Node, PowerShell y local-database.php correctos",
+                  "rnf_01":  {
+                                 "fecha":  "2026-11-15T01:07:20.809Z",
+                                 "navegador":  "Chromium",
+                                 "registros":  200,
+                                 "resolucion":  "1920x1080",
+                                 "medicion":  "NavigationStart hasta 200 filas observadas en DOM y siguiente frame; bundle de producciÃ³n, API HTTP Laravel con OPcache y MySQL 8.4 local; sin trazado de Playwright",
+                                 "muestras_ms":  [
+                                                     681,
+                                                     348,
+                                                     358
+                                                 ],
+                                 "api_ms":  [
+                                                97,
+                                                82,
+                                                109
+                                            ],
+                                 "cumple_en_esta_ejecucion":  true
+                             },
+                  "npm_audit_total":  {
+                                          "exit_code":  1,
+                                          "vulnerabilidades":  {
+                                                                   "info":  0,
+                                                                   "low":  0,
+                                                                   "moderate":  7,
+                                                                   "high":  0,
+                                                                   "critical":  0,
+                                                                   "total":  7
+                                                               },
+                                          "avisos_raiz":  [
+                                                              "GHSA-g3hv-75wg-m249"
+                                                          ],
+                                          "alcance":  "desarrollo, transitorio, no resuelto"
+                                      },
+                  "npm_audit_produccion":  {
+                                               "exit_code":  0,
+                                               "vulnerabilidades":  {
+                                                                        "info":  0,
+                                                                        "low":  0,
+                                                                        "moderate":  0,
+                                                                        "high":  0,
+                                                                        "critical":  0,
+                                                                        "total":  0
+                                                                    }
+                                           },
+                  "composer_audit_total":  {
+                                               "exit_code":  0,
+                                               "resultado":  {
+                                                                 "advisories":  [
+
+                                                                                ],
+                                                                 "abandoned":  [
+
+                                                                               ],
+                                                                 "filter":  [
+
+                                                                            ],
+                                                                 "cooldown":  [
+
+                                                                              ]
+                                                             }
+                                           },
+                  "composer_audit_produccion":  {
+                                                    "exit_code":  0,
+                                                    "resultado":  {
+                                                                      "advisories":  [
+
+                                                                                     ],
+                                                                      "abandoned":  [
+
+                                                                                    ],
+                                                                      "filter":  [
+
+                                                                                 ],
+                                                                      "cooldown":  [
+
+                                                                                   ]
+                                                                  }
+                                                },
+                  "guardia_proxy":  {
+                                        "heredado":  {
+                                                         "PORT":  4399,
+                                                         "BACKEND_PORT":  8000
+                                                     },
+                                        "efectivo":  {
+                                                         "PORT":  4300,
+                                                         "BACKEND_PORT":  8001
+                                                     },
+                                        "pruebas_aprobadas":  10,
+                                        "exit_code":  0
+                                    }
+              },
+    "regresiones":  {
+                        "fecha_tokio_antes":  "Fallo reproducido: 13 nov para 2026-11-14",
+                        "fecha_tokio_despues":  "Aprobada en suite final",
+                        "error_de_edicion_spec":  "Cierre de describe corregido; compilacion y pruebas repetidas",
+                        "destinos_e2e":  "Rechazados desarrollo, DB_URL y nombre invalido sin abrir servidor HTTP"
+                    },
+    "segunda_revision":  {
+                             "modelo":  "gpt-6-astra",
+                             "agente_independiente":  true,
+                             "modificaciones_por_segundo_agente":  false,
+                             "operaciones_mysql_por_segundo_agente":  false,
+                             "resultado":  "F-01 y S-01 corregidos; S-02 residual de desarrollo",
+                             "validacion_humana":  "Pendiente"
+                         },
+    "logs_locales":  "artifacts/revision (ignorados por Git)",
+    "push_realizado":  false,
+    "control_secretos":  {
+                             "archivos_revisados":  139,
+                             "rutas_privadas_versionables":  0,
+                             "coincidencias_secretos_locales":  0
+                         }
+}

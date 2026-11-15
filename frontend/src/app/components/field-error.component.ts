@@ -1,5 +1,5 @@
 import { Component, effect, input, signal } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import type { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-field-error',

@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Asignatura, Tarea } from '../../models/academico';
+import type { Asignatura, Tarea } from '../../models/academico';
 import { AcademicoService } from '../../services/academico.service';
 import { mensajeError } from '../../services/notificaciones.service';
 import { IconComponent } from '../../components/icon.component';
@@ -40,6 +40,7 @@ export class InicioComponent {
   constructor() {
     this.cargar();
   }
+  /** Carga ambos recursos para que los resumenes correspondan a respuestas actuales de la API. */
   protected cargar(): void {
     this.loading.set(true);
     this.error.set('');

@@ -19,6 +19,8 @@ export default defineConfig({
   webServer: [
     {
       command: 'node ../scripts/serve-frontend.mjs',
+      // Evita que variables heredadas redirijan el CRUD de pruebas al backend de desarrollo.
+      env: { PORT: '4300', BACKEND_PORT: '8001' },
       url: 'http://127.0.0.1:4300',
       reuseExistingServer: false,
       timeout: 30000,

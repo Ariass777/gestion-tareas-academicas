@@ -4,6 +4,10 @@ Aplicación académica individual para registrar asignaturas, organizar activida
 
 La implementación parte de los DOCX de `docs/`, leídos antes del desarrollo. El diseño de semana 4 tiene precedencia: **Angular → API REST Laravel → MySQL**. Los originales se conservan intactos. Las decisiones y trazabilidad se encuentran en [docs/DECISIONES.md](docs/DECISIONES.md), y los resultados ejecutados en [docs/VALIDACION.md](docs/VALIDACION.md).
 
+El objetivo académico es aplicar análisis de requisitos, arquitectura por capas, implementación y verificación al proyecto individual del seminario **Inteligencia Artificial Aplicada al Ciclo de Vida del Software**. La revisión del primer incremento está documentada en [revisión de seguridad](docs/revision_seguridad.md), [bitácora de IA](docs/bitacora_ia.md) y [evidencia ejecutada](docs/evidencia_revision.json).
+
+Funcionalidades: registrar y listar asignaturas; crear, consultar, editar y eliminar tareas con confirmación; filtrar por prioridad y estado; actualizar progreso; consultar el resumen de entregas y conservar datos en MySQL después de recargar. No se incorpora IA al producto.
+
 ## Tecnologías y requisitos
 
 Versiones verificadas en este equipo:
@@ -201,6 +205,13 @@ API con PHPUnit, desde `backend/`:
 
 Las pruebas usan transacciones sobre MySQL y revierten sus datos. Se niegan a ejecutar si la base no termina en `_testing`, si la conexión no es MySQL o si existe un `DB_URL` que pueda redirigirla.
 
+El servidor de Playwright aplica la misma guardia antes de escuchar y durante el arranque de cada solicitud. También exige `backend/.env.testing` y rechaza configuración cacheada para evitar que una prueba use accidentalmente la base de desarrollo. Esta comprobación no ejecuta SQL:
+
+```powershell
+# Desde backend
+..\.tools\php\php.exe artisan academic:check-test-database --env=testing --no-interaction
+```
+
 Frontend, desde `frontend/`:
 
 ```powershell
@@ -226,7 +237,40 @@ La suite comprueba registro, validaciones, edición, cambios de estado, filtros 
 
 RNF-01 mide tres navegaciones hasta mostrar las 200 filas y alcanzar el siguiente frame, incluyendo carga Angular, solicitudes HTTP y MySQL. Un MutationObserver registra el tiempo dentro del navegador, sin sumar el tiempo que Playwright tarda en comprobar las filas. El servidor PHP de pruebas habilita OPcache; el trazado de Playwright está desactivado para no distorsionar la medición. `artifacts/rnf-01.json` registra muestras y tiempos de API. Una medición local solo describe el equipo y la ejecución observados.
 
+## Calidad, linters y auditorías
+
+Desde `frontend/`, con las dependencias instaladas mediante `npm.cmd ci`:
+
+```powershell
+npm.cmd run lint
+npm.cmd test -- --watch=false
+npm.cmd run build
+npm.cmd audit
+npm.cmd audit --omit=dev
+```
+
+ESLint revisa TypeScript con información de tipos y plantillas Angular, incluidas las inline. `--max-warnings=0` hace fallar el comando si quedan advertencias. Las excepciones verificadas del linter se explican en el informe. Los scripts y E2E se comprueban por separado, no se presentan como cubiertos por ese comando.
+
+Desde `backend/`:
+
+```powershell
+..\.tools\php\php.exe vendor/bin/pint --test --format=json
+..\.tools\php\php.exe artisan test --compact
+..\.tools\php\php.exe ..\.tools\composer.phar audit --locked
+..\.tools\php\php.exe ..\.tools\composer.phar audit --locked --no-dev
+```
+
+Desde la raíz, comprobar que el servidor E2E rechace configuraciones inseguras sin abrir HTTP ni escribir en MySQL:
+
+```powershell
+node --test scripts/serve-backend.test.mjs
+```
+
+Para revisar sin tocar bases existentes, crear una base **nueva y dedicada**, terminar su nombre en `_testing`, otorgar acceso al usuario local y establecer `$env:DB_DATABASE='nombre_nuevo_testing'` en las terminales de pruebas. Aplicar las migraciones y preparar fixtures solo en esa base nueva. No utilizar bases `_testing` con datos personales: la suite comprueba eliminación de los registros que crea y el comando de fixtures reemplaza sus datos reservados.
+
 ## Decisiones y límites
+
+La auditoría de producción ejecutada no reportó vulnerabilidades conocidas. La cadena de herramientas del linter tiene un aviso moderado transitivo de minimatch, documentado como riesgo residual de desarrollo en el informe. No se debe interpretar el resultado de producción como una auditoría total sin avisos.
 
 - Título, descripción, asignatura, fecha y prioridad obligatorios; código de asignatura también obligatorio. No se agrega unicidad que los requisitos no solicitan.
 - Fechas como día calendario de Colombia; al editar una tarea vencida se puede conservar la fecha, pero otra fecha debe ser hoy o posterior.
