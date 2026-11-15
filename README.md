@@ -1,16 +1,32 @@
 # Sistema Web de Gestión de Tareas Académicas
 
+## 1. Qué es el proyecto.
+
 Aplicación académica individual para registrar asignaturas, organizar actividades, establecer fechas y prioridades y actualizar el progreso. Interfaz **Académica**, con verde oscuro y diseño adaptable.
 
 La implementación parte de los DOCX de `docs/`, leídos antes del desarrollo. El diseño de semana 4 tiene precedencia: **Angular → API REST Laravel → MySQL**. Los originales se conservan intactos. Las decisiones y trazabilidad se encuentran en [docs/DECISIONES.md](docs/DECISIONES.md), y los resultados ejecutados en [docs/VALIDACION.md](docs/VALIDACION.md).
 
-El objetivo académico es aplicar análisis de requisitos, arquitectura por capas, implementación y verificación al proyecto individual del seminario **Inteligencia Artificial Aplicada al Ciclo de Vida del Software**. La revisión del primer incremento está documentada en [revisión de seguridad](docs/revision_seguridad.md), [bitácora de IA](docs/bitacora_ia.md) y [evidencia ejecutada](docs/evidencia_revision.json).
+El objetivo académico es aplicar análisis de requisitos, arquitectura por capas, implementación y verificación al proyecto individual del seminario **Inteligencia Artificial Aplicada al Ciclo de Vida del Software**. La revisión del primer incremento está documentada en [informe oficial de semana 6](revision_seguridad.md) y su [informe complementario](docs/revision_seguridad.md), [bitácora de IA](docs/bitacora_ia.md) y [evidencia ejecutada](docs/evidencia_revision.json).
 
 Funcionalidades: registrar y listar asignaturas; crear, consultar, editar y eliminar tareas con confirmación; filtrar por prioridad y estado; actualizar progreso; consultar el resumen de entregas y conservar datos en MySQL después de recargar. No se incorpora IA al producto.
 
-## Tecnologías y requisitos
+### Decisiones y limitaciones conocidas
 
-Versiones verificadas en este equipo:
+La auditoría de producción registrada en la revisión no reportó vulnerabilidades conocidas. La cadena de herramientas del linter tiene un aviso moderado transitivo de minimatch, documentado como S-02 abierto y sin corregir en el informe. La aceptación temporal para la demostración local es una propuesta; falta confirmación definitiva de la estudiante. No se debe interpretar el resultado de producción como una auditoría total sin avisos.
+
+- Título, descripción, asignatura, fecha y prioridad obligatorios; código de asignatura también obligatorio. No se agrega unicidad que los requisitos no solicitan.
+- Fechas como día calendario de Colombia; al editar una tarea vencida se puede conservar la fecha, pero otra fecha debe ser hoy o posterior.
+- Todos los estados permanecen consultables. La vista de pendientes muestra exactamente `Pendiente`; las actividades `En progreso` tienen resumen propio.
+- La persistencia es exclusivamente MySQL. Recargar inicia consultas nuevas a la API.
+- Demostración de un usuario, sin autenticación ni aislamiento entre estudiantes; se ejecuta en loopback. Una publicación multiusuario necesitaría una decisión adicional de alcance.
+- Los servidores incorporados de PHP/Angular y el servidor estático de pruebas son herramientas de desarrollo. `APP_DEBUG=false` evita exponer detalles internos.
+- Laravel Boost se instaló solo como dependencia de desarrollo siguiendo el `AGENTS.md` del generador. No hay chatbot, API de IA ni funciones de IA en el producto.
+- Si un servicio está detenido, se muestra un error y un botón para reintentar; no se sustituyen datos fallidos por registros ficticios.
+- En el entorno restringido del agente, la compilación y Chromium requirieron permisos para leer carpetas de OneDrive y ejecutar procesos locales. Esto no modifica la configuración del proyecto.
+
+## 2. Requisitos.
+
+Versiones registradas durante la revisión del 14/11/2026 en este equipo (no se reinstalaron para este ajuste documental):
 
 | Herramienta | Versión |
 | --- | --- |
@@ -26,35 +42,77 @@ Windows x64 con Visual C++ Redistributable 2015–2022, Node.js compatible con A
 
 Compatibilidad consultada en la [documentación de Angular](https://angular.dev/reference/versions) y los [requisitos de Laravel 13](https://laravel.com/framework/docs/13.x/deployment). Descargas oficiales: [PHP](https://www.php.net/downloads.php?os=windows), [Composer](https://getcomposer.org/download/) y [MySQL 8.4](https://dev.mysql.com/downloads/mysql/8.4.html?os=3).
 
-## Estructura
+## 3. Instalación.
 
-```text
-frontend/src/app/
-  components/     Iconos, errores de campo y formulario compartido
-  pages/          Inicio, asignaturas y tareas
-  services/       HttpClient y mensajes de interfaz
-  models/         Interfaces y tipos de dominio
-  config/         URL de API, fechas y validadores
-  app.routes.ts   Navegación con carga diferida
-frontend/e2e/     Pruebas de navegador e integración
-backend/app/
-  Models/         Entidades y relaciones Eloquent
-  Http/Controllers/Api/
-  Http/Requests/  Validación del servidor
-  Http/Resources/ Respuestas JSON
-  Console/Commands/ Preparación segura de datos de pruebas
-backend/database/ Migraciones, factories y seeder
-backend/tests/    Pruebas de API sobre MySQL
-scripts/          Herramientas y arranque local
-docs/             Fuentes originales y documentación de implementación
-.tools/           Herramientas portátiles ignoradas por Git
-.runtime/         Datos MySQL y secretos locales ignorados por Git
-artifacts/        Resultados y capturas locales ignorados por Git
+**Estado de verificación:** los comandos se contrastaron con los scripts y manifiestos reales del repositorio. No se ejecutó una instalación completa en una carpeta limpia para esta entrega; no se declara verificada. El antecedente de [VALIDACION.md](docs/VALIDACION.md) registra la instalación de desarrollo y una repetición del instalador con herramientas ya presentes. También queda pendiente comprobar la alternativa con MySQL propio en una instalación limpia.
+
+### Instalación portable desde una copia nueva en Windows
+
+No copiar `vendor`, `node_modules`, `.tools`, `.runtime` ni archivos `.env` al repositorio. Con Node.js instalado, ejecutar desde la raíz:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-tools.ps1
+.\.tools\php\php.exe .\.tools\composer.phar install --working-dir=backend
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-mysql.ps1
+.\.tools\php\php.exe .\scripts\local-database.php
+.\.tools\php\php.exe .\backend\artisan migrate --no-interaction
+.\.tools\php\php.exe .\backend\artisan db:seed --no-interaction
+cd frontend
+npm.cmd ci
 ```
 
-## Ejecutar en este espacio de trabajo
+Después de instalar, iniciar los servidores según la sección 4. Ejecución. `install-tools.ps1` descarga los binarios oficiales dentro del proyecto, verifica las sumas publicadas y no cambia el PATH ni instala servicios de Windows. Necesita red y el runtime Visual C++ x64. La instancia nueva solo escucha en `127.0.0.1:3307`; no utiliza servicios o bases existentes. Durante su primera preparación, `local-database.php` genera contraseñas aleatorias, protege la cuenta root y crea el usuario de aplicación. Los secretos se guardan exclusivamente en `.runtime/mysql-admin.json`, `backend/.env` y `backend/.env.testing`, ignorados por Git. Si estos `.env` ya existen, el script los conserva.
 
-Las dependencias, herramientas portátiles, bases y datos de demostración ya se prepararon en este equipo. Desde la raíz, en PowerShell:
+### Usar una instalación MySQL propia
+
+También se puede usar PHP y Composer instalados globalmente. Sustituir las rutas de `.tools` por `php` y `composer`.
+
+Con PHP, Composer y MySQL propios ya instalados, omitir la preparación portable. Instalar las dependencias desde la raíz y luego configurar las bases y variables indicadas a continuación:
+
+```powershell
+composer install --working-dir=backend
+cd frontend
+npm.cmd ci
+```
+
+Crear **bases nuevas** sin afectar bases existentes:
+
+```sql
+CREATE DATABASE gestion_tareas_academicas CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE gestion_tareas_academicas_testing CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- Crear un usuario con una contraseña propia; nunca versionarla.
+-- Otorgar permisos sobre estas dos bases exclusivamente.
+```
+
+Copiar `backend/.env.example` a `backend/.env` y completar:
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=gestion_tareas_academicas
+DB_USERNAME=tu_usuario
+DB_PASSWORD=tu_contrasena_local
+APP_TIMEZONE=America/Bogota
+FRONTEND_URL=http://127.0.0.1:4200
+```
+
+No configurar `DB_URL`. Copiar `backend/.env.testing.example` a `backend/.env.testing` y establecer las mismas credenciales, con `DB_DATABASE=gestion_tareas_academicas_testing` y `APP_ENV=testing`. Usar una base dedicada y vacía para pruebas. Desde `backend/`:
+
+```powershell
+php artisan key:generate
+php artisan key:generate --env=testing
+php artisan migrate --no-interaction
+php artisan db:seed --no-interaction
+php artisan migrate --env=testing --no-interaction
+# Iniciar el servidor después, como indica la sección 4.
+```
+
+El seeder agrega cuatro asignaturas y cinco tareas de ejemplo con fechas relativas al día de ejecución. Es repetible: conserva registros existentes y no los restablece. No se utiliza `migrate:fresh`, `db:wipe` ni SQLite para desarrollar o probar esta aplicación.
+
+## 4. Ejecución.
+
+Después de completar la instalación portable y las migraciones, iniciar los servicios con los scripts incluidos. Las dependencias y bases ya estaban preparadas en el equipo de desarrollo. Desde la raíz, en PowerShell:
 
 ```powershell
 # Terminal 1: iniciar MySQL, comprobar Laravel y mantener la API en el puerto 8000
@@ -100,64 +158,19 @@ Invoke-WebRequest -UseBasicParsing http://127.0.0.1:4200/api/asignaturas
 
 No hace falta volver a instalar dependencias ni ejecutar seeders cada vez que se abre el proyecto. Si se modifica el archivo del proxy, reiniciar Angular para que lea la configuración nueva.
 
-## Instalación desde una copia nueva en Windows
+### Alternativa con PHP y MySQL propios
 
-No copiar `vendor`, `node_modules`, `.tools`, `.runtime` ni archivos `.env` al repositorio. Con Node.js instalado, ejecutar desde la raíz:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\install-tools.ps1
-.\.tools\php\php.exe .\.tools\composer.phar install --working-dir=backend
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-mysql.ps1
-.\.tools\php\php.exe .\scripts\local-database.php
-.\.tools\php\php.exe .\backend\artisan migrate --no-interaction
-.\.tools\php\php.exe .\backend\artisan db:seed --no-interaction
-cd frontend
-npm.cmd ci
-npm.cmd start
-```
-
-En otra terminal iniciar el backend con el comando anterior. `install-tools.ps1` descarga los binarios oficiales dentro del proyecto, verifica las sumas publicadas y no cambia el PATH ni instala servicios de Windows. Necesita red y el runtime Visual C++ x64. La instancia nueva solo escucha en `127.0.0.1:3307`; no utiliza servicios o bases existentes. Durante su primera preparación, `local-database.php` genera contraseñas aleatorias, protege la cuenta root y crea el usuario de aplicación. Los secretos se guardan exclusivamente en `.runtime/mysql-admin.json`, `backend/.env` y `backend/.env.testing`, ignorados por Git. Si estos `.env` ya existen, el script los conserva.
-
-## Usar una instalación MySQL propia
-
-También se puede usar PHP y Composer instalados globalmente. Sustituir las rutas de `.tools` por `php` y `composer`. Crear **bases nuevas** sin afectar bases existentes:
-
-```sql
-CREATE DATABASE gestion_tareas_academicas CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE DATABASE gestion_tareas_academicas_testing CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- Crear un usuario con una contraseña propia; nunca versionarla.
--- Otorgar permisos sobre estas dos bases exclusivamente.
-```
-
-Copiar `backend/.env.example` a `backend/.env` y completar:
-
-```dotenv
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=gestion_tareas_academicas
-DB_USERNAME=tu_usuario
-DB_PASSWORD=tu_contrasena_local
-APP_TIMEZONE=America/Bogota
-FRONTEND_URL=http://127.0.0.1:4200
-```
-
-No configurar `DB_URL`. Copiar `backend/.env.testing.example` a `backend/.env.testing` y establecer las mismas credenciales, con `DB_DATABASE=gestion_tareas_academicas_testing` y `APP_ENV=testing`. Usar una base dedicada y vacía para pruebas. Desde `backend/`:
+Iniciar previamente el servicio de MySQL de la instalación propia y comprobar que su puerto coincida con `backend/.env`. Desde `backend/`, mantener abierta esta terminal:
 
 ```powershell
-php artisan key:generate
-php artisan key:generate --env=testing
-php artisan migrate --no-interaction
-php artisan db:seed --no-interaction
-php artisan migrate --env=testing --no-interaction
-php artisan serve --host=127.0.0.1 --port=8000
+php artisan serve --host=127.0.0.1 --port=8000 --tries=1
 ```
 
-El seeder agrega cuatro asignaturas y cinco tareas de ejemplo con fechas relativas al día de ejecución. Es repetible: conserva registros existentes y no los restablece. No se utiliza `migrate:fresh`, `db:wipe` ni SQLite para desarrollar o probar esta aplicación.
+En otra terminal ejecutar Angular como se indicó arriba. `start-backend.ps1` corresponde a la instancia portable en 3307; para un servicio MySQL propio utilizar este arranque manual. No volver a ejecutar migraciones ni seeders en cada inicio.
 
-## API REST
+### API REST
 
-Base de desarrollo: `http://127.0.0.1:8000/api`. El frontend utiliza `/api`, reenviado mediante `frontend/proxy.conf.json`. Si cambia el puerto de Laravel, ajustar ese proxy. Para producción, servir Angular y reenviar `/api` al backend bajo el mismo origen, o proveer `API_URL` en `src/app/config/api.config.ts` y ajustar `FRONTEND_URL` en Laravel. No se incluyen credenciales en Angular.
+Base de desarrollo: `http://127.0.0.1:8000/api`. El frontend utiliza `/api`, reenviado mediante `frontend/proxy.conf.json`. Si cambia el puerto de Laravel, ajustar ese proxy. Para producción, servir Angular y reenviar `/api` al backend bajo el mismo origen, o proveer `API_URL` en `frontend/src/app/config/api.config.ts` y ajustar `FRONTEND_URL` en Laravel. No se incluyen credenciales en Angular.
 
 | Método | Endpoint | Resultado |
 | --- | --- | --- |
@@ -189,9 +202,11 @@ Usar una asignatura existente y fecha actual o futura. PUT recibe el formulario 
 
 CORS permite el origen configurado y `localhost:4200`, con los métodos y encabezados necesarios. La clave foránea evita tareas huérfanas y restringe eliminar asignaturas con tareas. Completar otra vez una tarea completada se rechaza con 422, y el botón de completar se deshabilita en la interfaz. Las reglas de estado se ejecutan con transacción y bloqueo de fila.
 
-## Pruebas
+## 5. Pruebas.
 
-Todos estos comandos presuponen MySQL iniciado. Preparar la base de pruebas una vez desde la raíz:
+Resultados históricos de la revisión: 28 pruebas PHP (227 aserciones), 8 Angular, 10 E2E y 3 Node aprobadas; compilación, ESLint y Pint aprobados. El resumen se conserva en [evidencia_revision.json](docs/evidencia_revision.json); estas suites no se repitieron en el ajuste documental de la entrega. `npm audit` total conserva S-02; no equivale a la auditoría de producción sin avisos.
+
+Las pruebas de API e integración presuponen MySQL iniciado y una base nueva y desechable exclusiva para pruebas. El sufijo `_testing` no demuestra que esté vacía ni verifica independientemente la identidad física del servidor. Preparar la base de pruebas una vez desde la raíz:
 
 ```powershell
 .\.tools\php\php.exe .\backend\artisan migrate --env=testing --no-interaction
@@ -237,7 +252,7 @@ La suite comprueba registro, validaciones, edición, cambios de estado, filtros 
 
 RNF-01 mide tres navegaciones hasta mostrar las 200 filas y alcanzar el siguiente frame, incluyendo carga Angular, solicitudes HTTP y MySQL. Un MutationObserver registra el tiempo dentro del navegador, sin sumar el tiempo que Playwright tarda en comprobar las filas. El servidor PHP de pruebas habilita OPcache; el trazado de Playwright está desactivado para no distorsionar la medición. `artifacts/rnf-01.json` registra muestras y tiempos de API. Una medición local solo describe el equipo y la ejecución observados.
 
-## Calidad, linters y auditorías
+### Calidad, linters y auditorías
 
 Desde `frontend/`, con las dependencias instaladas mediante `npm.cmd ci`:
 
@@ -268,16 +283,44 @@ node --test scripts/serve-backend.test.mjs
 
 Para revisar sin tocar bases existentes, crear una base **nueva y dedicada**, terminar su nombre en `_testing`, otorgar acceso al usuario local y establecer `$env:DB_DATABASE='nombre_nuevo_testing'` en las terminales de pruebas. Aplicar las migraciones y preparar fixtures solo en esa base nueva. No utilizar bases `_testing` con datos personales: la suite comprueba eliminación de los registros que crea y el comando de fixtures reemplaza sus datos reservados.
 
-## Decisiones y límites
+## 6. Estructura.
 
-La auditoría de producción ejecutada no reportó vulnerabilidades conocidas. La cadena de herramientas del linter tiene un aviso moderado transitivo de minimatch, documentado como riesgo residual de desarrollo en el informe. No se debe interpretar el resultado de producción como una auditoría total sin avisos.
+```text
+frontend/src/app/
+  components/     Iconos, errores de campo y formulario compartido
+  pages/          Inicio, asignaturas y tareas
+  services/       HttpClient y mensajes de interfaz
+  models/         Interfaces y tipos de dominio
+  config/         URL de API, fechas y validadores
+  app.routes.ts   Navegación con carga diferida
+frontend/e2e/     Pruebas de navegador e integración
+backend/app/
+  Models/         Entidades y relaciones Eloquent
+  Http/Controllers/Api/
+  Http/Requests/  Validación del servidor
+  Http/Resources/ Respuestas JSON
+  Console/Commands/ Preparación segura de datos de pruebas
+backend/database/ Migraciones, factories y seeder
+backend/tests/    Pruebas de API sobre MySQL
+scripts/          Herramientas y arranque local
+docs/             Fuentes originales y documentación de implementación
+README.md         Instalación, ejecución, pruebas y alcance
+revision_seguridad.md  Informe oficial breve de semana 6
+.tools/           Herramientas portátiles ignoradas por Git
+.runtime/         Datos MySQL y secretos locales ignorados por Git
+artifacts/        Resultados y capturas locales ignorados por Git
+```
 
-- Título, descripción, asignatura, fecha y prioridad obligatorios; código de asignatura también obligatorio. No se agrega unicidad que los requisitos no solicitan.
-- Fechas como día calendario de Colombia; al editar una tarea vencida se puede conservar la fecha, pero otra fecha debe ser hoy o posterior.
-- Todos los estados permanecen consultables. La vista de pendientes muestra exactamente `Pendiente`; las actividades `En progreso` tienen resumen propio.
-- La persistencia es exclusivamente MySQL. Recargar inicia consultas nuevas a la API.
-- Demostración de un usuario, sin autenticación ni aislamiento entre estudiantes; se ejecuta en loopback. Una publicación multiusuario necesitaría una decisión adicional de alcance.
-- Los servidores incorporados de PHP/Angular y el servidor estático de pruebas son herramientas de desarrollo. `APP_DEBUG=false` evita exponer detalles internos.
-- Laravel Boost se instaló solo como dependencia de desarrollo siguiendo el `AGENTS.md` del generador. No hay chatbot, API de IA ni funciones de IA en el producto.
-- Si un servicio está detenido, se muestra un error y un botón para reintentar; no se sustituyen datos fallidos por registros ficticios.
-- En el entorno restringido del agente, la compilación y Chromium requirieron permisos para leer carpetas de OneDrive y ejecutar procesos locales. Esto no modifica la configuración del proyecto.
+## 7. Uso de IA.
+
+La IA se utiliza como apoyo al desarrollo y a la revisión académica, sin incorporarla al sistema en ejecución. Codex realizó inspección, refactorizaciones localizadas, documentación y pruebas. La segunda revisión histórica fue realizada por un agente independiente **gpt-6-astra** con contexto separado; no se presenta como una segunda herramienta utilizada durante este ajuste documental.
+
+La estudiante revisó diffs, comunicó observaciones de documentación y analizó los límites de S-01. También reportó ejecutar `npm ls minimatch` y `npm audit --omit=dev`; la bitácora distingue esos resultados de las pruebas del agente. No se atribuyen a la estudiante verificaciones adicionales ni aprobación definitiva de S-02.
+
+Evidencia: [informe oficial](revision_seguridad.md), [informe detallado](docs/revision_seguridad.md), [bitácora de IA](docs/bitacora_ia.md) y [resultados de ejecución](docs/evidencia_revision.json). La bitácora conserva prompts, decisiones, falsos positivos y tareas pendientes de supervisión humana.
+
+## 8. Autor y licencia.
+
+**Autora:** Linda Verónica Arteaga Arias. Proyecto académico individual de Ingeniería de Software para el seminario Inteligencia Artificial Aplicada al Ciclo de Vida del Software.
+
+**Licencia global pendiente de definición.** El repositorio no contiene un archivo `LICENSE` ni una elección global documentada. `backend/composer.json` declara `MIT`; ese dato del manifiesto del backend se conserva y no se extiende aquí al proyecto completo. La autora debe confirmar la licencia de la entrega. Las dependencias mantienen sus propias licencias; no se añade ninguna licencia nueva en este ajuste.
