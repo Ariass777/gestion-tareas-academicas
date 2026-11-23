@@ -147,3 +147,63 @@ Los antecedentes de S6-03 proceden de los seguimientos humanos ya registrados, n
 | `git diff --check` | Sin errores de espacios en la revisión del diff; Git avisa de su conversión habitual LF/CRLF. Revisión final del contenido limitada a documentación. |
 
 Un intento de leer `package-lock.json` con `ConvertFrom-Json` de Windows PowerShell falló por la clave vacía de `packages`; la comprobación se repitió correctamente con `JSON.parse` de Node, sin alterar el archivo. No se contó el intento fallido como validación aprobada. Todas estas comprobaciones son del agente, no de la estudiante. La paginación exacta del Markdown depende del exportador; el informe se mantiene breve para la extensión aproximada solicitada.
+
+## Semana 7 — fase 2: generación y revisión de pruebas
+
+Fecha: **22/11/2026, America/Bogota**. Herramienta: Codex, agente principal. Se mantuvo la rama `semana-7-pruebas`. Las actividades siguientes pertenecen al agente; la estudiante definió el alcance y las interpretaciones provisionales, pero no se presume su revisión personal de los archivos ni la aprobación de resultados.
+
+**Prompt recibido, extractos literales:**
+
+> Utiliza Vitest para las funciones reales de TypeScript y PHPUnit para las reglas reales de Laravel.
+>
+> No modifiques la lógica de producción para hacer pasar las pruebas.
+>
+> Registra qué casos conservaste, corregiste o descartaste y por qué.
+>
+> No atribuyas a la estudiante decisiones que todavía no haya verificado personalmente.
+>
+> Usa una base exclusiva de pruebas para cualquier operación con MySQL, conservando las protecciones de seguridad de la Semana 6.
+>
+> No declares completada la sección de errores intencionales todavía.
+
+| Entrada | Trabajo del agente | Verificación real / correcciones | Supervisión humana y límites |
+| --- | --- | --- | --- |
+| S7-F2-01: generación trazable | Crear tres specs Vitest, proveedores `Semana7Data.php`, `Semana7ValidationTest.php` y `Semana7ApiTest.php`, importando reglas/componentes/solicitudes reales. `test.each()` y `DataProviderExternal`, esperados fijos, ASCII en límites y datos ficticios con tildes, ñ/apóstrofos. | TestBed obtiene formularios reales mediante FormGroupDirective; las pruebas Laravel ejecutan Validator/FormRequest y HTTP/MySQL. Se conservaron los archivos de prueba anteriores y la lógica de producción. Los esqueletos Artisan sin valor se sustituyeron antes de ejecutar pruebas de negocio. | A-01/A-02/A-03 son interpretaciones provisionales de la revisión académica recibidas en el prompt, no requisitos confirmados por el cliente. A-04/A-05 no se extendieron a Unicode ambiguo. |
+| S7-F2-02: revisión técnica de IA | Evaluar cada ID F/T/E por fuente del esperado, fallo que discrimina y aporte/redundancia; registrar decisiones en [registro_pruebas.md](../registro_pruebas.md), sección 2. | Primer PHPUnit aislado: 117 casos, 73 aprobados y 44 errores del harness. Se corrigió Route sin enlazar y objetos PHP que no representaban la decodificación JSON de Laravel; segundo intento 117/117. No se cambiaron oráculos. Se añadió T-10 explícito de M espacios y se descartaron tres parámetros HTTP válidos redundantes con la matriz; no se eliminó ninguna prueba anterior. | Revisión realizada por Codex, no por la estudiante. Las hipótesis de errores detectables se evaluaron sin introducirlos: no son evidencia de mutación. Unicode, extremos de año, clave estado vacía, multizona específica y concurrencia real permanecen pendientes según el registro. |
+| S7-F2-03: ejecución y datos | Base nueva `gestion_semana7_20261122_d6465605_testing`, migraciones no destructivas, guardias conservadas y transacciones por prueba. Ejecutar pruebas nuevas y suites completas con reportes JSON/JUnit locales en `artifacts/semana7/`. | Nuevas iniciales: Vitest 69/69, PHPUnit validación corregida 117/117 y API 175/175. Primera suite completa: Vitest 79/79, PHPUnit 320/320, 991 aserciones. Después de completar T-10, Vitest final 87/87; resultados finales PHP y detalle de comandos en sección 4 del registro. ESLint/Pint ejecutados; no se ejecutaron Playwright, Node ni pytest en esta fase. | La salida inicial de Angular fue bloqueo de lectura de OneDrive, no pruebas fallidas; se repitió con permisos adecuados. MySQL informó readiness aunque el script no detectó el puerto; PDO/migraciones/API funcionaron. No se modificaron scripts, dependencias ni archivos `.env`. |
+
+Los comandos, conteos finales, errores intermedios, datos esperados/observados y límites se consolidan en el [registro de pruebas](../registro_pruebas.md). Los reportes ignorados por Git son evidencia local, no se presentan como archivos distribuidos al clonar. El registro guarda el resumen comprobado y los fuentes de pruebas conservan la trazabilidad de cada parámetro. No se introdujeron los tres errores intencionales, no se hizo push/merge ni se alteró el historial anterior. La revisión personal de la estudiante queda pendiente.
+
+**Cierre comprobado de S7-F2-03 por Codex:** suite final Vitest **87/87** (79 nuevas y 8 anteriores); suite final PHPUnit **327/327**, **1014 aserciones** (299 nuevas y 28 anteriores). Cero fallos, errores y omitidas entre los casos implementados. Pint y ESLint finales aprobaron. La consulta de estado con guardia activa confirmó la base exclusiva y **0 asignaturas/0 tareas** después de las transacciones, sin limpieza destructiva. El aumento respecto de los primeros conteos procede de T-10 explícito y de las pruebas de componente de estados; se retiraron tres parámetros HTTP nuevos redundantes. No se sumaron repeticiones como nuevas pruebas.
+
+## Semana 7 — fase final: mutaciones y entrega local
+
+Fecha: **22/11/2026, America/Bogota**. Responsable de introducir/restaurar mutantes, ejecutar comandos y revisar evidencia: **Codex**. La estudiante autorizó expresamente esta fase; ello no equivale a afirmar que haya ejecutado o revisado personalmente sus resultados.
+
+**Prompt recibido, extractos literales:**
+
+> Ejecuta una sola mutación a la vez.
+>
+> No modifiques los resultados esperados de las pruebas para hacerlas pasar.
+>
+> No alteres las pruebas originales.
+>
+> Verifica mediante diff que el código de producción haya quedado exactamente igual al original.
+>
+> Prepara solamente los archivos de pruebas y documentación de la Semana 7.
+>
+> Crea un commit descriptivo en `semana-7-pruebas`.
+>
+> No hagas push ni merge.
+
+| Entrada | Actividad y decisión del agente | Evidencia realmente observada |
+| --- | --- | --- |
+| S7-FINAL-01: seguridad y fechas | Verificar rama/status, conservar archivos no versionados, copiar bytes de producción y guardar hashes de producción/pruebas/configuración. Mutar solo `<` a `<=` en fechaNoPasada, línea 25. Restaurar con finally antes de continuar. | F-02 falló: esperaba null y obtuvo `{ pasada: true }`; F-01/F-03 aprobaron. Tras restaurar: 3/3 seleccionadas aprobaron; hash igual al original. No se usó reset/clean/restore de Git. |
+| S7-FINAL-02: textos | Retirar temporalmente trim al contar texto, línea 17. No cambiar pruebas ni esperados. Repetir invocación tras error de quoting de npm.cmd. | Primer filtro con tubería terminó 255 porque T-10 fue interpretado como comando; no se contó como detección. Con filtro compatible `T-[01][01]`: siete fallos (T-01 con blancos/control y T-10 con 150/30/200/5000 espacios), esperaban required y recibieron null. Restauración exacta y 8/8 aprobadas. Se conservó el intento fallido. |
+| S7-FINAL-03: estados | Desactivar temporalmente la guarda con `false &&` en TareaController::estado, línea 63. Validar base exclusiva mediante TestDatabaseSafety y comando de preflight; ejecutar solo estados/doble finalización. Restaurar inmediatamente. | Dos pruebas esperaban HTTP 422 y recibieron 200; una esperaba ValidationException y no se lanzó. Mutante: 3 fallidas y 8 aprobadas. Original restaurado: 11/11, 40 aserciones. La prueba anterior AcademicApiTest también detectó la mutación. |
+
+Los cambios exactos, nombres completos de pruebas, comandos, hashes y resultados están en [registro_pruebas.md, sección 3](../registro_pruebas.md#3-romper-el-código-a-propósito). Las copias/diffs/logs temporales están en `artifacts/semana7/mutaciones-final/`, ignorado por Git. Se trabajó exclusivamente con la base existente de pruebas `gestion_semana7_20261122_d6465605_testing`; no se modificaron `.env`, bases de desarrollo, pruebas ni oráculos. No coexistieron dos mutantes. Se detectaron 3/3 mutantes manuales seleccionados; no se presenta como una medición exhaustiva de mutación ni como prueba de concurrencia.
+
+**S7-FINAL-04, cierre automatizado por Codex:** después de restaurar los tres errores se volvieron a ejecutar las suites completas: **87/87 Vitest**, **327/327 PHPUnit y 1014 aserciones**, sin fallos, errores ni omitidas. ESLint y Pint aprobaron. Se comprobaron 93 entradas SHA-256 del manifiesto inicial, todas idénticas, incluidos archivos de producción, pruebas y `.env`; el diff de producción está vacío. La consulta posterior con guardia activa confirmó **0 asignaturas/0 tareas** en la misma base exclusiva. Comandos y reportes de esta ejecución final figuran en §3.4 del registro y `artifacts/semana7/mutaciones-final/`.
+
+La entrega local selecciona exclusivamente seis archivos de pruebas y dos documentos de Semana 7. Las copias, logs/diffs y secretos permanecen ignorados, sin incorporarse al commit. Se conserva la rama, sin push/merge ni alteración del historial previo. La validación académica personal de la estudiante y los casos ambiguos o de infraestructura previamente pendientes no se declaran completados por estas pruebas de mutación.
