@@ -20,6 +20,6 @@ Antes de subirlos, `scripts/resumir-evidencias.php` exporta además un resumen d
 
 ## Estado verificable
 
-La configuración y sus comprobaciones locales se registrarán en la evidencia de semana 10. **La ejecución remota queda pendiente hasta el push autorizado por la estudiante.** No existe todavía una URL de ejecución verde para esta rama. La auditoría previa confirmó cero workflows y cero ejecuciones en GitHub antes de estos cambios.
+La preparación inicial solo tenía validación local. Después de autorizar la publicación, se recuperaron dos fallos reales de CORS, se corrigió el entorno y se obtuvo una primera ejecución verde; después se autorizaron actualizaciones de seguridad y se validaron de nuevo. **Ejecución remota aprobada:** [46016640148](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46016640148), SHA `d8a0cccbdc822e7317ed76e2a69ef570577bbe56`, job `verificar` success. [Registro y reportes](VALIDACION_REMOTA_S10.md). Los artefactos se descargaron y su digest se comprobó. Main sigue sin integrarse.
 
 Fuentes: [Angular y cobertura](https://angular.dev/guide/testing/code-coverage), [setup-node](https://github.com/actions/setup-node), [setup-php](https://github.com/shivammathur/setup-php), [upload-artifact](https://github.com/actions/upload-artifact).

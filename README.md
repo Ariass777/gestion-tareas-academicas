@@ -2,7 +2,7 @@
 
 **Preparación técnica de semana 10 — 27/11/2026:** 87 pruebas Vitest, 327 PHPUnit (1014 aserciones), 10 Playwright y 3 Node aprobadas localmente. ESLint, TypeScript y build aprobados. Cobertura de líneas: frontend 61,12 % global; backend 74,11 % global y 98,48 % en HTTP/modelos. [Evidencias verificables](docs/EVIDENCIAS_S10.md), [alcance de cobertura](docs/COBERTURA_Y_PRUEBAS_S10.md) e [índice documental](docs/README.md).
 
-GitHub Actions está configurado en [ci.yml](.github/workflows/ci.yml), validado con actionlint; **su primera ejecución remota sigue pendiente del push**. La rama de preparación no se integra a main automáticamente. [Guía de despliegue local](docs/GUIA_DESPLIEGUE_LOCAL.md), [plan de operación](docs/PLAN_OPERACION_LOCAL.md) y [adenda de requisitos/diseño](docs/ADENDA_REQUISITOS_DISENO_S10.md). El alcance continúa siendo local, de un usuario y sin autenticación.
+**GitHub Actions aprobado después de las correcciones y actualizaciones autorizadas:** [ejecución 46016640148](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46016640148), SHA `d8a0cccbdc822e7317ed76e2a69ef570577bbe56`; job `verificar` en success. [Resultados remotos](docs/VALIDACION_REMOTA_S10.md) y [workflow](.github/workflows/ci.yml). La rama está publicada sin integrar a main. [Guía de despliegue local](docs/GUIA_DESPLIEGUE_LOCAL.md), [plan de operación](docs/PLAN_OPERACION_LOCAL.md) y [adenda de requisitos/diseño](docs/ADENDA_REQUISITOS_DISENO_S10.md). El alcance continúa siendo local, de un usuario y sin autenticación.
 
 ## 1. Qué es el proyecto.
 
@@ -16,7 +16,7 @@ Funcionalidades: registrar y listar asignaturas; crear, consultar, editar y elim
 
 ### Decisiones y limitaciones conocidas
 
-Las consultas del 27/11/2026 dieron cero avisos npm de producción y siete paquetes dev señalados por el mismo advisory de minimatch (S-02 abierto). Composer detectó **cinco avisos en tres paquetes Symfony**, posteriores a la revisión histórica. El lockfile PHP se conserva; esos avisos y S-02 permanecen abiertos. La aceptación temporal de S-02 sigue pendiente de confirmación definitiva. [Estado y referencias actuales](docs/SEGURIDAD_DEPENDENCIAS_S10.md).
+Tras presentar la propuesta y recibir autorización, se actualizaron cuatro componentes Symfony a 8.1.12 y typescript-eslint a 8.74.0, que resuelve minimatch 11.0.9. Las auditorías posteriores del 27/11/2026 dieron **cero avisos Composer y cero avisos npm en el árbol completo**; el pipeline posterior aprobó. Los cinco avisos Symfony y S-02 cuentan con corrección técnica verificada. Se conservan los resultados anteriores como antecedentes; no se convierten en auditorías limpias retrospectivas. [Alcance, referencias y evidencia](docs/SEGURIDAD_DEPENDENCIAS_S10.md).
 
 - Título, descripción, asignatura, fecha y prioridad obligatorios; código de asignatura también obligatorio. No se agrega unicidad que los requisitos no solicitan.
 - Fechas como día calendario de Colombia; al editar una tarea vencida se puede conservar la fecha, pero otra fecha debe ser hoy o posterior.

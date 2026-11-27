@@ -1,0 +1,270 @@
+{
+  "date_local": "2026-11-27",
+  "timezone": "America/Bogota",
+  "url": "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46016640148",
+  "id": 46016640148,
+  "event": "push",
+  "branch": "semana-10-entrega-final",
+  "sha": "d8a0cccbdc822e7317ed76e2a69ef570577bbe56",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-11-27T14:31:05Z",
+  "updated_at": "2026-11-27T14:33:07Z",
+  "jobs": [
+    {
+      "id": 140565335485,
+      "name": "verificar",
+      "url": "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46016640148/job/140565335485",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-27T14:31:07Z",
+      "completed_at": "2026-11-27T14:33:06Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Obtener codigo sin guardar credenciales Git",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Fijar puerto del servicio efimero",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Preparar Node compatible con el lockfile",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Preparar PHP y Composer",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Instalar dependencias PHP bloqueadas",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Instalar dependencias frontend bloqueadas",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Preparar entorno y migrar solo MySQL de pruebas",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validar ESLint",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Validar TypeScript de aplicacion y pruebas",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Ejecutar Vitest con cobertura V8",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Ejecutar PHPUnit con cobertura Xdebug",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Probar rechazos del servidor E2E",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compilar Angular",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Instalar Chromium de la version bloqueada de Playwright",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Preparar fixtures E2E en el contenedor de pruebas",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Ejecutar Playwright con API y MySQL reales",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Exportar resumen sin secretos ni rutas personales",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Conservar reportes incluso ante fallos",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Preparar Node compatible con el lockfile",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Obtener codigo sin guardar credenciales Git",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "artifact": {
+    "id": 15206138593,
+    "name": "verificacion-46016640148-1",
+    "url": "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46016640148/artifacts/15206138593",
+    "size_in_bytes": 889247,
+    "expires_at": "2026-12-11T14:32:59Z",
+    "digest": "sha256:bb48f1a5343d1f0dcdaa9274f7a1a10419ecb6367cac7907f36abb383cf14e09",
+    "downloaded_digest_verified": true
+  },
+  "earlier_success_before_security_updates": {
+    "id": 46015394370,
+    "url": "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46015394370",
+    "sha": "f5363225f5ece9c8787f067b14ab3d9ac14aea70",
+    "conclusion": "success"
+  },
+  "tests": {
+    "vitest": {
+      "passed": true,
+      "tests": 87,
+      "successful": 87,
+      "failed": 0,
+      "pending": 0,
+      "files": 7,
+      "start_time_ms": 1795789923323
+    },
+    "phpunit": {
+      "passed": true,
+      "tests": 327,
+      "assertions": 1014,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "playwright": {
+      "startTime": "2026-11-27T14:32:47.628Z",
+      "duration": 11974.617,
+      "expected": 10,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "global_errors": 0
+    },
+    "node": {
+      "tests": 3,
+      "passed": 3,
+      "failures": 0,
+      "source": "job log"
+    }
+  },
+  "coverage": {
+    "frontend": {
+      "lines": {
+        "total": 319,
+        "covered": 195,
+        "skipped": 0,
+        "pct": 61.12
+      },
+      "statements": {
+        "total": 428,
+        "covered": 273,
+        "skipped": 0,
+        "pct": 63.78
+      },
+      "functions": {
+        "total": 112,
+        "covered": 43,
+        "skipped": 0,
+        "pct": 38.39
+      },
+      "branches": {
+        "total": 188,
+        "covered": 132,
+        "skipped": 0,
+        "pct": 70.21
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": 100
+      }
+    },
+    "backend_all_app": {
+      "lines": {
+        "covered": 83,
+        "total": 112,
+        "percent": 74.11
+      },
+      "methods": {
+        "covered": 25,
+        "total": 29,
+        "percent": 86.21
+      }
+    },
+    "backend_business_subset": {
+      "lines": {
+        "covered": 65,
+        "total": 66,
+        "percent": 98.48
+      },
+      "methods": {
+        "covered": 23,
+        "total": 24,
+        "percent": 95.83
+      }
+    }
+  },
+  "rnf_01": {
+    "fecha": "2026-11-27T14:32:52.072Z",
+    "navegador": "Chromium",
+    "registros": 200,
+    "resolucion": "1920x1080",
+    "muestras_ms": [
+      175,
+      125,
+      127
+    ],
+    "api_ms": [
+      21,
+      20,
+      21
+    ],
+    "cumple_en_esta_ejecucion": true
+  }
+}

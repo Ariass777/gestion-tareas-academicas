@@ -2,6 +2,8 @@
 
 Fecha: **27/11/2026, America/Bogota**. Autor de las comprobaciones: Codex. Revisión académica humana pendiente. Este documento es un registro técnico de preparación; no es el informe final integrador ni una presentación.
 
+**Actividad posterior de publicación completada:** [validación remota, fallos y correcciones](VALIDACION_REMOTA_S10.md). [Pipeline aprobado después de las actualizaciones autorizadas](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46016640148), SHA `d8a0cccbdc822e7317ed76e2a69ef570577bbe56`. [Resultados remotos](evidencias/semana10/resultados-remotos.json) y [auditorías actualizadas](evidencias/semana10/seguridad-actualizada.json). Los apartados siguientes conservan el estado de la preparación inicial anterior a esa autorización.
+
 ## Etapas y commits locales
 
 Base: `main` en `8657ed02e508d62475967b345514ff0373d912e8`. Rama: `semana-10-entrega-final`. Se conservan DOCX, documentación histórica, pruebas, resultados esperados y código del producto.
@@ -12,9 +14,9 @@ Base: `main` en `8657ed02e508d62475967b345514ff0373d912e8`. Rama: `semana-10-ent
 | 2. Pruebas/cobertura | Suites reales, V8 y Xdebug; cobertura amplia y subconjuntos identificados; incidentes de entorno registrados. | `d81bad5768f5e1bd6c72c0bf712f721c9b491bf2` |
 | 3. Reconciliación | [Adenda](ADENDA_REQUISITOS_DISENO_S10.md), HU-08-R1, matriz, API y modelo. | `7c4b865fff4dd6fa4ef3e664381723cd31eae0ce` |
 | 4. Operación | [Guía](GUIA_DESPLIEGUE_LOCAL.md), [plan](PLAN_OPERACION_LOCAL.md), instalación en copia limpia y restauración sintética. | `06c6b4f21e46d3dc9ec3070061e57faeece25049` |
-| 5. Organización | Índice, README actualizado, resúmenes portables, casos, seguridad actual y exportador de métricas. | Commit que incorpora este documento; consultar `git log -- docs/EVIDENCIAS_S10.md`. |
+| 5. Organización | Índice, README actualizado, resúmenes portables, casos, seguridad actual y exportador de métricas. | `6a594fe7001b3d192650ad7e4b1ee59dbc2712cb` (preparaci?n inicial). |
 
-No hay push ni integración a main durante esta preparación. Los commits locales solo podrán abrirse en GitHub una vez publicada la rama con autorización. Los resultados se ejecutaron antes de sus commits de registro; no se inventa una ejecución remota posterior al commit.
+Durante la preparación inicial no se hizo push ni integración a main. La publicación y verificación posteriores autorizadas constan en el registro enlazado arriba. Los resultados locales de esta primera etapa se ejecutaron antes de sus commits de registro y se conservan con ese contexto.
 
 ## Resultados ejecutados
 
@@ -38,9 +40,9 @@ Los reportes completos de esta sesión están en `artifacts/ci/`, `artifacts/sem
 
 ## Seguridad actual y limitaciones
 
-Las consultas actuales de npm concluyeron: árbol completo, salida 1, **siete paquetes dev afectados por un advisory raíz**; producción, salida 0, **cero avisos**. Composer concluyó con salida 1 y **cinco avisos en tres paquetes Symfony**, posteriores a la revisión histórica. Detalle: [seguridad.json](evidencias/semana10/seguridad.json) y [estado de dependencias](SEGURIDAD_DEPENDENCIAS_S10.md). S-02, avisos Symfony y licencia global permanecen pendientes. No se declara limpia toda la cadena de dependencias.
+Las consultas **anteriores a actualizar** concluyeron: npm completo salida 1, siete paquetes dev por un advisory raíz; npm producción salida 0; Composer salida 1, cinco avisos en tres paquetes Symfony. [Resultado previo conservado](evidencias/semana10/seguridad.json). Después de presentar la propuesta y recibir autorización, se aplicaron correcciones compatibles y ambas auditorías completas dieron salida 0 y cero avisos: [resultado posterior](evidencias/semana10/seguridad-actualizada.json). La licencia global sigue pendiente. Esta distinción evita convertir los informes previos en auditorías limpias retrospectivas.
 
-No se han validado Ubuntu/GitHub Actions remotamente, reinstalación completa de herramientas en otra máquina, apagado global de MySQL, concurrencia real ni operación multiusuario. Los intentos fallidos y sus correcciones de invocación se explican en pruebas y bitácora. No se cambió un esperado para obtener resultados verdes.
+Ubuntu/GitHub Actions se validó posteriormente y está enlazado arriba. Siguen sin verificarse reinstalación completa de herramientas en otra máquina, apagado global del MySQL local, concurrencia real y operación multiusuario. Los intentos fallidos y sus correcciones se explican en pruebas y bitácora. No se cambió un esperado para obtener resultados verdes.
 
 ## Evidencias que debe recuperar o revisar la estudiante
 
@@ -54,7 +56,7 @@ Las ausencias no se resuelven inventando un historial. El [catálogo de casos](C
 
 ## Publicación y primera verificación remota, después de revisión
 
-Estos comandos **no se ejecutaron** durante la preparación:
+Estos comandos se documentaron sin ejecutar durante la preparación inicial. El push autorizado y las consultas API posteriores constan en el registro remoto; no se utilizó GitHub CLI:
 
 ```powershell
 git switch semana-10-entrega-final
@@ -74,4 +76,4 @@ gh run view ID_DE_EJECUCION
 gh run download ID_DE_EJECUCION --dir artifacts/ci-remoto
 ```
 
-La configuración existe y está validada estáticamente; **pipeline remoto en verde: pendiente**. No se genera aquí `informe_final.md`, PDF final ni diapositivas.
+**Pipeline remoto en verde: verificado en la actividad posterior enlazada al inicio.** No se genera aquí `informe_final.md`, PDF final ni diapositivas.

@@ -2,6 +2,8 @@
 
 Fecha: **27/11/2026, America/Bogota**. Ejecución local de Codex, no atribuida a la estudiante ni a GitHub Actions. Se mantienen las 87 pruebas Vitest y 327 PHPUnit existentes y todos sus resultados esperados. No se modifica lógica de producción.
 
+Este documento conserva la medición local de la preparación inicial. Posteriormente se publicó la rama, se corrigió CORS y se autorizaron actualizaciones de seguridad: [validación remota posterior](VALIDACION_REMOTA_S10.md). Los estados pendientes de seguridad/pipeline citados como límites de aquella etapa no sustituyen el resultado posterior comprobado.
+
 ## Herramientas, ámbito y resultados
 
 Angular 22.2.6/CLI 22.2.7, Vitest 5.1.0 y `@vitest/coverage-v8` **5.1.0**, añadido solo en desarrollo; PHP 8.5.12, PHPUnit 12.5.44, Xdebug **3.5.3** NTS x64 VS17 y MySQL **8.4.13**. Se verificó que ninguna versión de paquete preexistente cambiara al instalar el proveedor de cobertura: doce paquetes nuevos de desarrollo. Xdebug se carga solo para el comando de cobertura con `-d zend_extension=...`; no se cambia `php.ini`.

@@ -62,7 +62,7 @@ Registrar fecha, comando, síntoma, efecto, corrección y comprobación posterio
 
 ## Mantenimiento y reversión
 
-Antes de cada entrega: revisar estado Git, lockfiles, suites y auditorías total/de producción; verificar respaldo y enlaces. Actualizar dependencias en una rama y con pruebas, sin `audit fix --force` como solución automática. S-02 permanece abierto: no se cierra por tener un pipeline verde. La licencia global sigue pendiente de elección de la autora.
+Antes de cada entrega: revisar estado Git, lockfiles, suites y auditorías total/de producción; verificar respaldo y enlaces. Actualizar dependencias en una rama y con pruebas, sin `audit fix --force` como solución automática. S-02 se corrigió posteriormente mediante la actualización autorizada de su consumidor, versiones corregidas y auditoría completa sin avisos; el cierre no se basó solo en un pipeline verde. [Evidencia y límites](SEGURIDAD_DEPENDENCIAS_S10.md). La licencia global sigue pendiente de elección de la autora.
 
 Reversión: conservar el commit/copia anterior y su configuración privada; detener HTTP nuevo y arrancar la copia anterior solo si el esquema es compatible. Si requiere recuperar datos, restaurar en otra base y cambiar configuración tras validarla. No se prescribe `migrate:rollback`, `reset --hard`, borrado de datos ni reescritura de historial. Un respaldo nuevo de los datos actuales puede ser necesario antes de revertir para conservar cambios legítimos posteriores.
 

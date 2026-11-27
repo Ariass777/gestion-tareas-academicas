@@ -2,6 +2,8 @@
 
 Actualizado el 27/11/2026. Los originales e informes históricos conservan sus fechas; las revisiones nuevas no se atribuyen a semanas anteriores.
 
+**Validación remota terminada:** [pipeline aprobado y correcciones](VALIDACION_REMOTA_S10.md), [evidencia de jobs y SHA](evidencias/semana10/pipeline-remoto.json), [auditorías después de las actualizaciones autorizadas](evidencias/semana10/seguridad-actualizada.json). Se conserva también el estado previo en los informes de preparación.
+
 | Módulo/fase | Fuentes históricas | Preparación de semana 10 / estado |
 |---|---|---|
 | 1. Fundamentos | No se encontró propuesta inicial en las cuatro ramas revisadas. | **Recuperación pendiente de la estudiante**; no se sustituye por una propuesta inventada. |
