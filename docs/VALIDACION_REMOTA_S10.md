@@ -1,5 +1,17 @@
 # Verificación remota de semana 10
 
+## Cierre posterior: integración y aprobación en main — 27/11/2026
+
+La estudiante autorizó posteriormente integrar el PR existente. Se comprobaron árbol limpio, rama publicada en `5933802faea0d1e12a8c3779ebe6836634a93ccd`, los nueve commits, checks de push `46017740292` y PR `46017747159` aprobados y ausencia de conflictos. Se inspeccionaron los 32 archivos del diff respecto a `8657ed02e508d62475967b345514ff0373d912e8`: sin archivos privados, coincidencias con secretos locales conocidos, patrones de tokens/claves o rutas personales en resúmenes. Sin cambios de negocio, rutas, migraciones, pruebas existentes o DOCX. La inspección es acotada al diff; no certifica todo el historial.
+
+Se integró el [PR #4](https://github.com/Ariass777/gestion-tareas-academicas/pull/4) mediante merge con comprobación del SHA esperado, conservando los nueve commits: **`6b5b57aa16731d8fdd6d738bc50f2861c6684613`**. La rama original se conserva. **[Pipeline sobre main 46018960368](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368): success**; job único `verificar`, id `140573290983`, todos los pasos success.
+
+Resultados: Vitest **87/87**, PHPUnit **327/327 y 1014 aserciones**, Node **3/3**, Playwright **10/10** (11,51 s), ESLint, TypeScript y build aprobados. Frontend 61,12 % de líneas/70,21 % ramas; backend 74,11 % global y 98,48 % HTTP/modelos. RNF del runner 207/148/153 ms para 200 tareas; no es una medición de concurrencia. No faltan reportes. ZIP del artefacto `15207531609`: SHA-256 `6811b7706c47368ea9c0ab43d1710f519e0663bd06040b7d2788270c605a9b04`, coincidente con GitHub.
+
+Fuentes durables: [cierre-main.json](evidencias/semana10/cierre-main.json), [resultados-main.json](evidencias/semana10/resultados-main.json) y [base académica](BASE_INFORME_FINAL.md). Logs y reportes completos descargados en `artifacts/cierre-s10/` (ignorados); artefactos remotos con retención de 14 días. Esta evidencia pertenece al merge indicado; la publicación posterior del cierre documental dispara otra ejecución que se comprueba aparte, sin una referencia circular al propio commit.
+
+Se confirmó el caso CORS como propuesta de integración incompleta de Codex durante S10; no se acreditó quién originó la línea 4300 del ejemplo histórico. No hubo más actualizaciones de dependencias, cambios funcionales, elección de licencia ni generación de informe final/PDF/diapositivas. Los apartados posteriores conservan el antecedente de publicación previo al merge.
+
 Fecha: **27/11/2026, America/Bogota**. Actividad ejecutada por Codex con autorización de publicar la rama y corregir fallos, sin integrar main. La estudiante autorizó posteriormente las dos actualizaciones de seguridad, después de revisar la propuesta y las simulaciones. No se atribuyen a la estudiante las ejecuciones del agente.
 
 ## Ejecución aprobada con las dependencias corregidas

@@ -1,5 +1,7 @@
 # Preparación técnica y evidencias — semana 10
 
+**Cierre posterior autorizado, 27/11/2026:** [PR #4 integrado](https://github.com/Ariass777/gestion-tareas-academicas/pull/4), merge `6b5b57aa16731d8fdd6d738bc50f2861c6684613`, [main aprobado](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368). [Metadatos, revisión del diff y pasos](evidencias/semana10/cierre-main.json), [resultados reales](evidencias/semana10/resultados-main.json) y [BASE_INFORME_FINAL.md](BASE_INFORME_FINAL.md) con enlaces públicos para la redacción posterior. Este cierre no reemplaza las evidencias históricas ni el informe final pendiente.
+
 Fecha: **27/11/2026, America/Bogota**. Autor de las comprobaciones: Codex. Revisión académica humana pendiente. Este documento es un registro técnico de preparación; no es el informe final integrador ni una presentación.
 
 **Actividad posterior de publicación completada:** [validación remota, fallos y correcciones](VALIDACION_REMOTA_S10.md). [Pipeline aprobado después de las actualizaciones autorizadas](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46016640148), SHA `d8a0cccbdc822e7317ed76e2a69ef570577bbe56`. [Resultados remotos](evidencias/semana10/resultados-remotos.json) y [auditorías actualizadas](evidencias/semana10/seguridad-actualizada.json). Los apartados siguientes conservan el estado de la preparación inicial anterior a esa autorización.

@@ -1,0 +1,224 @@
+{
+    "date_local":  "2026-11-27",
+    "timezone":  "America/Bogota",
+    "url":  "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368",
+    "id":  46018960368,
+    "event":  "push",
+    "branch":  "main",
+    "sha":  "6b5b57aa16731d8fdd6d738bc50f2861c6684613",
+    "status":  "completed",
+    "conclusion":  "success",
+    "created_at":  "2026-11-27T14:46:42Z",
+    "updated_at":  "2026-11-27T14:48:38Z",
+    "pull_request":  4,
+    "merge_sha":  "6b5b57aa16731d8fdd6d738bc50f2861c6684613",
+    "feature_head":  "5933802faea0d1e12a8c3779ebe6836634a93ccd",
+    "pre_merge_checks":  [
+                             46017740292,
+                             46017747159
+                         ],
+    "review":  {
+                   "date_local":  "2026-11-27",
+                   "base":  "8657ed02e508d62475967b345514ff0373d912e8",
+                   "head":  "5933802faea0d1e12a8c3779ebe6836634a93ccd",
+                   "changed_files":  [
+                                         ".github/workflows/ci.yml",
+                                         "README.md",
+                                         "backend/.env.testing.example",
+                                         "backend/README.md",
+                                         "backend/composer.lock",
+                                         "docs/ADENDA_REQUISITOS_DISENO_S10.md",
+                                         "docs/CASOS_VERIFICACION_IA.md",
+                                         "docs/CI.md",
+                                         "docs/COBERTURA_Y_PRUEBAS_S10.md",
+                                         "docs/EVIDENCIAS_S10.md",
+                                         "docs/GUIA_DESPLIEGUE_LOCAL.md",
+                                         "docs/PLAN_OPERACION_LOCAL.md",
+                                         "docs/README.md",
+                                         "docs/SEGURIDAD_DEPENDENCIAS_S10.md",
+                                         "docs/VALIDACION_REMOTA_S10.md",
+                                         "docs/bitacora_ia.md",
+                                         "docs/evidencias/historico/resumen_s6_s7.json",
+                                         "docs/evidencias/semana10/actionlint-fallo.txt",
+                                         "docs/evidencias/semana10/aislamiento.json",
+                                         "docs/evidencias/semana10/ci-fallos.json",
+                                         "docs/evidencias/semana10/comprobaciones.json",
+                                         "docs/evidencias/semana10/operacion.json",
+                                         "docs/evidencias/semana10/pipeline-remoto.json",
+                                         "docs/evidencias/semana10/resultados-remotos.json",
+                                         "docs/evidencias/semana10/resultados.json",
+                                         "docs/evidencias/semana10/seguridad-actualizada.json",
+                                         "docs/evidencias/semana10/seguridad.json",
+                                         "frontend/README.md",
+                                         "frontend/angular.json",
+                                         "frontend/package-lock.json",
+                                         "frontend/package.json",
+                                         "scripts/resumir-evidencias.php"
+                                     ],
+                   "private_paths":  [
+
+                                     ],
+                   "known_secret_matches":  [
+
+                                            ],
+                   "token_or_private_key_patterns":  [
+
+                                                     ],
+                   "personal_paths_in_evidence":  [
+
+                                                  ],
+                   "scope":  "CI, cobertura, dependencias autorizadas, adenda, operacion y evidencia; no cambios de negocio o pruebas."
+               },
+    "jobs":  [
+                 {
+                     "id":  140573290983,
+                     "name":  "verificar",
+                     "url":  "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368/job/140573290983",
+                     "status":  "completed",
+                     "conclusion":  "success",
+                     "started_at":  "2026-11-27T14:46:44Z",
+                     "completed_at":  "2026-11-27T14:48:38Z",
+                     "steps":  [
+                                   {
+                                       "name":  "Set up job",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Initialize containers",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Obtener codigo sin guardar credenciales Git",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Fijar puerto del servicio efimero",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Preparar Node compatible con el lockfile",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Preparar PHP y Composer",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Instalar dependencias PHP bloqueadas",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Instalar dependencias frontend bloqueadas",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Preparar entorno y migrar solo MySQL de pruebas",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Validar ESLint",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Validar TypeScript de aplicacion y pruebas",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Ejecutar Vitest con cobertura V8",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Ejecutar PHPUnit con cobertura Xdebug",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Probar rechazos del servidor E2E",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Compilar Angular",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Instalar Chromium de la version bloqueada de Playwright",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Preparar fixtures E2E en el contenedor de pruebas",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Ejecutar Playwright con API y MySQL reales",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Exportar resumen sin secretos ni rutas personales",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Conservar reportes incluso ante fallos",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Post Preparar Node compatible con el lockfile",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Post Obtener codigo sin guardar credenciales Git",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Stop containers",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   },
+                                   {
+                                       "name":  "Complete job",
+                                       "status":  "completed",
+                                       "conclusion":  "success"
+                                   }
+                               ]
+                 }
+             ],
+    "artifact":  {
+                     "id":  15207531609,
+                     "name":  "verificacion-46018960368-1",
+                     "size_in_bytes":  889434,
+                     "digest":  "sha256:6811b7706c47368ea9c0ab43d1710f519e0663bd06040b7d2788270c605a9b04",
+                     "download_sha256_matches":  true,
+                     "retention_days":  14
+                 },
+    "node_guard_tests":  {
+                             "tests":  3,
+                             "passed":  3,
+                             "failed":  0,
+                             "source":  "job log: Node test summary"
+                         },
+    "limits":  [
+                   "Inspeccion de diff y patrones, no auditoria exhaustiva de todo el historial.",
+                   "La publicacion documental posterior dispara otra ejecucion; esta evidencia corresponde al merge indicado.",
+                   "Auditorias de dependencias locales documentadas por separado, no un gate del workflow."
+               ]
+}

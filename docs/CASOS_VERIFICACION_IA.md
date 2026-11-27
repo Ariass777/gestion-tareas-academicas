@@ -36,7 +36,7 @@ Caso nuevo ocurrido el **27/11/2026**, durante esta preparación, no en semanas 
 - **Error:** ese nivel no admite el contexto `job` y el acceso a la propiedad de puerto requiere una cadena.
 - **Detección ejecutada:** actionlint 1.7.12 terminó con **salida 1** y dos diagnósticos. [Salida inicial conservada](evidencias/semana10/actionlint-fallo.txt).
 - **Corrección:** un paso de ejecución escribe el puerto del servicio efímero en `GITHUB_ENV` usando `job.services.mysql.ports['3306']`. actionlint corregido terminó con **salida 0**.
-- **Commit:** `e394d79b00656eff97bcf7a8f6d37878ed8cb841`, primer commit de CI de esta rama; [workflow corregido](../.github/workflows/ci.yml). El commit podrá enlazarse remotamente después del push autorizado.
+- **Commit:** [e394d79b00656eff97bcf7a8f6d37878ed8cb841](https://github.com/Ariass777/gestion-tareas-academicas/commit/e394d79b00656eff97bcf7a8f6d37878ed8cb841), primer commit de CI de la rama, ya publicado e integrado; [workflow corregido](../.github/workflows/ci.yml).
 - **Límite:** actionlint valida estáticamente; no demuestra una ejecución remota verde. El borrador incorrecto no se publicó como commit para fabricar un historial de error.
 
 ## Código: regresión de fecha como evidencia complementaria
@@ -45,6 +45,8 @@ El cambio entre `a4d34de` y [80c19176ee72278735979c60ed05c1d2cb0c305f](https://g
 
 Las tres mutaciones S7 fueron errores introducidos deliberadamente para evaluar pruebas. No se presentan como tres errores espontáneos de IA ni como tres fases distintas. Los casos declarativos de requisitos/diseño no tienen la misma fuerza que los reportes ejecutados de pruebas/CI. La decisión de suficiencia académica queda para la revisión de la estudiante/docente.
 
-## Publicación: configuración CORS no reproducible desde el ejemplo
+## Cuarto caso: operación, configuración CORS no reproducible desde el ejemplo
 
 Caso adicional real del 27/11/2026. El workflow preparado por Codex copiaba un ejemplo con FRONTEND_URL=4300; la prueba del contrato de desarrollo exige 4200. Las dos primeras ejecuciones remotas fallaron en esa aserción, mientras el `.env.testing` local con 4200 había aprobado. Se recuperaron ambos logs, se reprodujo localmente con 4300 y se corrigió el ejemplo y la variable explícita de CI, sin tocar pruebas ni ampliar CORS. Commit `f536322`; primera ejecución verde [46015394370](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46015394370). El [registro remoto](VALIDACION_REMOTA_S10.md) conserva fallo, causa, corrección y aprobación posterior, distinguiendo además la nueva verificación después de actualizar dependencias.
+
+**Atribución confirmada y límite:** la propuesta de integración de Codex en [e394d79b00656eff97bcf7a8f6d37878ed8cb841](https://github.com/Ariass777/gestion-tareas-academicas/commit/e394d79b00656eff97bcf7a8f6d37878ed8cb841) copiaba el ejemplo y omitía fijar FRONTEND_URL=4200. Esa omisión de la propuesta de IA originó la divergencia remota. La línea 4300 ya estaba en el ejemplo incorporado en `a4d34de`; **no se puede atribuir su autoría inicial a IA ni reconstruir una respuesta original**. El caso es la configuración incompleta de CI en S10. Se conserva la cadena de [dos fallos](evidencias/semana10/ci-fallos.json), reproducción, [corrección f5363225f5ece9c8787f067b14ab3d9ac14aea70](https://github.com/Ariass777/gestion-tareas-academicas/commit/f5363225f5ece9c8787f067b14ab3d9ac14aea70) y [main aprobado](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368). Puede presentarse como cuarto caso después de requisitos, diseño y pruebas; el caso de actionlint es complementario de la misma fase operación, sin multiplicar fases.

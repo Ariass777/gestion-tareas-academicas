@@ -1,0 +1,576 @@
+{
+    "generated_at": "2026-11-27T09:48:27-05:00",
+    "github_sha": "6b5b57aa16731d8fdd6d738bc50f2861c6684613",
+    "execution_context": "github-actions",
+    "missing_reports": [],
+    "vitest": {
+        "passed": true,
+        "tests": 87,
+        "successful": 87,
+        "failed": 0,
+        "pending": 0,
+        "files": 7,
+        "start_time_ms": 1795790861631
+    },
+    "frontend_coverage": {
+        "total": {
+            "lines": {
+                "total": 319,
+                "covered": 195,
+                "skipped": 0,
+                "pct": 61.12
+            },
+            "statements": {
+                "total": 428,
+                "covered": 273,
+                "skipped": 0,
+                "pct": 63.78
+            },
+            "functions": {
+                "total": 112,
+                "covered": 43,
+                "skipped": 0,
+                "pct": 38.39
+            },
+            "branches": {
+                "total": 188,
+                "covered": 132,
+                "skipped": 0,
+                "pct": 70.21
+            },
+            "branchesTrue": {
+                "total": 0,
+                "covered": 0,
+                "skipped": 0,
+                "pct": 100
+            }
+        },
+        "files": {
+            "frontend/src/app/app.component.ts": {
+                "lines": {
+                    "total": 3,
+                    "covered": 3,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "functions": {
+                    "total": 1,
+                    "covered": 1,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "statements": {
+                    "total": 7,
+                    "covered": 7,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "branches": {
+                    "total": 10,
+                    "covered": 10,
+                    "skipped": 0,
+                    "pct": 100
+                }
+            },
+            "frontend/src/app/app.config.ts": {
+                "lines": {
+                    "total": 2,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "functions": {
+                    "total": 0,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "statements": {
+                    "total": 2,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "branches": {
+                    "total": 0,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 100
+                }
+            },
+            "frontend/src/app/app.routes.ts": {
+                "lines": {
+                    "total": 4,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "functions": {
+                    "total": 6,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "statements": {
+                    "total": 7,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "branches": {
+                    "total": 0,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 100
+                }
+            },
+            "frontend/src/app/components/field-error.component.ts": {
+                "lines": {
+                    "total": 12,
+                    "covered": 12,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "functions": {
+                    "total": 7,
+                    "covered": 7,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "statements": {
+                    "total": 25,
+                    "covered": 22,
+                    "skipped": 0,
+                    "pct": 88
+                },
+                "branches": {
+                    "total": 17,
+                    "covered": 16,
+                    "skipped": 0,
+                    "pct": 94.11
+                }
+            },
+            "frontend/src/app/components/icon.component.ts": {
+                "lines": {
+                    "total": 5,
+                    "covered": 5,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "functions": {
+                    "total": 1,
+                    "covered": 1,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "statements": {
+                    "total": 12,
+                    "covered": 12,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "branches": {
+                    "total": 10,
+                    "covered": 10,
+                    "skipped": 0,
+                    "pct": 100
+                }
+            },
+            "frontend/src/app/components/tarea-form.component.ts": {
+                "lines": {
+                    "total": 80,
+                    "covered": 80,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "functions": {
+                    "total": 7,
+                    "covered": 6,
+                    "skipped": 0,
+                    "pct": 85.71
+                },
+                "statements": {
+                    "total": 119,
+                    "covered": 118,
+                    "skipped": 0,
+                    "pct": 99.15
+                },
+                "branches": {
+                    "total": 26,
+                    "covered": 26,
+                    "skipped": 0,
+                    "pct": 100
+                }
+            },
+            "frontend/src/app/config/api.config.ts": {
+                "lines": {
+                    "total": 2,
+                    "covered": 1,
+                    "skipped": 0,
+                    "pct": 50
+                },
+                "functions": {
+                    "total": 1,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "statements": {
+                    "total": 2,
+                    "covered": 1,
+                    "skipped": 0,
+                    "pct": 50
+                },
+                "branches": {
+                    "total": 0,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 100
+                }
+            },
+            "frontend/src/app/config/fechas.ts": {
+                "lines": {
+                    "total": 8,
+                    "covered": 8,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "functions": {
+                    "total": 6,
+                    "covered": 6,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "statements": {
+                    "total": 9,
+                    "covered": 9,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "branches": {
+                    "total": 11,
+                    "covered": 10,
+                    "skipped": 0,
+                    "pct": 90.9
+                }
+            },
+            "frontend/src/app/models/academico.ts": {
+                "lines": {
+                    "total": 2,
+                    "covered": 2,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "functions": {
+                    "total": 0,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "statements": {
+                    "total": 2,
+                    "covered": 2,
+                    "skipped": 0,
+                    "pct": 100
+                },
+                "branches": {
+                    "total": 0,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 100
+                }
+            },
+            "frontend/src/app/pages/asignaturas/asignaturas.component.ts": {
+                "lines": {
+                    "total": 30,
+                    "covered": 16,
+                    "skipped": 0,
+                    "pct": 53.33
+                },
+                "functions": {
+                    "total": 12,
+                    "covered": 5,
+                    "skipped": 0,
+                    "pct": 41.66
+                },
+                "statements": {
+                    "total": 36,
+                    "covered": 20,
+                    "skipped": 0,
+                    "pct": 55.55
+                },
+                "branches": {
+                    "total": 14,
+                    "covered": 10,
+                    "skipped": 0,
+                    "pct": 71.42
+                }
+            },
+            "frontend/src/app/pages/inicio/inicio.component.ts": {
+                "lines": {
+                    "total": 28,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "functions": {
+                    "total": 13,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "statements": {
+                    "total": 31,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "branches": {
+                    "total": 2,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                }
+            },
+            "frontend/src/app/pages/tareas/tareas.component.ts": {
+                "lines": {
+                    "total": 104,
+                    "covered": 50,
+                    "skipped": 0,
+                    "pct": 48.07
+                },
+                "functions": {
+                    "total": 38,
+                    "covered": 12,
+                    "skipped": 0,
+                    "pct": 31.57
+                },
+                "statements": {
+                    "total": 125,
+                    "covered": 57,
+                    "skipped": 0,
+                    "pct": 45.6
+                },
+                "branches": {
+                    "total": 57,
+                    "covered": 19,
+                    "skipped": 0,
+                    "pct": 33.33
+                }
+            },
+            "frontend/src/app/services/academico.service.ts": {
+                "lines": {
+                    "total": 18,
+                    "covered": 1,
+                    "skipped": 0,
+                    "pct": 5.55
+                },
+                "functions": {
+                    "total": 13,
+                    "covered": 0,
+                    "skipped": 0,
+                    "pct": 0
+                },
+                "statements": {
+                    "total": 24,
+                    "covered": 3,
+                    "skipped": 0,
+                    "pct": 12.5
+                },
+                "branches": {
+                    "total": 9,
+                    "covered": 3,
+                    "skipped": 0,
+                    "pct": 33.33
+                }
+            },
+            "frontend/src/app/services/notificaciones.service.ts": {
+                "lines": {
+                    "total": 21,
+                    "covered": 17,
+                    "skipped": 0,
+                    "pct": 80.95
+                },
+                "functions": {
+                    "total": 7,
+                    "covered": 5,
+                    "skipped": 0,
+                    "pct": 71.42
+                },
+                "statements": {
+                    "total": 27,
+                    "covered": 22,
+                    "skipped": 0,
+                    "pct": 81.48
+                },
+                "branches": {
+                    "total": 32,
+                    "covered": 28,
+                    "skipped": 0,
+                    "pct": 87.5
+                }
+            }
+        }
+    },
+    "phpunit": {
+        "passed": true,
+        "tests": 327,
+        "assertions": 1014,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0
+    },
+    "backend_coverage": {
+        "branch_coverage_measured": false,
+        "files": {
+            "backend/app/Console/Commands/CheckTestDatabase.php": {
+                "statements": 6,
+                "coveredstatements": 0,
+                "methods": 1,
+                "coveredmethods": 0
+            },
+            "backend/app/Console/Commands/PrepareE2e.php": {
+                "statements": 25,
+                "coveredstatements": 4,
+                "methods": 1,
+                "coveredmethods": 0
+            },
+            "backend/app/Http/Controllers/Api/AsignaturaController.php": {
+                "statements": 2,
+                "coveredstatements": 2,
+                "methods": 2,
+                "coveredmethods": 2
+            },
+            "backend/app/Http/Controllers/Api/TareaController.php": {
+                "statements": 22,
+                "coveredstatements": 22,
+                "methods": 5,
+                "coveredmethods": 5
+            },
+            "backend/app/Http/Controllers/Controller.php": {
+                "statements": 0,
+                "coveredstatements": 0,
+                "methods": 0,
+                "coveredmethods": 0
+            },
+            "backend/app/Http/Requests/ListTareasRequest.php": {
+                "statements": 3,
+                "coveredstatements": 3,
+                "methods": 3,
+                "coveredmethods": 3
+            },
+            "backend/app/Http/Requests/SaveTareaRequest.php": {
+                "statements": 23,
+                "coveredstatements": 23,
+                "methods": 3,
+                "coveredmethods": 3
+            },
+            "backend/app/Http/Requests/StoreAsignaturaRequest.php": {
+                "statements": 3,
+                "coveredstatements": 3,
+                "methods": 3,
+                "coveredmethods": 3
+            },
+            "backend/app/Http/Requests/UpdateEstadoRequest.php": {
+                "statements": 3,
+                "coveredstatements": 3,
+                "methods": 3,
+                "coveredmethods": 3
+            },
+            "backend/app/Http/Resources/AsignaturaResource.php": {
+                "statements": 1,
+                "coveredstatements": 1,
+                "methods": 1,
+                "coveredmethods": 1
+            },
+            "backend/app/Http/Resources/TareaResource.php": {
+                "statements": 6,
+                "coveredstatements": 6,
+                "methods": 1,
+                "coveredmethods": 1
+            },
+            "backend/app/Models/Asignatura.php": {
+                "statements": 1,
+                "coveredstatements": 0,
+                "methods": 1,
+                "coveredmethods": 0
+            },
+            "backend/app/Models/Tarea.php": {
+                "statements": 2,
+                "coveredstatements": 2,
+                "methods": 2,
+                "coveredmethods": 2
+            },
+            "backend/app/Providers/AppServiceProvider.php": {
+                "statements": 3,
+                "coveredstatements": 2,
+                "methods": 2,
+                "coveredmethods": 1
+            },
+            "backend/app/Support/TestDatabaseSafety.php": {
+                "statements": 12,
+                "coveredstatements": 12,
+                "methods": 1,
+                "coveredmethods": 1
+            }
+        },
+        "all_app": {
+            "lines": {
+                "covered": 83,
+                "total": 112,
+                "percent": 74.11
+            },
+            "methods": {
+                "covered": 25,
+                "total": 29,
+                "percent": 86.21
+            }
+        },
+        "http_and_models_subset": {
+            "lines": {
+                "covered": 65,
+                "total": 66,
+                "percent": 98.48
+            },
+            "methods": {
+                "covered": 23,
+                "total": 24,
+                "percent": 95.83
+            }
+        }
+    },
+    "playwright": {
+        "startTime": "2026-11-27T14:48:15.509Z",
+        "duration": 11512.007,
+        "expected": 10,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0,
+        "global_errors": 0
+    },
+    "rnf_01": {
+        "fecha": "2026-11-27T14:48:18.697Z",
+        "navegador": "Chromium",
+        "registros": 200,
+        "resolucion": "1920x1080",
+        "muestras_ms": [
+            207,
+            148,
+            153
+        ],
+        "api_ms": [
+            30,
+            22,
+            21
+        ],
+        "cumple_en_esta_ejecucion": true
+    },
+    "report_sha256": {
+        "artifacts/ci/vitest.json": "81e8cb0998033cac2e78e9e24ce72ed5266dad6b3301957c616d21cf5aefaef9",
+        "artifacts/ci/phpunit.xml": "710452a5655a18babb95ba2c35019f658c2645728c1efc944202b2a8b6621ffa",
+        "artifacts/ci/phpunit-clover.xml": "3d85efea9dea04378792a5df9647c7d3957d5ef275d4f0cecdf023b9e144b924",
+        "frontend/coverage/frontend/coverage-summary.json": "95caed13a4c1e13cace37f22170fc3650161ae9067067a3ffa6ec737c50f35e1",
+        "artifacts/playwright-results.json": "33d27659e2d36c53e2bbc866b66302515692f3d695dd172df56852e50675e32d",
+        "artifacts/rnf-01.json": "961edd8aea3dd1d6cbc6e84d84dfebecf3bd6999f250d2ebe2c0f3d51f1364e8"
+    }
+}

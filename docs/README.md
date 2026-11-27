@@ -2,6 +2,8 @@
 
 Actualizado el 27/11/2026. Los originales e informes históricos conservan sus fechas; las revisiones nuevas no se atribuyen a semanas anteriores.
 
+**Cierre técnico:** [PR #4 integrado](https://github.com/Ariass777/gestion-tareas-academicas/pull/4), [pipeline de main aprobado](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368), [metadatos del cierre](evidencias/semana10/cierre-main.json) y [reportes de main](evidencias/semana10/resultados-main.json). [BASE_INFORME_FINAL.md](BASE_INFORME_FINAL.md) reúne las fuentes públicas, diferencias entre historia y S10, casos de verificación y pendientes para redactar el informe posteriormente.
+
 **Validación remota terminada:** [pipeline aprobado y correcciones](VALIDACION_REMOTA_S10.md), [evidencia de jobs y SHA](evidencias/semana10/pipeline-remoto.json), [auditorías después de las actualizaciones autorizadas](evidencias/semana10/seguridad-actualizada.json). Se conserva también el estado previo en los informes de preparación.
 
 | Módulo/fase | Fuentes históricas | Preparación de semana 10 / estado |
