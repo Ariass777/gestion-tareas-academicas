@@ -1,5 +1,9 @@
 # Sistema Web de Gestión de Tareas Académicas
 
+**Preparación técnica de semana 10 — 27/11/2026:** 87 pruebas Vitest, 327 PHPUnit (1014 aserciones), 10 Playwright y 3 Node aprobadas localmente. ESLint, TypeScript y build aprobados. Cobertura de líneas: frontend 61,12 % global; backend 74,11 % global y 98,48 % en HTTP/modelos. [Evidencias verificables](docs/EVIDENCIAS_S10.md), [alcance de cobertura](docs/COBERTURA_Y_PRUEBAS_S10.md) e [índice documental](docs/README.md).
+
+GitHub Actions está configurado en [ci.yml](.github/workflows/ci.yml), validado con actionlint; **su primera ejecución remota sigue pendiente del push**. La rama de preparación no se integra a main automáticamente. [Guía de despliegue local](docs/GUIA_DESPLIEGUE_LOCAL.md), [plan de operación](docs/PLAN_OPERACION_LOCAL.md) y [adenda de requisitos/diseño](docs/ADENDA_REQUISITOS_DISENO_S10.md). El alcance continúa siendo local, de un usuario y sin autenticación.
+
 ## 1. Qué es el proyecto.
 
 Aplicación académica individual para registrar asignaturas, organizar actividades, establecer fechas y prioridades y actualizar el progreso. Interfaz **Académica**, con verde oscuro y diseño adaptable.
@@ -12,7 +16,7 @@ Funcionalidades: registrar y listar asignaturas; crear, consultar, editar y elim
 
 ### Decisiones y limitaciones conocidas
 
-La auditoría de producción registrada en la revisión no reportó vulnerabilidades conocidas. La cadena de herramientas del linter tiene un aviso moderado transitivo de minimatch, documentado como S-02 abierto y sin corregir en el informe. La aceptación temporal para la demostración local es una propuesta; falta confirmación definitiva de la estudiante. No se debe interpretar el resultado de producción como una auditoría total sin avisos.
+Las consultas del 27/11/2026 dieron cero avisos npm de producción y siete paquetes dev señalados por el mismo advisory de minimatch (S-02 abierto). Composer detectó **cinco avisos en tres paquetes Symfony**, posteriores a la revisión histórica. El lockfile PHP se conserva; esos avisos y S-02 permanecen abiertos. La aceptación temporal de S-02 sigue pendiente de confirmación definitiva. [Estado y referencias actuales](docs/SEGURIDAD_DEPENDENCIAS_S10.md).
 
 - Título, descripción, asignatura, fecha y prioridad obligatorios; código de asignatura también obligatorio. No se agrega unicidad que los requisitos no solicitan.
 - Fechas como día calendario de Colombia; al editar una tarea vencida se puede conservar la fecha, pero otra fecha debe ser hoy o posterior.
@@ -44,7 +48,7 @@ Compatibilidad consultada en la [documentación de Angular](https://angular.dev/
 
 ## 3. Instalación.
 
-**Estado de verificación:** los comandos se contrastaron con los scripts y manifiestos reales del repositorio. No se ejecutó una instalación completa en una carpeta limpia para esta entrega; no se declara verificada. El antecedente de [VALIDACION.md](docs/VALIDACION.md) registra la instalación de desarrollo y una repetición del instalador con herramientas ya presentes. También queda pendiente comprobar la alternativa con MySQL propio en una instalación limpia.
+**Estado de verificación al 27/11/2026:** se extrajo una copia nueva del código versionado y se instalaron `vendor` y `node_modules` desde los lockfiles, sin copiarlos. Aprobaron migraciones en otra base nueva, seeder sintético, build, consultas API/proxy y respaldo/restauración. Se reutilizaron los binarios ya instalados; la reinstalación completa de herramientas en otra máquina permanece pendiente. [Procedimientos y límites](docs/GUIA_DESPLIEGUE_LOCAL.md), [evidencia de operación](docs/evidencias/semana10/operacion.json). El antecedente de [VALIDACION.md](docs/VALIDACION.md) conserva su contexto de semana 5/6.
 
 ### Instalación portable desde una copia nueva en Windows
 
@@ -204,7 +208,7 @@ CORS permite el origen configurado y `localhost:4200`, con los métodos y encabe
 
 ## 5. Pruebas.
 
-Resultados históricos de la revisión: 28 pruebas PHP (227 aserciones), 8 Angular, 10 E2E y 3 Node aprobadas; compilación, ESLint y Pint aprobados. El resumen se conserva en [evidencia_revision.json](docs/evidencia_revision.json); estas suites no se repitieron en el ajuste documental de la entrega. `npm audit` total conserva S-02; no equivale a la auditoría de producción sin avisos.
+Resultados locales de semana 10: **327 pruebas PHP (1014 aserciones), 87 Angular/Vitest, 10 E2E y 3 Node aprobadas**; compilación, ESLint y TypeScript aprobados. [Resumen portable](docs/evidencias/semana10/resultados.json) y [alcance, incidentes y cobertura](docs/COBERTURA_Y_PRUEBAS_S10.md). Los resultados anteriores se conservan en [evidencia_revision.json](docs/evidencia_revision.json) y [registro de semana 7](registro_pruebas.md). No se suman repeticiones como nuevas pruebas ni se confunde validación local con CI remoto.
 
 Las pruebas de API e integración presuponen MySQL iniciado y una base nueva y desechable exclusiva para pruebas. El sufijo `_testing` no demuestra que esté vacía ni verifica independientemente la identidad física del servidor. Preparar la base de pruebas una vez desde la raíz:
 
@@ -231,6 +235,8 @@ Frontend, desde `frontend/`:
 
 ```powershell
 npm.cmd test -- --watch=false
+npm.cmd run test:ci
+npm.cmd run typecheck
 npm.cmd run build
 ```
 

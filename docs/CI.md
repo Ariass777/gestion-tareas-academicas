@@ -16,6 +16,8 @@ Se ejecutan ESLint, TypeScript de aplicación y pruebas, Vitest con cobertura V8
 
 El paso de subida usa `always()` y una lista explícita de reportes, incluso si una prueba falla. Retención: 14 días. No sube `.env`, bases, contraseñas, `vendor` ni `node_modules`. Si la instalación impide crear un reporte, su ausencia no se presenta como prueba aprobada. Los logs de pasos permanecen además en GitHub Actions. Los reportes pueden incluir rutas de archivos del runner y datos sintéticos.
 
+Antes de subirlos, `scripts/resumir-evidencias.php` exporta además un resumen de métricas con rutas relativas; omite mensajes completos y no lee credenciales. Se ejecuta con `always()` si la preparación PHP aprobó. Informa `missing_reports` cuando falta algún reporte. La salud de MySQL se comprueba por TCP, para no confundir el servidor temporal de inicialización por socket con la instancia final.
+
 ## Estado verificable
 
 La configuración y sus comprobaciones locales se registrarán en la evidencia de semana 10. **La ejecución remota queda pendiente hasta el push autorizado por la estudiante.** No existe todavía una URL de ejecución verde para esta rama. La auditoría previa confirmó cero workflows y cero ejecuciones en GitHub antes de estos cambios.

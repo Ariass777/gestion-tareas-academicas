@@ -1,0 +1,8 @@
+.github/workflows/ci.yml:45:20: context "job" is not allowed here. available contexts are "github", "inputs", "matrix", "needs", "secrets", "strategy", "vars". see https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability for more details [expression]
+   |
+45 |       DB_PORT: ${{ job.services.mysql.ports[3306] }}
+   |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.github/workflows/ci.yml:45:45: property access of object must be type of string but got "number" [expression]
+   |
+45 |       DB_PORT: ${{ job.services.mysql.ports[3306] }}
+   |                                             ^~~~~

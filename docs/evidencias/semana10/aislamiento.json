@@ -1,0 +1,17 @@
+{
+    "date_local": "2026-11-27",
+    "development_counts_before": {
+        "asignaturas": 5,
+        "tareas": 3
+    },
+    "development_counts_after": {
+        "asignaturas": 5,
+        "tareas": 3
+    },
+    "original_env_files_unchanged": {
+        ".env": true,
+        ".env.testing": true
+    },
+    "dedicated_user_denied_development": true,
+    "limits": "Comparacion de cantidades, no snapshot previo del contenido de filas. Las credenciales no se exportan."
+}
