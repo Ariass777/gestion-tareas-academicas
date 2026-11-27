@@ -2,6 +2,8 @@
 
 **Corte: 27 de noviembre de 2026, America/Bogota.** Proyecto: Sistema Web de Gestión de Tareas Académicas (interfaz «Académica»). Estudiante identificada en los documentos originales: Linda Verónica Arteaga Arias. Este archivo reúne fuentes y límites verificables; no constituye el informe final, una reflexión personal de la estudiante ni una certificación de cumplimiento de la rúbrica.
 
+**Evidencia recuperada después del cierre inicial, 27/11/2026:** [PDF del módulo 1: banco y propuesta](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/Arteaga_Veronica_C2_Banco_y_Propuesta.pdf), diez páginas, propuesta pp. 9–10. Copia preparada para publicación con los nombres de portada y el autor de metadatos retirados; original conservado fuera de Git. [Hashes y revisión de privacidad](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/evidencias/semana10/privacidad-modulo1.json). Su incorporación actual no se atribuye a un commit histórico.
+
 - [Repositorio público](https://github.com/Ariass777/gestion-tareas-academicas), [código integrado en main](https://github.com/Ariass777/gestion-tareas-academicas/tree/main), [PR #4 integrado](https://github.com/Ariass777/gestion-tareas-academicas/pull/4).
 - [Pipeline aprobado sobre el merge de main: 46018960368](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368), SHA **6b5b57aa16731d8fdd6d738bc50f2861c6684613**, job único `verificar`: success.
 - [Metadatos del cierre y pasos del job](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/evidencias/semana10/cierre-main.json), [resultados exportados del runner](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/evidencias/semana10/resultados-main.json).
@@ -13,7 +15,7 @@ El problema documentado es organizar entregas académicas dispersas y reducir ol
 
 Los objetivos derivados del alcance documentado son centralizar asignaturas y tareas, consultar pendientes por fecha, filtrar y actualizar el progreso, conservar la información al recargar y verificar el sistema con pruebas. El objetivo académico es aplicar IA con revisión crítica durante el ciclo de vida. Estos objetivos sintetizan los documentos existentes; no representan nuevos acuerdos con un cliente.
 
-Evidencias: [requisitos S3, versión 24/10/2026](https://github.com/Ariass777/gestion-tareas-academicas/blob/a4d34de6ded5c48f19eb09bc50c2f3b30525e38a/docs/Arteaga_Veronica_S3_Requisitos.docx), [README](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/README.md), [adenda S10](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/ADENDA_REQUISITOS_DISENO_S10.md). La propuesta inicial del módulo 1 no se recuperó: debe aportarla la estudiante si existe.
+Evidencias: [propuesta inicial recuperada, pp. 9–10](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/Arteaga_Veronica_C2_Banco_y_Propuesta.pdf), [requisitos S3, versión 24/10/2026](https://github.com/Ariass777/gestion-tareas-academicas/blob/a4d34de6ded5c48f19eb09bc50c2f3b30525e38a/docs/Arteaga_Veronica_S3_Requisitos.docx), [README](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/README.md), [adenda S10](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/ADENDA_REQUISITOS_DISENO_S10.md). La propuesta del módulo 1 ya no está pendiente. Su ejemplo de entregas de un estudiante es ilustrativo y no acredita una entrevista real.
 
 ## Arquitectura, tecnologías y decisiones
 
@@ -48,7 +50,7 @@ Las fechas se interpretan como calendario de Colombia: creación desde hoy; edic
 
 | Módulo/fase | Actividad y herramienta acreditadas | Verificación y límites | Evidencia pública |
 |---|---|---|---|
-| 1. Fundamentos | No se encontró la propuesta inicial ni una herramienta acreditada para esa actividad. | No se completa retrospectivamente con una actividad S10. Recuperación pendiente. | [Inventario documental](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/README.md) |
+| 1. Fundamentos | Banco de diez prompts con tarea, prompt, evaluación y ajuste; propuesta inicial. El banco consigna «ChatGPT (Claude / GPT-4)», denominación ambigua; la propuesta prevé ChatGPT y Gemini. | Evaluaciones registradas por la autora, no reproducidas aquí; no permite identificar un modelo concreto ni recuperar respuestas completas. PDF aportado el 27/11, no creado retrospectivamente como actividad de fundamentos. | [PDF pp. 2–10](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/Arteaga_Veronica_C2_Banco_y_Propuesta.pdf), [revisión de publicación](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/evidencias/semana10/privacidad-modulo1.json) |
 | 2. Requisitos | S3 atribuye a ChatGPT/Gemini apoyo para HU, escenarios, RNF y trazabilidad; conserva fichas de prompts. | Revisión de alcance registrada por la autora. Entrevista simulada y respuestas originales incompletas; testimonio documental, no reproducción independiente. | [S3](https://github.com/Ariass777/gestion-tareas-academicas/blob/a4d34de6ded5c48f19eb09bc50c2f3b30525e38a/docs/Arteaga_Veronica_S3_Requisitos.docx) |
 | 3. Diseño | S4 atribuye a ChatGPT/Gemini comparación de alternativas, C4, modelo y API. | Contraste con HU y normalización documentados. Adenda S10 corrige discrepancias sin alterar el original. | [S4](https://github.com/Ariass777/gestion-tareas-academicas/blob/a4d34de6ded5c48f19eb09bc50c2f3b30525e38a/docs/Arteaga_Veronica_S4_Dise%C3%B1o.docx), [adenda](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/ADENDA_REQUISITOS_DISENO_S10.md) |
 | 4. Código | Codex para implementación/revisión; bitácora S6 declara agente principal y revisión independiente gpt-6-astra. | Linter, compilación, revisión y regresiones. No están todas las respuestas iniciales; esta actividad S10 no tuvo una nueva revisión independiente por otro agente. | [bitácora](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/bitacora_ia.md), [revisión S6](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/revision_seguridad.md), [validación](https://github.com/Ariass777/gestion-tareas-academicas/blob/main/docs/VALIDACION.md) |
@@ -178,8 +180,8 @@ El merge [6b5b57aa16731d8fdd6d738bc50f2861c6684613](https://github.com/Ariass777
 
 Pendientes reales para la entrega académica:
 
-- Recuperar propuesta inicial del módulo 1, transcripción completa de la entrevista **simulada** y respuestas/borradores originales S3/S4 si existen. No fabricar una entrevista real ni commits históricos para reforzar la rúbrica.
-- Revisar la suficiencia de los casos declarativos 1/2: carecen de un commit aislado de corrección y de respuesta original. El caso CORS es fuerte en operación, pero no rellena la evidencia ausente de fundamentos.
+- La propuesta inicial y el banco del módulo 1 ya se recuperaron. Sigue pendiente la transcripción completa de la entrevista **simulada** y las respuestas/borradores originales S3/S4 si existen. El banco no incluye todas las respuestas originales y su etiqueta de herramienta es ambigua; no se inventan modelos o conversaciones.
+- Revisar la suficiencia de los casos declarativos 1/2: carecen de un commit aislado de corrección y de respuesta original. El comentario CORS del prompt 6 del banco trata de un ejercicio Node.js; no se demuestra una relación con el fallo real de CI/Laravel de S10 ni se fusionan ambos como un mismo caso.
 - Revisar ambigüedades funcionales pendientes (transiciones, trim/longitudes Unicode, estado vacío/null) y CA-08-R1-04; no se cerraron por tener CI verde.
 - Completar reflexión personal de aprendizajes, confianza excesiva y cambios futuros **por la estudiante**. Esta base no inventa su voz ni vivencias.
 - Revisar política de uso/privacidad, licencia global y material que se mostrará; no hay autenticación, seguridad multiusuario, pentest ni aptitud para producción pública.
@@ -191,7 +193,7 @@ Pendientes reales para la entrega académica:
 | Sección oficial | Material de esta base | Aporte que sigue siendo de la estudiante |
 |---|---|---|
 | 1. Resumen | Problema, solución, tabla de fases y resultados main. | Redacción final de 5–8 líneas. |
-| 2. Problema y usuario | S3 y límite de entrevista simulada. | Recuperar propuesta inicial; describir el contexto previo solo con evidencia. |
+| 2. Problema y usuario | Propuesta inicial recuperada pp. 9–10, S3 y límite de entrevista simulada. | Describir el contexto previo solo con evidencia; no convertir el ejemplo ilustrativo en entrevista real. |
 | 3. La IA en el ciclo de vida | Tabla de seis módulos y bitácora. | Aportar las fuentes históricas faltantes. |
 | 4. Verificación | Cuatro casos con límites y commits. | Revisar suficiencia académica y seleccionar evidencia real para mostrar. |
 | 5. Estado final | Arquitectura, Must, pruebas/cobertura, pipeline y pendientes. | Comprobar enlaces antes de entregar. |

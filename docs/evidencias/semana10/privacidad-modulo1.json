@@ -1,0 +1,41 @@
+{
+  "date_local": "2026-11-27",
+  "timezone": "America/Bogota",
+  "source": "docs/Arteaga_Veronica_C2_Banco_y_Propuesta.pdf",
+  "tool": "MuPDF.js 1.28.6 local/ignorado",
+  "pages": 10,
+  "original_sha256": "1cf642d499882d443e03c59d514876c3caadeffe24acea7f870572e9a18a73d6",
+  "public_sha256": "d21c36d0d602b4f04c9d943b343bac87ad09f321111028511ea0a3c349dc890b",
+  "public_bytes": 449935,
+  "privacy_changes": [
+    "Dos nombres retirados de la portada mediante redacciones aplicadas; no solo superpuestos.",
+    "Campo Author retirado de Info; reescritura completa con garbage=4, sin guardar revision incremental."
+  ],
+  "checks": {
+    "all_ten_pages_visually_reviewed": true,
+    "cover_redactions": 2,
+    "original_private_copy_preserved": true,
+    "author_metadata_removed": true,
+    "no_xmp_metadata_found": true,
+    "embedded_files": 0,
+    "annotations_before": 0,
+    "link_annotations_before": 0,
+    "pages_2_to_10_text_identical": true,
+    "pages_2_to_10_render_identical": true,
+    "removed_names_absent_in_extracted_text_and_objects": true,
+    "public_text_pattern_matches": {
+      "email_addresses": 0,
+      "ipv4_addresses": 0,
+      "phone_like_numbers": 0,
+      "token_or_key_patterns": 0,
+      "personal_windows_paths": 0
+    },
+    "active_action_objects_found": 0,
+    "no_identifiable_people_in_academic_examples_visual_review": true
+  },
+  "limits": [
+    "Inspeccion de este PDF; no certifica otros documentos o todo el historial.",
+    "El archivo publicado es una copia preparada por privacidad; no es binariamente identico al original.",
+    "Las evaluaciones y herramientas del banco son declaraciones historicas del documento; no conversaciones originales ni nuevas ejecuciones."
+  ]
+}

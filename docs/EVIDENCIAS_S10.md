@@ -1,5 +1,7 @@
 # Preparación técnica y evidencias — semana 10
 
+**Recuperación posterior del módulo 1, 27/11/2026:** la estudiante aportó el [banco de prompts y propuesta inicial](Arteaga_Veronica_C2_Banco_y_Propuesta.pdf). Se publica una copia con nombres de portada y autor de metadatos retirados, conservando el original fuera de Git y el contenido académico intacto. [Revisión y hashes](evidencias/semana10/privacidad-modulo1.json), [índice actualizado](README.md). El pendiente de propuesta inicial registrado más abajo corresponde al estado anterior a esta recuperación; no se altera ese antecedente ni se inventan conversaciones o commits históricos.
+
 **Cierre posterior autorizado, 27/11/2026:** [PR #4 integrado](https://github.com/Ariass777/gestion-tareas-academicas/pull/4), merge `6b5b57aa16731d8fdd6d738bc50f2861c6684613`, [main aprobado](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368). [Metadatos, revisión del diff y pasos](evidencias/semana10/cierre-main.json), [resultados reales](evidencias/semana10/resultados-main.json) y [BASE_INFORME_FINAL.md](BASE_INFORME_FINAL.md) con enlaces públicos para la redacción posterior. Este cierre no reemplaza las evidencias históricas ni el informe final pendiente.
 
 Fecha: **27/11/2026, America/Bogota**. Autor de las comprobaciones: Codex. Revisión académica humana pendiente. Este documento es un registro técnico de preparación; no es el informe final integrador ni una presentación.
