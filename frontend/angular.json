@@ -94,7 +94,21 @@
           "defaultConfiguration": "development"
         },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:unit-test",
+          "configurations": {
+            "ci": {
+              "watch": false,
+              "coverage": true,
+              "coverageInclude": ["src/app/**/*.ts"],
+              "coverageExclude": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+              "coverageReporters": ["text", "json-summary", "json", "lcov", "html"],
+              "reporters": [
+                "default",
+                ["json", { "outputFile": "../artifacts/ci/vitest.json" }],
+                ["junit", { "outputFile": "../artifacts/ci/vitest.xml" }]
+              ]
+            }
+          }
         }
       }
     }

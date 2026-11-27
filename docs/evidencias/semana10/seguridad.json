@@ -1,0 +1,79 @@
+{
+  "date_local": "2026-11-27",
+  "npm": {
+    "full_exit": 1,
+    "full": {
+      "info": 0,
+      "low": 0,
+      "moderate": 7,
+      "high": 0,
+      "critical": 0,
+      "total": 7
+    },
+    "production_exit": 0,
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "root_advisory_urls": [
+      "https://github.com/advisories/GHSA-g3hv-75wg-m249"
+    ],
+    "S02": "open; no cambio de minimatch 10.2.6 ni aceptacion definitiva"
+  },
+  "composer": {
+    "exit": 1,
+    "advisories": [
+      {
+        "package": "symfony/http-kernel",
+        "installed": "v8.1.11",
+        "cve": "CVE-2026-133743",
+        "advisory_id": "PKSA-k1tg-4k6j-w4xf",
+        "reported_at": "2026-11-25T09:12:09+00:00",
+        "url": "https://symfony.com/cve-2026-133743",
+        "severity": null
+      },
+      {
+        "package": "symfony/mailer",
+        "installed": "v8.1.10",
+        "cve": "CVE-2026-133751",
+        "advisory_id": "PKSA-vqxj-j8fm-1q3k",
+        "reported_at": "2026-11-25T09:22:46+00:00",
+        "url": "https://symfony.com/cve-2026-133751",
+        "severity": null
+      },
+      {
+        "package": "symfony/mailer",
+        "installed": "v8.1.10",
+        "cve": "CVE-2026-133755",
+        "advisory_id": "PKSA-9r8k-3vgs-8f3v",
+        "reported_at": "2026-11-25T09:22:46+00:00",
+        "url": "https://symfony.com/cve-2026-133755",
+        "severity": null
+      },
+      {
+        "package": "symfony/routing",
+        "installed": "v8.1.11",
+        "cve": "CVE-2026-133746",
+        "advisory_id": "PKSA-pbtx-4qgh-mmkh",
+        "reported_at": "2026-11-25T09:12:09+00:00",
+        "url": "https://symfony.com/cve-2026-133746",
+        "severity": null
+      },
+      {
+        "package": "symfony/routing",
+        "installed": "v8.1.11",
+        "cve": "CVE-2026-133754",
+        "advisory_id": "PKSA-2vy6-qchn-f13r",
+        "reported_at": "2026-11-25T09:12:09+00:00",
+        "url": "https://symfony.com/cve-2026-133754",
+        "severity": null
+      }
+    ],
+    "abandoned": []
+  },
+  "decision": "Avisos abiertos. composer.lock sin cambios. La ausencia de fallos funcionales no demuestra correccion de advisories."
+}

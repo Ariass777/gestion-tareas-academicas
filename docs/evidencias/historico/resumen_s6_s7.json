@@ -1,0 +1,73 @@
+{
+  "source": "Reportes locales inspeccionados el 27/11/2026; no ejecuciones nuevas",
+  "s6": {
+    "date_local": "2026-11-14",
+    "commit": "80c19176ee72278735979c60ed05c1d2cb0c305f",
+    "phpunit": {
+      "tool": "phpunit",
+      "result": "passed",
+      "tests": 28,
+      "passed": 28,
+      "assertions": 227,
+      "duration_ms": 2571
+    },
+    "vitest": {
+      "pruebas": 8,
+      "archivos": 4,
+      "exit_code": 0
+    },
+    "playwright": {
+      "startTime": "2026-11-15T01:07:11.680Z",
+      "duration": 27484.074,
+      "expected": 10,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "node": {
+      "pruebas": 3,
+      "fallos": 0,
+      "exit_code": 0
+    },
+    "fecha_tokio": {
+      "fecha_tokio_antes": "Fallo reproducido: 13 nov para 2026-11-14",
+      "fecha_tokio_despues": "Aprobada en suite final",
+      "error_de_edicion_spec": "Cierre de describe corregido; compilacion y pruebas repetidas",
+      "destinos_e2e": "Rechazados desarrollo, DB_URL y nombre invalido sin abrir servidor HTTP"
+    }
+  },
+  "s7": {
+    "date_local": "2026-11-22",
+    "commit": "a63504a519bd6ad1d59f143a78aeb6e4b4098220",
+    "initial_invalid_harness": {
+      "tests": 117,
+      "assertions": 143,
+      "errors": 44,
+      "failures": 0,
+      "skipped": 0
+    },
+    "corrected_harness": {
+      "tests": 117,
+      "assertions": 231,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "final_phpunit": {
+      "tests": 327,
+      "assertions": 1014,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "final_vitest": {
+      "tests": 87,
+      "passed": 87,
+      "failed": 0,
+      "pending": 0
+    },
+    "manual_mutations_detected": 3,
+    "manual_mutations_selected": 3
+  },
+  "limits": "Los reportes brutos estan ignorados. Requisitos/diseno conservan testimonios documentales; faltan respuestas IA originales."
+}

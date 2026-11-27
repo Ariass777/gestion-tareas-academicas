@@ -1,0 +1,65 @@
+{
+  "date_local": "2026-11-27",
+  "timezone": "America/Bogota",
+  "authorization": "La estudiante autorizo ambas actualizaciones despues de presentar propuesta y simulaciones.",
+  "commits": {
+    "symfony": "d1d387d9e7b83757964d0dd7368e84e3b4090bfe",
+    "typescript_eslint": "d8a0cccbdc822e7317ed76e2a69ef570577bbe56"
+  },
+  "composer": {
+    "exit": 0,
+    "advisories": [],
+    "abandoned": [],
+    "production_versions": {
+      "symfony/http-foundation": "v8.1.12",
+      "symfony/http-kernel": "v8.1.12",
+      "symfony/mailer": "v8.1.12",
+      "symfony/routing": "v8.1.12"
+    }
+  },
+  "npm": {
+    "exit": 0,
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "typescript_eslint": "8.74.0",
+    "minimatch": [
+      {
+        "path": "node_modules/minimatch",
+        "version": "11.0.9",
+        "development": true
+      }
+    ]
+  },
+  "local_validation": {
+    "phpunit": {
+      "tests": 327,
+      "assertions": 1014,
+      "failures": 0,
+      "errors": 0
+    },
+    "vitest": {
+      "tests": 87,
+      "failures": 0
+    },
+    "eslint_exit": 0,
+    "typescript_exit": 0
+  },
+  "scope": {
+    "composer_packages_updated": 4,
+    "npm_versions_changed": 12,
+    "npm_duplicate_copies_removed": 2,
+    "manifests_changed": false,
+    "tests_changed": false,
+    "overrides_added": false
+  },
+  "report_sha256": {
+    "artifacts/publicacion-s10/composer-audit-actualizado.json": "851e471fba40aa9f3097e61faea3df7fb5583a200d95e5dd571aabfc22cc75d7",
+    "artifacts/publicacion-s10/npm-audit-actualizado.json": "f9cac69246e3b268195c0d6f7946d6129d094bd54a7b0a5143c1ddc2eb39f69f"
+  }
+}

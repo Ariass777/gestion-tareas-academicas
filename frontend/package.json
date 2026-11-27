@@ -9,7 +9,9 @@
     "test": "ng test",
     "e2e": "playwright test",
     "e2e:report": "playwright show-report",
-    "lint": "eslint src --max-warnings=0"
+    "lint": "eslint src --max-warnings=0",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit --incremental false && tsc -p tsconfig.spec.json --noEmit --incremental false",
+    "test:ci": "ng test --configuration ci"
   },
   "private": true,
   "packageManager": "npm@11.17.0",
@@ -29,6 +31,7 @@
     "@angular/compiler-cli": "^22.2.0",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "1.56.0",
+    "@vitest/coverage-v8": "5.1.0",
     "angular-eslint": "^22.6.0",
     "eslint": "^10.15.0",
     "jsdom": "^30.0.0",

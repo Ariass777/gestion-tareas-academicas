@@ -1,0 +1,238 @@
+{
+  "date_local": "2026-11-27",
+  "source_sha": "6a594fe7001b3d192650ad7e4b1ee59dbc2712cb",
+  "runs": [
+    {
+      "id": 46012886635,
+      "url": "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46012886635",
+      "job": {
+        "id": 140552576570,
+        "name": "verificar",
+        "conclusion": "failure",
+        "url": "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46012886635/job/140552576570",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Initialize containers",
+            "conclusion": "success"
+          },
+          {
+            "name": "Obtener codigo sin guardar credenciales Git",
+            "conclusion": "success"
+          },
+          {
+            "name": "Fijar puerto del servicio efimero",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preparar Node compatible con el lockfile",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preparar PHP y Composer",
+            "conclusion": "success"
+          },
+          {
+            "name": "Instalar dependencias PHP bloqueadas",
+            "conclusion": "success"
+          },
+          {
+            "name": "Instalar dependencias frontend bloqueadas",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preparar entorno y migrar solo MySQL de pruebas",
+            "conclusion": "success"
+          },
+          {
+            "name": "Validar ESLint",
+            "conclusion": "success"
+          },
+          {
+            "name": "Validar TypeScript de aplicacion y pruebas",
+            "conclusion": "success"
+          },
+          {
+            "name": "Ejecutar Vitest con cobertura V8",
+            "conclusion": "success"
+          },
+          {
+            "name": "Ejecutar PHPUnit con cobertura Xdebug",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Probar rechazos del servidor E2E",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Compilar Angular",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Instalar Chromium de la version bloqueada de Playwright",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Preparar fixtures E2E en el contenedor de pruebas",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Ejecutar Playwright con API y MySQL reales",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Exportar resumen sin secretos ni rutas personales",
+            "conclusion": "success"
+          },
+          {
+            "name": "Conservar reportes incluso ante fallos",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Preparar Node compatible con el lockfile",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Obtener codigo sin guardar credenciales Git",
+            "conclusion": "success"
+          },
+          {
+            "name": "Stop containers",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      "phpunit": {
+        "tests": 327,
+        "assertions": 1011,
+        "failures": 1
+      },
+      "failing_test": "Tests\\Feature\\AcademicApiTest::test_cors_permite_el_frontend_y_rechaza_otro_origen",
+      "message": "Header [Access-Control-Allow-Origin] not present on response."
+    },
+    {
+      "id": 46012965021,
+      "url": "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46012965021",
+      "job": {
+        "id": 140552846163,
+        "name": "verificar",
+        "conclusion": "failure",
+        "url": "https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46012965021/job/140552846163",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Initialize containers",
+            "conclusion": "success"
+          },
+          {
+            "name": "Obtener codigo sin guardar credenciales Git",
+            "conclusion": "success"
+          },
+          {
+            "name": "Fijar puerto del servicio efimero",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preparar Node compatible con el lockfile",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preparar PHP y Composer",
+            "conclusion": "success"
+          },
+          {
+            "name": "Instalar dependencias PHP bloqueadas",
+            "conclusion": "success"
+          },
+          {
+            "name": "Instalar dependencias frontend bloqueadas",
+            "conclusion": "success"
+          },
+          {
+            "name": "Preparar entorno y migrar solo MySQL de pruebas",
+            "conclusion": "success"
+          },
+          {
+            "name": "Validar ESLint",
+            "conclusion": "success"
+          },
+          {
+            "name": "Validar TypeScript de aplicacion y pruebas",
+            "conclusion": "success"
+          },
+          {
+            "name": "Ejecutar Vitest con cobertura V8",
+            "conclusion": "success"
+          },
+          {
+            "name": "Ejecutar PHPUnit con cobertura Xdebug",
+            "conclusion": "failure"
+          },
+          {
+            "name": "Probar rechazos del servidor E2E",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Compilar Angular",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Instalar Chromium de la version bloqueada de Playwright",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Preparar fixtures E2E en el contenedor de pruebas",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Ejecutar Playwright con API y MySQL reales",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Exportar resumen sin secretos ni rutas personales",
+            "conclusion": "success"
+          },
+          {
+            "name": "Conservar reportes incluso ante fallos",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Preparar Node compatible con el lockfile",
+            "conclusion": "skipped"
+          },
+          {
+            "name": "Post Obtener codigo sin guardar credenciales Git",
+            "conclusion": "success"
+          },
+          {
+            "name": "Stop containers",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ]
+      },
+      "phpunit": {
+        "tests": 327,
+        "assertions": 1011,
+        "failures": 1
+      },
+      "failing_test": "Tests\\Feature\\AcademicApiTest::test_cors_permite_el_frontend_y_rechaza_otro_origen",
+      "message": "Header [Access-Control-Allow-Origin] not present on response."
+    }
+  ],
+  "cause": "FRONTEND_URL=4300 en .env.testing.example, mientras el contrato de desarrollo y la prueba exigen 4200.",
+  "correction": "Alinear ejemplo y variable explicita del workflow a http://127.0.0.1:4200, sin modificar pruebas ni ampliar CORS."
+}

@@ -1,0 +1,93 @@
+{
+  "date_local": "2026-11-27",
+  "timezone": "America/Bogota",
+  "operator": "Codex",
+  "clean_source_commit": "7c4b865fff4dd6fa4ef3e664381723cd31eae0ce",
+  "clean_npm_ci_exit": 0,
+  "clean_composer_install_exit": 0,
+  "clean_angular_build_exit": 0,
+  "fresh_mysql_migrations": 2,
+  "seed_counts": {
+    "asignaturas": 4,
+    "tareas": 5
+  },
+  "http_and_proxy_before_restore": {
+    "value": [
+      {
+        "port": 8002,
+        "resource": "asignaturas",
+        "status": 200,
+        "count": 4
+      },
+      {
+        "port": 8002,
+        "resource": "tareas",
+        "status": 200,
+        "count": 5
+      },
+      {
+        "port": 4301,
+        "resource": "asignaturas",
+        "status": 200,
+        "count": 4
+      },
+      {
+        "port": 4301,
+        "resource": "tareas",
+        "status": 200,
+        "count": 5
+      }
+    ],
+    "Count": 4
+  },
+  "restoration": {
+    "restoration_matches_source": true,
+    "synthetic_tables": {
+      "asignaturas": {
+        "count": 4,
+        "sha256": "03515f9837a13c02ad5bd3cb9cf02864d395b8754dee7d5ec99c3f4d280db06a"
+      },
+      "tareas": {
+        "count": 5,
+        "sha256": "b2a408acf1e6b7392e1dfbef5dfb4d3de9f8d71f5b7a4d73cc2ed1048a42016f"
+      },
+      "migrations": {
+        "count": 2,
+        "sha256": "18eb5b5f15a02d19d5a919f636e3d09e3e86b82ffe55112e78c057b5ebbb8beb"
+      }
+    }
+  },
+  "http_and_proxy_after_restore": {
+    "value": [
+      {
+        "port": 8002,
+        "resource": "asignaturas",
+        "status": 200,
+        "count": 4
+      },
+      {
+        "port": 8002,
+        "resource": "tareas",
+        "status": 200,
+        "count": 5
+      },
+      {
+        "port": 4301,
+        "resource": "asignaturas",
+        "status": 200,
+        "count": 4
+      },
+      {
+        "port": 4301,
+        "resource": "tareas",
+        "status": 200,
+        "count": 5
+      }
+    ],
+    "Count": 4
+  },
+  "isolated_http_servers_stopped": true,
+  "production_mysql_shutdown_executed": false,
+  "toolchain_reinstall_on_new_machine_verified": false,
+  "backup_sha256": "fed0943a2a6b938b6a972d6b06b17285c8838fddad0d0996ce7980e8309ca1cf"
+}

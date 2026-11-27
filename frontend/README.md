@@ -10,6 +10,8 @@ Desde esta carpeta:
 npm.cmd ci
 npm.cmd start
 npm.cmd test -- --watch=false
+npm.cmd run test:ci
+npm.cmd run typecheck
 npm.cmd run build
 ```
 
