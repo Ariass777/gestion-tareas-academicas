@@ -12,7 +12,7 @@ La conexión efectiva se fija a loopback y al puerto de ese servicio. `.env.test
 
 ## Comprobaciones y artefactos
 
-Se ejecutan ESLint, TypeScript de aplicación y pruebas, Vitest, PHPUnit, las tres pruebas Node de rechazo, compilación Angular y Playwright/Chromium con API y MySQL reales. Se preparan 200 fixtures E2E después de PHPUnit. Un fallo conserva su código de salida y hace fallar el job.
+Se ejecutan ESLint, TypeScript de aplicación y pruebas, Vitest con cobertura V8, PHPUnit con Xdebug, las tres pruebas Node de rechazo, compilación Angular y Playwright/Chromium con API y MySQL reales. Se preparan 200 fixtures E2E después de PHPUnit. Un fallo conserva su código de salida y hace fallar el job. La cobertura incluye archivos no ejecutados y se conserva junto a los reportes JSON/JUnit; ámbito y métricas locales en [pruebas de semana 10](COBERTURA_Y_PRUEBAS_S10.md).
 
 El paso de subida usa `always()` y una lista explícita de reportes, incluso si una prueba falla. Retención: 14 días. No sube `.env`, bases, contraseñas, `vendor` ni `node_modules`. Si la instalación impide crear un reporte, su ausencia no se presenta como prueba aprobada. Los logs de pasos permanecen además en GitHub Actions. Los reportes pueden incluir rutas de archivos del runner y datos sintéticos.
 

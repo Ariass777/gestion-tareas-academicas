@@ -89,15 +89,15 @@ jobs:
         run: npm run lint
       - name: Validar TypeScript de aplicacion y pruebas
         working-directory: frontend
-        run: |
-          npx --no-install tsc -p tsconfig.app.json --noEmit --incremental false
-          npx --no-install tsc -p tsconfig.spec.json --noEmit --incremental false
-      - name: Ejecutar Vitest
+        run: npm run typecheck
+      - name: Ejecutar Vitest con cobertura V8
         working-directory: frontend
-        run: npm test -- --watch=false --reporters=default --reporters=json --output-file=../artifacts/ci/vitest.json
-      - name: Ejecutar PHPUnit
+        run: npm run test:ci
+      - name: Ejecutar PHPUnit con cobertura Xdebug
         working-directory: backend
-        run: php vendor/bin/phpunit --log-junit ../artifacts/ci/phpunit.xml
+        env:
+          XDEBUG_MODE: coverage
+        run: php vendor/bin/phpunit --log-junit ../artifacts/ci/phpunit.xml --coverage-clover ../artifacts/ci/phpunit-clover.xml --coverage-html ../artifacts/ci/phpunit-coverage --coverage-text
       - name: Probar rechazos del servidor E2E
         run: node --test scripts/serve-backend.test.mjs
       - name: Compilar Angular
@@ -123,5 +123,6 @@ jobs:
             artifacts/ci/
             artifacts/playwright-results.json
             artifacts/rnf-01.json
+            frontend/coverage/
             frontend/playwright-report/
             frontend/test-results/
