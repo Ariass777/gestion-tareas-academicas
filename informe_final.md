@@ -4,7 +4,7 @@
 **Estudiante:** [Estudiante anonimizado]  
 **Repositorio:** [gestion-tareas-academicas](https://github.com/Ariass777/gestion-tareas-academicas)  
 **Fecha:** 27 de noviembre de 2026  Docente: [Docente anonimizado]  
-Asignatura: Seminario de Ingeniería de Software  
+Asignatura: Seminario en inteligencia artificial aplicada al ciclo de vida del software  
 Institución: Fundación Escuela Tecnológica Jesús Oviedo Pérez (FET) — Neiva, Huila
 
 ## 1. Resumen

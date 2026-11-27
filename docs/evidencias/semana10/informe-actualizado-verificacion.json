@@ -1,0 +1,94 @@
+{
+    "date_local":  "2026-11-27",
+    "timezone":  "America/Bogota",
+    "tool":  "MuPDF.js 1.28.6 local, herramientas ignoradas",
+    "replaces_pdf":  {
+                         "path":  "informe_final.pdf",
+                         "last_commit":  "e7b2bd1a4e45d1f3a951380f920e39dcdd4402c8",
+                         "preserved_in_git_history":  true
+                     },
+    "pdf":  {
+                "path":  "informe_final_actualizado.pdf",
+                "pages":  7,
+                "original_bytes":  225651,
+                "public_bytes":  220352,
+                "original_sha256":  "3e635b4c7076f64a9a7452054d4ed01725078314ab482ebafeed847fea6f6f71",
+                "public_sha256":  "7b9eab81f6761be6d15e45ad8611ac6b34ac7068549babc2e99690b9b100f281",
+                "original_preserved_outside_git":  true,
+                "privacy_changes":  [
+                                        "Dos nombres de portada retirados mediante redacciones aplicadas.",
+                                        "Diccionario Info retirado, incluido Author; no habia XMP ni adjuntos en el original.",
+                                        "Reescritura completa garbage=4 sin revision incremental."
+                                    ],
+                "checks":  {
+                               "seven_pages_visually_reviewed":  true,
+                               "cover_redactions":  2,
+                               "cover_text_unchanged_except_names_and_whitespace":  true,
+                               "pages_2_to_7_text_and_png_identical":  true,
+                               "info_absent":  true,
+                               "xmp_absent":  true,
+                               "embedded_files":  0,
+                               "removed_names_absent_in_text_and_objects":  true,
+                               "all_original_link_annotations_preserved":  true,
+                               "link_annotations_by_page":  [
+                                                                6,
+                                                                7,
+                                                                11,
+                                                                6,
+                                                                8,
+                                                                5,
+                                                                16
+                                                            ]
+                           }
+            },
+    "markdown":  {
+                     "path":  "informe_final.md",
+                     "public_sha256":  "97b3f59ce06a6841caa961b4a9994ddca079f8d8b5dd435ba427ffaa7e30112b",
+                     "change":  "Solo campo Asignatura actualizado para coincidir con el PDF recibido; cuerpo academico y marcadores de identidad sin cambios.",
+                     "checks":  {
+                                    "student_and_teacher_names_absent":  true
+                                }
+                 },
+    "equivalence":  {
+                        "date_local":  "2026-11-27",
+                        "method":  "Comparacion de tokens de las ocho secciones despues de retirar sintaxis Markdown, formato, guiones de corte de linea y cabecera de tabla repetida por paginacion. La celda Bitacora de Transparencia se reordena solo en el texto extraido a la posicion de su columna (una tabla dividida entre paginas). Revision visual separada.",
+                        "table_cell_extraction_reorders":  1,
+                        "markdown_tokens":  2113,
+                        "pdf_tokens":  2113,
+                        "body_equal_after_normalization":  true,
+                        "differences":  [
+
+                                        ],
+                        "annex_a_url":  "https://github.com/Ariass777/gestion-tareas-academicas/blob/6296b644b73ddc570aec3ebb9e33568e02b4da2c/docs/Arteaga_Veronica_C2_Banco_y_Propuesta.pdf",
+                        "pdf_has_annex_a_link":  true,
+                        "markdown_has_annex_a_link":  true,
+                        "pdf_has_module1_evidence":  true,
+                        "markdown_has_module1_evidence":  true,
+                        "headers":  {
+                                        "pdf_course":  "Seminario en inteligencia artificial aplicada al ciclo de vida del software",
+                                        "markdown_course":  "Seminario en inteligencia artificial aplicada al ciclo de vida del software"
+                                    }
+                    },
+    "text_pattern_matches":  {
+                                 "emails":  0,
+                                 "private_keys":  0,
+                                 "github_tokens":  0,
+                                 "private_windows_paths":  0,
+                                 "phones":  0
+                             },
+    "limits":  [
+                   "Equivalencia academica del cuerpo despues de normalizar formato y orden de extraccion de una celda; no identidad binaria o de paginacion.",
+                   "La comparacion ignora formato, mayusculas y puntuacion; se completo con revision visual de las siete paginas y lectura de ambos documentos.",
+                   "Ambos informes conservan la referencia historica al pipeline 46020516693. El pipeline del nuevo commit se comprueba despues del push.",
+                   "Revision de estos documentos; no certifica anonimato ni seguridad de todo el repositorio."
+               ],
+    "annex_a_public_check":  {
+                                 "date_local":  "2026-11-27",
+                                 "url":  "https://github.com/Ariass777/gestion-tareas-academicas/blob/6296b644b73ddc570aec3ebb9e33568e02b4da2c/docs/Arteaga_Veronica_C2_Banco_y_Propuesta.pdf",
+                                 "http_status":  200,
+                                 "raw_http_status":  200,
+                                 "sha256":  "d21c36d0d602b4f04c9d943b343bac87ad09f321111028511ea0a3c349dc890b",
+                                 "matches_published_module1_review":  true,
+                                 "authentication_used":  false
+                             }
+}
