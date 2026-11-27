@@ -1,5 +1,7 @@
 # Bitácora de IA — revisión del primer incremento
 
+> Continuación de semana 10 al final del documento. Los registros históricos conservan sus fechas y límites originales.
+
 Fecha de esta actividad: **14 de noviembre de 2026**, zona `America/Bogota`. Algunas herramientas registran timestamps UTC del 15 de noviembre; corresponden todavía al día 14 en Colombia.
 
 Revisión inicial: rama `revision-calidad-seguridad`, desde `a4d34de`; corrección principal `80c1917`. Esta etapa no realizó push. Posteriormente se integró en `main` mediante `1adaacd`. El ajuste documental de la entrega se realiza en `ajuste-entrega-semana-6`, sin push; los resultados anteriores se conservan como antecedentes, no como pruebas repetidas en esta etapa.
@@ -207,3 +209,13 @@ Los cambios exactos, nombres completos de pruebas, comandos, hashes y resultados
 **S7-FINAL-04, cierre automatizado por Codex:** después de restaurar los tres errores se volvieron a ejecutar las suites completas: **87/87 Vitest**, **327/327 PHPUnit y 1014 aserciones**, sin fallos, errores ni omitidas. ESLint y Pint aprobaron. Se comprobaron 93 entradas SHA-256 del manifiesto inicial, todas idénticas, incluidos archivos de producción, pruebas y `.env`; el diff de producción está vacío. La consulta posterior con guardia activa confirmó **0 asignaturas/0 tareas** en la misma base exclusiva. Comandos y reportes de esta ejecución final figuran en §3.4 del registro y `artifacts/semana7/mutaciones-final/`.
 
 La entrega local selecciona exclusivamente seis archivos de pruebas y dos documentos de Semana 7. Las copias, logs/diffs y secretos permanecen ignorados, sin incorporarse al commit. Se conserva la rama, sin push/merge ni alteración del historial previo. La validación académica personal de la estudiante y los casos ambiguos o de infraestructura previamente pendientes no se declaran completados por estas pruebas de mutación.
+
+## Semana 10 — auditoría y etapa 1: integración continua
+
+Fecha real: **27/11/2026, America/Bogota**. Herramienta: Codex, agente principal; no se invocó un segundo agente en esta actividad. La estudiante entregó la rúbrica y autorizó cinco etapas técnicas, commits separados en `semana-10-entrega-final`, sin push ni integración a `main`, sin informe final ni diapositivas.
+
+- **S10-AUD-01, auditoría previa:** inspección de los diez commits y cuatro ramas, DOCX mediante ZIP/XML, código, pruebas y reportes ignorados. ESLint, TypeScript de aplicación/pruebas y sintaxis PHP/PowerShell/Node aprobaron. No se repitieron entonces suites que escribieran archivos o datos. La API de GitHub confirmó cero workflows/ejecuciones/checks. Se identificaron carencias de fundamentos, operación, cobertura, evidencias portables y reflexión ética; se comprobó el error de suma de la matriz de diseño. No se atribuye ese error a IA sin prueba de su origen. La auditoría se entregó en conversación y se registra ahora, después de recibir autorización para escribir.
+- **S10-CI-01, preparación:** rama creada desde `main` en `8657ed02e508d62475967b345514ff0373d912e8`. Workflow con MySQL efímero, usuario limitado a una base de pruebas, credencial ficticia y ningún secreto de producción; lockfiles, guardias y resultados esperados conservados. Acciones fijadas por SHA de sus repositorios oficiales. Reportes seleccionados con `always()` y retención de 14 días.
+- **S10-CI-02, error real de la propuesta de Codex:** la primera versión puso `job.services.mysql.ports[3306]` en `jobs.verificar.env`. actionlint 1.7.12 lo rechazó: contexto `job` no disponible en ese nivel e índice numérico donde se exige cadena. Se corrigió en un paso de ejecución mediante `job.services.mysql.ports['3306']` y `GITHUB_ENV`. Log inicial local: `artifacts/semana10/actionlint-inicial.log`. No se presenta esa versión como pipeline ejecutado; la validación corregida se registra en CI y en el resumen de evidencias.
+
+La revisión y las pruebas realizadas por Codex no equivalen a una aprobación académica personal de la estudiante. La ejecución remota queda pendiente del push; la licencia global y S-02 permanecen pendientes. Las actividades siguientes se añadirán con sus resultados reales.

@@ -1,0 +1,127 @@
+name: Verificacion academica
+
+on:
+  push:
+    branches: [main, semana-10-entrega-final]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: academica-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_DATABASE: academica_ci_testing
+          MYSQL_USER: academica_ci
+          # Credencial ficticia, exclusiva del contenedor desechable de este job.
+          MYSQL_PASSWORD: ci-only-disposable
+          MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+        ports:
+          - 3306/tcp
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=12
+    env:
+      CI: 'true'
+      NG_CLI_ANALYTICS: 'false'
+      APP_ENV: testing
+      APP_DEBUG: 'false'
+      APP_TIMEZONE: America/Bogota
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_DATABASE: academica_ci_testing
+      DB_USERNAME: academica_ci
+      DB_PASSWORD: ci-only-disposable
+      DB_URL: ''
+      CACHE_STORE: array
+      SESSION_DRIVER: array
+      QUEUE_CONNECTION: sync
+      XDEBUG_MODE: 'off'
+    steps:
+      - name: Obtener codigo sin guardar credenciales Git
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Fijar puerto del servicio efimero
+        run: echo "DB_PORT=${{ job.services.mysql.ports['3306'] }}" >> "$GITHUB_ENV"
+      - name: Preparar Node compatible con el lockfile
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.19.0'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Preparar PHP y Composer
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: '8.5'
+          extensions: pdo_mysql, mbstring, intl, dom, xml, curl, fileinfo, zip
+          coverage: xdebug
+          tools: composer:v2
+      - name: Instalar dependencias PHP bloqueadas
+        working-directory: backend
+        run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Instalar dependencias frontend bloqueadas
+        working-directory: frontend
+        run: npm ci --no-fund --no-audit
+      - name: Preparar entorno y migrar solo MySQL de pruebas
+        working-directory: backend
+        run: |
+          mkdir -p ../artifacts/ci
+          cp .env.testing.example .env.testing
+          php artisan key:generate --env=testing --no-interaction
+          php artisan academic:check-test-database --env=testing --no-interaction
+          php artisan migrate --env=testing --no-interaction
+      - name: Validar ESLint
+        working-directory: frontend
+        run: npm run lint
+      - name: Validar TypeScript de aplicacion y pruebas
+        working-directory: frontend
+        run: |
+          npx --no-install tsc -p tsconfig.app.json --noEmit --incremental false
+          npx --no-install tsc -p tsconfig.spec.json --noEmit --incremental false
+      - name: Ejecutar Vitest
+        working-directory: frontend
+        run: npm test -- --watch=false --reporters=default --reporters=json --output-file=../artifacts/ci/vitest.json
+      - name: Ejecutar PHPUnit
+        working-directory: backend
+        run: php vendor/bin/phpunit --log-junit ../artifacts/ci/phpunit.xml
+      - name: Probar rechazos del servidor E2E
+        run: node --test scripts/serve-backend.test.mjs
+      - name: Compilar Angular
+        working-directory: frontend
+        run: npm run build
+      - name: Instalar Chromium de la version bloqueada de Playwright
+        working-directory: frontend
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Preparar fixtures E2E en el contenedor de pruebas
+        working-directory: backend
+        run: php artisan academic:prepare-e2e --env=testing --no-interaction
+      - name: Ejecutar Playwright con API y MySQL reales
+        working-directory: frontend
+        run: npm run e2e
+      - name: Conservar reportes incluso ante fallos
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: verificacion-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            artifacts/ci/
+            artifacts/playwright-results.json
+            artifacts/rnf-01.json
+            frontend/playwright-report/
+            frontend/test-results/
