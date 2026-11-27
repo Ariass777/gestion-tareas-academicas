@@ -1,0 +1,85 @@
+{
+  "date_local": "2026-11-27",
+  "timezone": "America/Bogota",
+  "tool": "MuPDF.js 1.28.6 local; herramientas ignoradas",
+  "pdf": {
+    "path": "informe_final.pdf",
+    "pages": 6,
+    "original_sha256": "4b13ef9abd9ed4f733afb35184718198d034e24ddf9ff2c1b5ffc82be76cd009",
+    "public_sha256": "ddbac10deb708634a1c643eb43d89be83f3383b27b682a02341dfe51bba34f03",
+    "original_bytes": 166831,
+    "public_bytes": 132182,
+    "original_preserved_outside_git": true,
+    "privacy_changes": [
+      "Nombre de estudiante retirado con redaccion aplicada; no una superposicion.",
+      "Info y XMP retirados; adjunto Content Credentials y referencia AF retirados.",
+      "Reescritura completa garbage=4; no se conserva revision incremental."
+    ],
+    "checks": {
+      "six_pages_visually_reviewed": true,
+      "cover_redactions": 1,
+      "pages_2_to_6_text_and_render_identical": true,
+      "cover_text_identical_except_removed_name": true,
+      "public_links_preserved": true,
+      "remaining_embedded_files": 0,
+      "author_info_absent": true,
+      "xmp_absent": true,
+      "removed_name_absent_in_text_and_objects": true,
+      "text_pattern_matches": {
+        "emails": 0,
+        "private_keys": 0,
+        "github_tokens": 0,
+        "private_windows_paths": 0,
+        "phones": 0
+      },
+      "cover_whitespace_normalized_for_comparison": true
+    }
+  },
+  "limits": [
+    "No es un original binariamente identico: es una copia preparada para privacidad.",
+    "Retirar Content Credentials elimina ese adjunto de procedencia de la copia; el original intacto lo conserva. La asistencia de IA se declara en la bitacora.",
+    "Revision limitada a estos documentos; no certifica anonimato de todo el repositorio."
+  ],
+  "markdown": {
+    "path": "informe_final.md",
+    "original_sha256": "d7836e78715fc18164af6427b9c7333d55aabe4c0b9779f1c12abfc4a3ec8b19",
+    "public_sha256": "724e1812d903e11d602d66c1a6551c9bb646042ee25904a5e4155cc6d406a6df",
+    "original_bytes": 18334,
+    "public_bytes": 18331,
+    "original_preserved_outside_git": true,
+    "privacy_changes": [
+      "Dos nombres de la cabecera sustituidos por marcadores anonimizados."
+    ],
+    "checks": {
+      "full_text_reviewed": true,
+      "academic_text_unchanged_except_two_names": true,
+      "eight_official_sections": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "reference_definitions": 22,
+      "reference_uses_resolved": 54,
+      "all_reference_urls_https": true,
+      "no_yaml_frontmatter_or_html_comments_found": true,
+      "text_pattern_matches": {
+        "emails": 0,
+        "private_keys": 0,
+        "github_tokens": 0,
+        "private_windows_paths": 0,
+        "phones": 0
+      }
+    }
+  },
+  "version_difference": {
+    "pdf": "Corte previo a la recuperacion de modulo 1; conserva referencias a 46020516693.",
+    "markdown": "Version definitiva suministrada: incorpora modulo 1 y su anexo publicado en 6296b64; conserva referencias a 46020516693.",
+    "academically_identical": false,
+    "policy": "Se preservan las dos versiones recibidas, cambiando solo privacidad. Discrepancia indicada en README/indice/bitacora; no se regenera el PDF ni se reescribe la reflexion de la estudiante."
+  }
+}

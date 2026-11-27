@@ -2,6 +2,10 @@
 
 Actualizado el 27/11/2026. Los originales e informes históricos conservan sus fechas; las revisiones nuevas no se atribuyen a semanas anteriores.
 
+**Informe final aportado por la estudiante:** [PDF de seis páginas](../informe_final.pdf) y [Markdown](../informe_final.md) en la raíz. Son copias para publicación con revisión de portada/contenido y metadatos; los originales se conservan fuera de Git. [Resumen de privacidad y hashes](evidencias/semana10/privacidad-informe-final.json), [declaración de uso de ChatGPT en informe y diapositivas](bitacora_ia.md). No se incorpora un archivo de diapositivas ni se atribuye al agente la revisión de uno.
+
+**Diferencia de corte:** el PDF todavía indica que falta la propuesta del módulo 1; el Markdown definitivo ya incorpora el anexo recuperado y publicado en `6296b64`. No son versiones académicamente idénticas: se conserva el contenido recibido de ambas y se señala la discrepancia para reconciliación por la estudiante. Ambas enlazan la ejecución aprobada `46020516693`; el pipeline posterior del commit de incorporación se verifica por separado.
+
 **Cierre técnico:** [PR #4 integrado](https://github.com/Ariass777/gestion-tareas-academicas/pull/4), [pipeline de main aprobado](https://github.com/Ariass777/gestion-tareas-academicas/actions/runs/46018960368), [metadatos del cierre](evidencias/semana10/cierre-main.json) y [reportes de main](evidencias/semana10/resultados-main.json). [BASE_INFORME_FINAL.md](BASE_INFORME_FINAL.md) reúne las fuentes públicas, diferencias entre historia y S10, casos de verificación y pendientes para redactar el informe posteriormente.
 
 **Validación remota terminada:** [pipeline aprobado y correcciones](VALIDACION_REMOTA_S10.md), [evidencia de jobs y SHA](evidencias/semana10/pipeline-remoto.json), [auditorías después de las actualizaciones autorizadas](evidencias/semana10/seguridad-actualizada.json). Se conserva también el estado previo en los informes de preparación.
@@ -17,7 +21,7 @@ Actualizado el 27/11/2026. Los originales e informes históricos conservan sus f
 
 [Bitácora completa disponible](bitacora_ia.md), [casos de verificación y sus límites](CASOS_VERIFICACION_IA.md), [índice de evidencias S10](EVIDENCIAS_S10.md). Los anexos originales ausentes se señalan expresamente; «completa disponible» no significa que ya exista evidencia de todas las actividades históricas.
 
-Los resúmenes pequeños de [semana 10](evidencias/semana10/) y [antecedentes](evidencias/historico/) se distribuyen con Git. Los reportes completos, capturas locales, datos y secretos se conservan ignorados donde corresponde. No se ha generado el informe final integrador ni las diapositivas.
+Los resúmenes pequeños de [semana 10](evidencias/semana10/) y [antecedentes](evidencias/historico/) se distribuyen con Git. Los reportes completos, capturas locales, datos y secretos se conservan ignorados donde corresponde. El informe final aportado se enlaza al inicio; no se publican diapositivas en esta incorporación.
 
 ## Recuperación del módulo 1 — 27/11/2026
 
